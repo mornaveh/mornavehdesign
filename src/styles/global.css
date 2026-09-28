@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #ffffff;
+  --color-surface: #e7e7f4;
+  --color-accent-soft: #dcdcf7;
+  --color-accent: #4a4ec4;
+  --color-accent-hover: #3d40a8;
+  --color-ink: #1c1b2e;
+  --color-muted: #7c7d92;
+  --color-border: #d7d7ea;
+
+  /* companion palette — each project/card rotates through one of these as its
+     background; text, icons, and buttons stay in --color-ink throughout so the
+     page reads as one system, not four competing color schemes */
+  --color-indigo-soft: #dcdcf7;
+  --color-rose-soft: #f9dbe0;
+  --color-sage-soft: #daeedd;
+  --color-amber-soft: #f8e4c2;
+
+  /* even lighter/softer versions of the companion palette, for cards that sit
+     on top of or beside a -soft block and need less visual weight */
+  --color-indigo-pale: #efeffb;
+  --color-rose-pale: #fceff1;
+  --color-sage-pale: #eef7f0;
+  --color-amber-pale: #fcf3e4;
+
+  /* one family for everything on the site; kept as three token names since
+     markup already distinguishes display/body/accent usage by weight & style */
+  --font-display: "Albert Sans", system-ui, sans-serif;
+  --font-body: "Albert Sans", system-ui, sans-serif;
+  --font-accent: "Albert Sans", system-ui, sans-serif;
+  --font-hand: "Bad Script", cursive;
+
+  /* body copy sized up ~1px from Tailwind defaults; headings use text-lg and up
+     so they're unaffected */
+  --text-sm: 0.9375rem; /* 15px, was 14px */
+  --text-base: 1.0625rem; /* 17px, was 16px */
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  letter-spacing: 0.02em;
+}
+
+/* headings keep the tighter default tracking; only body copy gets spaced out */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: normal;
+}

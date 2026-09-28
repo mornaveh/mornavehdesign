@@ -1,0 +1,37 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  label?: string;
+  noBorder?: boolean;
+  square?: boolean;
+  labelClass?: string;
+  imgClass?: string;
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  label,
+  noBorder,
+  square,
+  labelClass = "text-sm font-semibold text-ink",
+  imgClass = "w-full",
+  class: className = "",
+} = Astro.props;
+---
+
+<figure class={`flex flex-col gap-3 ${className}`}>
+  {
+    (label || caption) && (
+      <figcaption>
+        {label && <p class={labelClass}>{label}</p>}
+        {caption && <p class="mt-1 text-sm text-muted">{caption}</p>}
+      </figcaption>
+    )
+  }
+  <img src={src} alt={alt} class={`${imgClass} ${square ? "" : "rounded-2xl"} ${noBorder ? "" : "border border-border"}`} />
+</figure>

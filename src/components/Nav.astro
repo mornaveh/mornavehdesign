@@ -1,0 +1,50 @@
+---
+const links = [
+  { label: "Case Studies", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "About", href: "/about" },
+  { label: "Art", muted: true },
+];
+---
+
+<header class="border-b border-border">
+  <div class="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5">
+    <a href="/">
+      <img src="/logo.png" alt="Mor Naveh" class="h-14 w-auto" />
+    </a>
+
+    <nav class="hidden items-center gap-8 text-sm font-medium md:flex">
+      {
+        links.map((link) =>
+          link.href ? (
+            <a
+              href={link.href}
+              class={
+                link.muted
+                  ? "text-muted/60 hover:text-muted transition-colors"
+                  : "text-ink hover:text-accent transition-colors"
+              }
+            >
+              {link.label}
+            </a>
+          ) : (
+            <span class="group relative cursor-default text-muted/60">
+              {link.label}
+              <span class="pointer-events-none absolute top-full left-1/2 z-10 mt-2 -translate-x-1/2 rounded-md bg-ink px-2 py-1 text-xs font-medium whitespace-nowrap text-bg opacity-0 transition-opacity group-hover:opacity-100">
+                Coming soon
+              </span>
+            </span>
+          )
+        )
+      }
+      <a href="/resume" class="text-ink hover:text-accent transition-colors">Resume</a>
+    </nav>
+
+    <a
+      href="/contact"
+      class="rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-bg transition-colors hover:bg-accent"
+    >
+      Contact me
+    </a>
+  </div>
+</header>

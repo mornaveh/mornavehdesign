@@ -1,0 +1,37 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const swatches = ["indigo-soft", "rose-soft", "sage-soft", "amber-soft"] as const;
+
+const tracks = [
+  { name: "Track name", description: "One-line description of what this track covers." },
+  { name: "Track name", description: "One-line description of what this track covers." },
+  { name: "Track name", description: "One-line description of what this track covers." },
+];
+---
+
+<Layout title="Services — Mor Naveh">
+  <section class="mx-auto max-w-[1400px] px-6 pt-20 pb-16">
+    <h1 class="font-display text-5xl font-normal text-balance text-ink">Work tracks</h1>
+    <p class="mt-4 max-w-xl text-lg font-light text-[#302e2c]/60">The different ways I can help.</p>
+  </section>
+
+  <section class="mx-auto max-w-[1400px] px-6 pb-28">
+    <div class="grid gap-6 md:grid-cols-3">
+      {
+        tracks.map((track, i) => (
+          <div class="rounded-2xl p-6" style={`background: var(--color-${swatches[(i + 1) % swatches.length]});`}>
+            <h3 class="font-display text-base font-semibold text-ink">{track.name}</h3>
+            <p class="mt-2 text-sm text-ink/70">{track.description}</p>
+          </div>
+        ))
+      }
+    </div>
+    <a
+      href="/#contact"
+      class="mt-10 inline-flex w-fit items-center gap-1.5 rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-accent"
+    >
+      Contact me
+    </a>
+  </section>
+</Layout>

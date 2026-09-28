@@ -1,0 +1,286 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Testimonial from "../components/Testimonial.astro";
+
+const swatches = ["indigo-soft", "rose-soft", "sage-soft", "amber-soft"] as const;
+
+const projects = [
+  {
+    title: "AI Design pipeline",
+    description: "Using Claude Code skills to go from idea to prototype to a workable Figma file.",
+    tag: "AI Tooling",
+  },
+  {
+    title: "Ignore approval workflow",
+    description:
+      "Providing Application Security Engineers with more control over issues being ignored, and developers more agency in ignoring them.",
+    tag: "Enterprise UX",
+    href: "/case-studies/ignore-approval-workflow",
+    image: "/case-studies/ignore-approval-workflow/hero-mockup.png",
+  },
+  {
+    title: "Security DB search",
+    description: "Updating a security database search to include non-vulnerable packages, not just vulnerable ones.",
+    tag: "Enterprise UX",
+  },
+  {
+    title: "Notification settings",
+    description: "Redesigning a user notification settings page to improve usability and provide greater flexibility.",
+    tag: "Systems",
+  },
+];
+
+const process = [
+  { step: "01", title: "Exploratory research", description: "Using AI and user interviews to uncover workflows, pain points, and feedback." },
+  { step: "02", title: "User insights & flows", description: "Defined early and revisited to maintain clarity and alignment." },
+  { step: "03", title: "Target user journeys", description: "Defining future-state flows and using AI to prototype, test, and refine with users." },
+  { step: "04", title: "Design", description: "Creating dev-ready designs based on user feedback, product style, and roadmap stages." },
+  { step: "05", title: "Feedback & iterations", description: "Feedback during and after release informs continuous design improvements." },
+];
+
+const testimonials = [
+  {
+    quote:
+      "Mor is a fantastic collaborator and asset to any projects I've had the pleasure of working with her on.\nShe is able to get to the core of any problem areas or requirements, and create design artefacts that both meet objectives as well as excelling in advising and offering her expertise on areas such as wording choices and iconography usage.\nMor is quick to respond to any changes in scope, and always happy to work closely with both product and engineering to ensure that the final product is polished and professional.",
+    name: "Eleanor Demetriou",
+    title: "Senior Software Engineer",
+    company: "Snyk",
+  },
+  {
+    quote:
+      "I have worked both directly and indirectly with Mor my entire time at Snyk.\nShe is an incredible thoughtful and empathetic designer, always championing the user and always asking why (at least five times 😊). She is extremely collaborative, both within her teams and with her peers and loves teaching and showing others what she has learned herself.\nI can thoroughly recommend Mor to anyone who needs a brilliant product designer and a brilliant human!",
+    name: "Jakob Bhul",
+    title: "Product Designer",
+    company: "Snyk",
+  },
+  {
+    quote: `Mor is a highly adaptive, details-focused, and user-oriented product designer who puts the work in to understand deeply technical domains, and who has helped make the design team at Snyk more effective by creating AI Skills for Claude that the whole team now uses.
+
+As one of our most capable designers Mor has worked across Snyk from our Growth to our Application Security teams. From helping clients sign up, helping engineers get started, to defining new cross-platform product capabilities and functionality.
+
+Most recently, Mor was responsible for the user experience around the Consistent Ignores project; the context for which included inconsistencies within product capabilities from one interface to the other, and between products. She worked tightly with the Product Manager and Engineers, collaborating to understand and align on the problem and possible solutions, and understanding the problem space through research, before designing the cross-platform approach and interfaces.  The impact of her work led directly to a reduction in the noise faced by developer and App-Sec teams, improving the relationship between those teams by reducing friction, and increasing confidence through a single source of truth.
+
+Mor also worked to help create and improve several Claude Skills for design. Taking an early Skill that attempted to create designs based on Snyk's design system, Mor identified that while the outputs looked right Claude was in fact producing hard-coded elements rather than using the actual components. As well as improving the output of the skill she worked on an eval which was used to improve the skill over time with each usage. All of this being properly versioned and distributed via git. The impact of this was that designers (and in fact anyone in the company) could produce prototypes for discussion within teams and for user feedback in a matter of minutes - not just reducing the time taken to produce and evaluate prototypes, but also increasing the functionality that could be prototyped, and making the prototypes appropriately believable for richer feedback.
+
+As well as being an excellent Product Designer (and producer of crochet patterns and sketch artist), Mor is a deeply caring colleague and friend, a supportive collaborator and team-player.`,
+    name: "Karl Sabino",
+    title: "Design Manager",
+    company: "Snyk",
+  },
+  {
+    quote:
+      "I've had the pleasure of working with Mor on a couple of projects during my time at Snyk, and it's always been an exceptional experience.\nShe is so dedicated to being embedded with the team so there's no misalignment, and her output is both high quality and rapidly delivered.\nI think the best thing about working with Mor is that she is user hungry, and will be on every call possible to ensure the product and engineering team has absolute confidence in the experience she is delivering, as it's constantly validated.",
+    name: "Waleed Arshad",
+    title: "Staff Product Manager",
+    company: "Snyk",
+  },
+];
+---
+
+<Layout title="Mor Naveh — Product Designer">
+  <section class="mx-auto grid max-w-[1400px] gap-24 px-6 pt-20 pb-40 md:grid-cols-[320px_1fr] md:items-center">
+    <div class="relative">
+      <div
+        class="absolute -inset-6 -z-10 rounded-[60%_40%_55%_45%/45%_55%_40%_60%]"
+        style="background: linear-gradient(135deg, var(--color-rose-soft), var(--color-amber-soft));"
+      >
+      </div>
+      <div class="aspect-4/5 overflow-hidden rounded-3xl border border-border bg-surface">
+        <img src="/images/mor-photo.png" alt="Mor Naveh" class="h-full w-full object-cover" />
+      </div>
+    </div>
+
+    <div>
+      <p class="font-hand text-lg font-normal text-[#302e2c]/60">Hi, I'm Mor</p>
+      <h1 class="font-display mt-6 text-6xl font-normal text-balance text-ink">
+        I make complex things feel <span class="font-hand font-normal">simple</span>.
+      </h1>
+      <p class="mt-6 text-lg font-light text-[#302e2c]/60">
+        I bring cross-functional teams together around one goal: designing the best experience for the user.
+      </p>
+      <div class="mt-8 flex gap-4">
+        <a href="/contact" class="rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-accent">
+          Contact me
+        </a>
+        <a href="#work" class="rounded-full border border-border px-6 py-3 text-sm font-medium text-ink transition-colors hover:border-accent">
+          View my work
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="mx-auto max-w-[1400px] px-6 pb-40">
+    <h2 class="font-display text-4xl font-normal text-ink">Selected work</h2>
+    <div class="mt-8 flex flex-col gap-6">
+      {
+        projects.map((project, i) => (
+          <article
+            class="grid gap-8 rounded-3xl p-8 md:grid-cols-2 md:items-center"
+            style={`background: var(--color-${swatches[i % swatches.length]});`}
+          >
+            <div class={i % 2 === 1 ? "md:order-2" : ""}>
+              <span class="inline-block rounded-full bg-bg/60 px-3 py-1 text-xs font-medium text-ink">{project.tag}</span>
+              <h3 class="font-display mt-3 text-2xl font-semibold text-ink">{project.title}</h3>
+              <p class="mt-3 max-w-sm text-sm text-ink/70">{project.description}</p>
+              <a
+                href={project.href ?? "#"}
+                class="mt-5 inline-flex items-center gap-1.5 rounded-full border border-ink/20 bg-bg px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-ink"
+              >
+                Read case study →
+              </a>
+            </div>
+            <div
+              class={`flex aspect-video items-center justify-center rounded-2xl ${project.image ? "" : "border border-ink/10 bg-bg/50"} ${i % 2 === 1 ? "md:order-1" : ""}`}
+            >
+              {project.image ? (
+                <img src={project.image} alt={project.title} class="h-[85%] w-[85%] object-contain" />
+              ) : (
+                <span class="text-xs text-ink/50">Project image</span>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1400px] px-6 pb-40">
+    <h2 class="font-display text-4xl font-normal text-ink">My process</h2>
+    <div class="mt-8 grid gap-8 md:grid-cols-5">
+      {
+        process.map((p, i) => (
+          <div>
+            <span
+              class="font-display inline-flex h-8 w-8 items-center justify-center rounded-full text-xs font-semibold text-ink"
+              style={`background: var(--color-${swatches[i % swatches.length]});`}
+            >
+              {p.step}
+            </span>
+            <h3 class="font-display mt-3 text-base font-semibold text-ink">{p.title}</h3>
+            <p class="mt-2 text-sm text-muted">{p.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1400px] px-6 pb-40">
+    <div class="mx-auto grid max-w-[1000px] gap-6 md:grid-cols-[200px_175px_1fr] md:items-start">
+      <div class="overflow-hidden rounded-2xl border border-border">
+        <img src="/images/mor-about.png" alt="Mor Naveh" class="h-auto w-full" />
+      </div>
+      <div class="flex flex-col gap-6">
+        <div class="overflow-hidden rounded-2xl border border-border">
+          <img src="/images/mor-about-2.png" alt="Mor Naveh in a witch costume" class="h-auto w-full" />
+        </div>
+        <div class="overflow-hidden rounded-2xl border border-border">
+          <img src="/images/mor-about-3.png" alt="Mor Naveh with her dog" class="h-auto w-full" />
+        </div>
+      </div>
+      <div>
+        <h2 class="font-display text-4xl font-normal text-ink">About me</h2>
+        <p class="mt-3 text-sm text-ink/60">
+          I'm a Product Designer based in Israel. I've been an information systems engineer since 2006, working
+          across complex systems and dozens of customers from different backgrounds — which has helped me refine
+          the process of turning wishes into goal-oriented, user-friendly systems.
+        </p>
+        <a
+          href="/about"
+          class="mt-5 inline-flex items-center gap-1.5 rounded-full border border-ink/20 bg-bg px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-ink"
+        >
+          More about me →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1400px] px-6 pb-40">
+    <div class="flex items-baseline justify-between">
+      <h2 class="font-display text-4xl font-normal text-ink">Testimonials</h2>
+      <div class="flex gap-2">
+        <button
+          type="button"
+          data-testimonial-scroll="prev"
+          aria-label="Previous testimonial"
+          class="flex h-9 w-9 items-center justify-center rounded-full border border-border text-ink transition-colors hover:border-ink"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 6-6 6 6 6" /></svg>
+        </button>
+        <button
+          type="button"
+          data-testimonial-scroll="next"
+          aria-label="Next testimonial"
+          class="flex h-9 w-9 items-center justify-center rounded-full border border-border text-ink transition-colors hover:border-ink"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6" /></svg>
+        </button>
+      </div>
+    </div>
+    <div
+      id="testimonials-track"
+      class="-ml-6 mt-8 flex snap-x snap-mandatory items-start gap-6 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+    >
+      {
+        testimonials.map((t, i) => (
+          <div class="w-fit max-w-[480px] shrink-0 snap-start sm:max-w-[560px]">
+            <Testimonial quote={t.quote} name={t.name} title={t.title} company={t.company} id={`testimonial-${i}`} />
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <script>
+    const track = document.getElementById("testimonials-track");
+    document.querySelectorAll("[data-testimonial-scroll]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const direction = btn.getAttribute("data-testimonial-scroll") === "next" ? 1 : -1;
+        track?.scrollBy({ left: direction * 356, behavior: "smooth" });
+      });
+    });
+  </script>
+
+  <section class="mx-auto max-w-[1400px] px-6 pb-40">
+    <h2 class="font-display text-4xl font-normal text-ink">Skills & tools</h2>
+    <div class="mt-8 flex min-h-24 items-center justify-center rounded-2xl border border-dashed border-border">
+      <span class="text-sm text-muted">Skills & tools list goes here</span>
+    </div>
+  </section>
+
+  <section id="contact" class="mx-auto max-w-[1400px] px-6 pb-40">
+    <div class="rounded-3xl p-10" style="background: var(--color-indigo-soft);">
+      <h2 class="font-display text-4xl font-normal text-ink">What's your next big challenge?</h2>
+      <p class="mt-2 max-w-xl text-sm text-ink/60">I'd love to help tackle it. Contact me, or send a message below.</p>
+      <form class="mt-8 grid gap-6 sm:grid-cols-2">
+        <div class="flex flex-col gap-4">
+          <label class="grid gap-1.5 text-sm text-ink">
+            Name
+            <input
+              type="text"
+              class="rounded-lg border border-ink/15 bg-bg px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none"
+            />
+          </label>
+          <label class="grid gap-1.5 text-sm text-ink">
+            Email
+            <input
+              type="email"
+              class="rounded-lg border border-ink/15 bg-bg px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none"
+            />
+          </label>
+        </div>
+        <label class="flex h-full flex-col gap-1.5 text-sm text-ink">
+          Message
+          <textarea
+            class="min-h-[135px] flex-1 rounded-lg border border-ink/15 bg-bg px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none"
+          ></textarea>
+        </label>
+        <button
+          type="submit"
+          class="w-fit justify-self-end rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-accent sm:col-span-2"
+        >
+          Send message
+        </button>
+      </form>
+    </div>
+  </section>
+</Layout>

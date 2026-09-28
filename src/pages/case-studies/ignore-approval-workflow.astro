@@ -1,0 +1,486 @@
+---
+import CaseStudyLayout from "../../layouts/CaseStudyLayout.astro";
+import Section from "../../components/casestudy/Section.astro";
+import Figure from "../../components/casestudy/Figure.astro";
+import NumberedPoint from "../../components/casestudy/NumberedPoint.astro";
+import UnderTheHood from "../../components/casestudy/UnderTheHood.astro";
+import ColorCard from "../../components/casestudy/ColorCard.astro";
+
+const base = "/case-studies/ignore-approval-workflow";
+
+const pmQuote =
+  "I've had the pleasure of working with Mor on a couple of projects during my time at Snyk, and it's always been an exceptional experience.\nShe is so dedicated to being embedded with the team so there's no misalignment, and her output is both high quality and rapidly delivered.\nI think the best thing about working with Mor is that she is user hungry, and will be on every call possible to ensure the product and engineering team has absolute confidence in the experience she is delivering, as it's constantly validated.";
+---
+
+<CaseStudyLayout
+  title="Ignore approval workflow"
+  tagline="Providing Application Security Engineers with more control over issues being ignored, and Developers more agency in ignoring them"
+  accent="indigo-soft"
+  prototypeUrl="https://v0-ignore-approvals.vercel.app/"
+  heroImage={`${base}/hero-mockup.png`}
+  summary={{
+    logo: `${base}/snyk-logo.webp`,
+    logoAlt: "Snyk",
+    dateLine: "Ignore approval workflow, 2026",
+    headline: "Streamlining the ignore process: less noise for developers, full visibility for AppSec.",
+    body: [
+      "Snyk helps users by scanning their code for vulnerabilities and providing guidance on how to fix them. Since not all vulnerabilities pose risk (false positives, unfixable problems, low-risk findings, etc.), users can choose to ignore/sustain them. For example — a package dependency which introduces a vulnerability, but is not actually being used. In many organizations, AppSec engineers need more control over what gets ignored, for how long, and why.",
+      "I simplified a complex, information-heavy process and designed a user-friendly flow for maximum risk, and minimum noise.",
+    ],
+    workSteps: [
+      "Exploratory research",
+      "Flow definition",
+      "Early design concepts",
+      "User testing",
+      "Final designs (and iterations)",
+      "Stakeholder alignment",
+    ],
+  }}
+>
+  <Section id="exploratory-research" title="Exploratory research - patterns emerge">
+    <div class="flex items-start gap-3">
+      <svg width="26" height="20" viewBox="0 0 34 26" fill="none" class="shrink-0 text-ink/30">
+        <path
+          fill="currentColor"
+          d="M0 26V15.6C0 11.1 1.1 7.4 3.3 4.4 5.6 1.5 8.9 0 13.2 0v5.6c-2.2 0-3.9.8-5.1 2.4C6.9 9.4 6.3 11.4 6.3 13.8h6.9V26H0Zm18.5 0V15.6c0-4.5 1.1-8.2 3.3-11.2C24.1 1.5 27.3 0 31.5 0v5.6c-2.1 0-3.8.8-5.1 2.4-1.2 1.4-1.8 3.4-1.8 5.8h6.9V26H18.5Z"
+        />
+      </svg>
+      <p class="font-accent text-lg text-ink italic whitespace-nowrap">
+        We don't want to wait for developers to have to ask us to look at these issues.
+      </p>
+    </div>
+
+    <div>
+      <p class="text-lg font-normal text-ink">I asked these key questions</p>
+      <ul class="mt-4 list-disc space-y-1.5 pl-5 text-sm text-muted">
+        <li>How many developers are there in your organization? How many AppSec engineers?</li>
+        <li>Can you tell us about the last time an issue was remediated?</li>
+        <li>What are your general guidelines around remediation/ignoring?</li>
+        <li>Who has permissions to ignore issues?</li>
+        <li>
+          Tell us about the last time an issue was ignored
+          <ul class="mt-1.5 list-disc space-y-1.5 pl-5">
+            <li>Who ignored it?</li>
+            <li>Why was it ignored? (it can't be fixed, it doesn't actually present risk, etc.)</li>
+            <li>How long was it ignored for?</li>
+            <li>How was it ignored? (manually or through a policy)</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="text-lg font-normal text-ink">Through analyzing the feedback, customer types and pain points emerged:</p>
+      <div class="mt-5 grid gap-6 md:grid-cols-3">
+        <ColorCard title="Ignoring freely" color="indigo-soft">
+          <p>Developers have permissions to ignore. AppSec team monitors ignored issues after the fact.</p>
+          <div>
+            <p class="font-medium text-ink">Pain points</p>
+            <ul>
+              <li>Risky issues may be ignored, leaving the product vulnerable.</li>
+              <li>AppSec governance and control is harder / not possible.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="font-medium text-ink">Goal</p>
+            <p>
+              Maximizing security by easily monitoring which issues are ignored, so that vulnerable projects aren't
+              being introduced into the product.
+            </p>
+          </div>
+        </ColorCard>
+        <ColorCard title="Only AppSec team ignores" color="rose-soft">
+          <p>Developers don't have permissions to ignore. Only the AppSec team ignores issues.</p>
+          <div>
+            <p class="font-medium text-ink">Pain points</p>
+            <ul>
+              <li>Ignore requests come in through different, unaudited mediums.</li>
+              <li>Developers are blocked while waiting for issues to be ignored.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="font-medium text-ink">Goal</p>
+            <p>
+              Reduce developers' time to merge and AppSec team overload by centralizing the requests and needed
+              context, reducing response time.
+            </p>
+          </div>
+        </ColorCard>
+        <ColorCard title="In-house approval workflow" color="sage-soft">
+          <p>Developers can request to ignore issues from the AppSec team through a custom-built solution.</p>
+          <div>
+            <p class="font-medium text-ink">Pain points</p>
+            <ul>
+              <li>These solutions require ongoing maintenance and training.</li>
+              <li>Decentralized audit trail - ignore rationale stored externally to Snyk.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="font-medium text-ink">Goal</p>
+            <p>
+              Provide centralized auditing available both internally and for external audits, as well as reduce
+              maintenance cost and effort.
+            </p>
+          </div>
+        </ColorCard>
+      </div>
+    </div>
+
+    <div>
+      <p class="text-lg font-normal text-ink">A deep rooted issue crystallized through the main flow</p>
+      <div class="mt-5">
+        <Figure src={`${base}/main-request-flow-v5.png`} alt="Diagram of the main ignore request flow across surfaces" noBorder square />
+      </div>
+      <div class="mt-1 rounded-xl bg-accent-soft/40 p-4 text-sm text-ink/70">
+        <p>
+          *When analyzing the user flows, it was apparent that ignore requests can come through many different
+          surfaces (Snyk UI, CLI, IDE, PR Checks). The consistency across these surfaces, as well as across different
+          development branches, was partial at best. It was clear that consistency needs to be achieved before
+          implementing the approval process, because:
+        </p>
+        <ul class="mt-2 list-disc space-y-1.5 pl-5">
+          <li>If the same issue appears in different places, many different requests would be created for that same issue</li>
+          <li>
+            Approving one request would still leave the rest of the similar issues open and would not be reflected
+            across the different surfaces
+          </li>
+        </ul>
+        <p class="mt-2">
+          This resulted in a technical project — "Consistent Ignores" — which was developed as the base for
+          implementing the approval workflow.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="concept-testing" title="Tested initial design to validate the concept">
+    <div>
+      <p class="text-sm text-muted">
+        Having mapped the flow and created an AI prototype, I tested the process and initial screen designs with
+        users.
+      </p>
+      <p class="mt-4 text-sm text-muted">I collected feedback on these topics:</p>
+      <ul class="mt-2 list-disc space-y-1.5 pl-5 text-sm text-muted">
+        <li>Is the process clear? Does it make sense?</li>
+        <li>Are we providing enough information to approve/reject the request?</li>
+        <li>Based on what information would the reviewers triage the requests?</li>
+        <li>How and when would the users like to be notified of events in the process?</li>
+        <li>
+          How would the different parties communicate about the request? For example — if the reviewer needs more
+          information to approve.
+        </li>
+      </ul>
+    </div>
+    <div class="flex items-start gap-6">
+      <Figure
+        src={`${base}/concept-list.png`}
+        alt="Early concept for the ignore request list"
+        label="Ignore request list"
+        class="grow-[1.7302] basis-0 min-w-0"
+        imgClass="w-full aspect-[1.7302]"
+      />
+      <Figure
+        src={`${base}/concept-viewing-request-v2.png`}
+        alt="Early concept for viewing an ignore request"
+        label="Ignore request list - viewing request"
+        class="grow-[0.6784] basis-0 min-w-0"
+        imgClass="w-full aspect-[0.6784]"
+      />
+    </div>
+
+    <div class="mt-12">
+      <p class="font-display text-4xl font-normal text-ink">Synthesized the research findings into digestible information</p>
+      <ul class="mt-8 list-disc space-y-1.5 pl-5 text-sm text-muted">
+        <li>The overall process was on the right track.</li>
+        <li>This flow would allow AppSec teams to streamline issue ignoring and reduce developer downtime.</li>
+        <li>Audit history would be available (as opposed to when using workarounds like Slack)</li>
+        <li>Notifications would help speed up development and improve efficiency.</li>
+      </ul>
+      <div class="mt-4">
+        <Figure src={`${base}/concept-research-findings-board.jpg`} alt="Affinity map of concept testing research findings" />
+      </div>
+    </div>
+
+    <div class="relative left-1/2 mt-8 w-screen -translate-x-1/2 pt-24 pb-24" style="background: var(--color-rose-pale);">
+      <div class="mx-auto max-w-[1400px] px-6">
+        <p class="font-display text-4xl font-normal text-ink">Discovered these key points for improvement</p>
+        <div class="mt-8 flex flex-col gap-8">
+          <div class="grid gap-16 md:grid-cols-2">
+            <NumberedPoint
+              number={1}
+              title={`In-product conversations instead of a "Details" field`}
+              image={`${base}/keypoint-1-annotated.png`}
+              imageAlt="Annotated screenshot noting the Details field is not auditable"
+              stacked
+              stackedImageClass="w-4/5"
+              bodyClass="text-ink/70"
+            >
+              <p>
+                Instead of a Details field which can be edited by anyone, customers needed a way for all parties to
+                leave distinct, timestamped comments throughout the request process, highlighting the importance of
+                an auditable, uneditable history.
+              </p>
+            </NumberedPoint>
+            <NumberedPoint
+              number={2}
+              title="More details needed to respond to a request"
+              image={`${base}/keypoint-2-annotated.png`}
+              imageAlt="Annotated screenshot noting the request context is not enough"
+              stacked
+              stackedImageClass="w-4/5"
+              bodyClass="text-ink/70"
+            >
+              <p>
+                The AppSec team would need as much information as they could get in order to effectively investigate
+                and respond to the request. For example, the repository, branch, line number, details on the
+                vulnerability, and more.
+              </p>
+            </NumberedPoint>
+          </div>
+          <NumberedPoint number={3} title="Assigning reviewers to a request" bodyClass="text-ink/70">
+            <p>
+              This provides visibility into who is handling the request, preventing duplicate effort and allowing the
+              requester to be informed that their request is in progress.
+            </p>
+          </NumberedPoint>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="design-iteration" title="Incorporated feedback into the design">
+    <p class="max-w-2xl text-sm text-muted">
+      The users provided valuable feedback regarding features they were missing or that they wouldn't be able to
+      use. I used their comments to create the next version.
+    </p>
+    <div class="flex items-start gap-6">
+      <Figure
+        src={`${base}/iteration-list.png`}
+        alt="Updated ignore request list design"
+        label="Ignore request list"
+        class="grow-[1.5603] basis-0 min-w-0"
+        imgClass="w-full aspect-[1.5603]"
+      />
+      <Figure
+        src={`${base}/iteration-viewing-request-v3.png`}
+        alt="Updated ignore request detail panel with assignee field"
+        label="Ignore request list - viewing request"
+        class="grow-[0.5599] basis-0 min-w-0"
+        imgClass="w-full aspect-[0.5599]"
+      />
+    </div>
+
+    <div class="mt-8">
+      <p class="text-lg font-normal text-ink">Key changes</p>
+      <div class="mt-5 flex flex-col gap-8">
+        <div class="relative">
+          <img
+            src={`${base}/iteration-comment-flow-v3.png`}
+            alt="Diagram of the in-product comment and notification flow, ending with the resulting ignore reason summary"
+            class="w-full rounded-2xl"
+          />
+          <div class="absolute top-8 left-8 max-w-sm">
+            <p class="text-sm text-ink">
+              <span class="font-semibold">1. In-product conversations</span>
+            </p>
+            <ul class="mt-2 list-disc space-y-1.5 pl-5 text-sm text-muted">
+              <li>The reviewer and the requester would be able to add comments to the process at every stage</li>
+              <li>These comments will be saved in the Comments tab and be saved in the audit history</li>
+              <li>The original requester comments would be locked to editing</li>
+              <li>
+                Notifications will be sent out when new requests are created, as well as when new comments are added
+                to the request
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-4 grid gap-16 md:grid-cols-2">
+          <NumberedPoint
+            number={2}
+            title="More details added to the request details panel"
+            image={`${base}/iteration-keychange-2-annotated.png`}
+            imageAlt="Annotated screenshot highlighting the expanded vulnerability details"
+            stacked
+            textWidthClass="max-w-sm"
+          >
+            <p>
+              While not all the requested information was technically available, much more could be included than
+              was previously shown.
+            </p>
+          </NumberedPoint>
+          <NumberedPoint
+            number={3}
+            title="Ability to assign a reviewer to the request"
+            image={`${base}/iteration-keychange-3-annotated.png`}
+            imageAlt="Annotated screenshot highlighting the new assignee field"
+            stacked
+            textWidthClass="max-w-sm"
+          >
+            <p>
+              Assigning a reviewer to the request to provide more transparency in the AppSec team as well as
+              externally with the developers.
+            </p>
+          </NumberedPoint>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section
+    id="validation-research"
+    title="The new design was much better, and more feedback was received"
+    background="amber-pale"
+  >
+    <p class="max-w-2xl text-sm text-ink/70">I conducted a second round of research on the updated designs to test the changes.</p>
+    <Figure src={`${base}/validation-research-board.jpg`} alt="Affinity map of design validation research findings" />
+
+    <div>
+      <p class="text-lg font-normal text-ink">Additional points for future consideration were brought up:</p>
+      <div class="mt-5 flex flex-col gap-8">
+        <NumberedPoint number={1} title="Showing even more information about the issue" bodyClass="text-ink/70">
+          <p>
+            For example, the relevant code snippet — this information is crucial to understanding the context of the
+            request.
+          </p>
+          <UnderTheHood bodyClass="text-ink/70">
+            <p>Showing the code snippet was not possible for most requests generated in the IDE and the CLI, because:</p>
+            <ol class="list-decimal space-y-1 pl-5">
+              <li>Snyk doesn't save any of its customers' code.</li>
+              <li>Where Snyk does show code snippets in the Snyk app, it is retrieved from the integrated SCMs.</li>
+              <li>
+                Most requests from the IDE and the CLI are created in the context of local code, which does not have
+                SCM branch context.
+              </li>
+            </ol>
+            <p>Currently we are working on adding the code snippet where we have branch context.</p>
+            <p>In the future we will explore ways to connect the local code to the remote repository.</p>
+          </UnderTheHood>
+        </NumberedPoint>
+        <NumberedPoint number={2} title="Different options for being notified about requests" bodyClass="text-ink/70">
+          <p>Both in frequency and method of communication.</p>
+        </NumberedPoint>
+        <NumberedPoint number={3} title="Saving request history for a longer period of time" bodyClass="text-ink/70">
+          <p>Would be helpful for audit purposes.</p>
+        </NumberedPoint>
+        <NumberedPoint number={4} title="Editing an approved request" bodyClass="text-ink/70">
+          <p>
+            Some customers mentioned wanting the requests to persist past rejection/approval, allowing the audit
+            history to show how many times the vulnerability was ignored/requested to ignore, and when.
+          </p>
+          <p>For now, this request would be answered by providing audit history for the issues, rather than the requests.</p>
+          <UnderTheHood bodyClass="text-ink/70">
+            <p>
+              In one of the design iterations not presented here, the option to send approved requests back to
+              Pending was presented as an option to edit/reject.
+            </p>
+            <p>
+              Users weren't sure what would happen to the ignored issue when using this option — would it be
+              "unignored" (as it is called in Snyk)? Would it stay ignored until further changes to the request?
+              Would changes kick off a new review process?
+            </p>
+            <p>
+              Following the feedback, I tried adding an "unignore" action to the approved request. This was just as
+              confusing to users, who didn't understand what it would mean in this context — they didn't realize that
+              the action was referring to the issue, and not the request.
+            </p>
+            <p>
+              At this point it was decided to separate the request actions from the issue actions, and to go back to
+              this request when we have more feedback about the process as a whole.
+            </p>
+          </UnderTheHood>
+        </NumberedPoint>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="outcome-value" title="Went back to user patterns to review the benefits">
+    <div class="grid gap-6 md:grid-cols-3">
+      <ColorCard title="Ignoring freely" color="indigo-soft">
+        <div>
+          <p class="font-medium text-ink">Value</p>
+          <p>Reduced risk due to greater control on which issues are ignored and for how long.</p>
+        </div>
+        <div>
+          <p class="font-medium text-ink">Measuring success</p>
+          <ul>
+            <li>Reduced number of ignored issues due to closer monitoring.</li>
+            <li>Increased number of issue fixes, as fewer issues are ignored when merging.</li>
+          </ul>
+        </div>
+      </ColorCard>
+      <ColorCard title="Only AppSec team ignores" color="rose-soft">
+        <div>
+          <p class="font-medium text-ink">Value</p>
+          <ul>
+            <li>Minimizing the time developers are blocked waiting for issues to be ignored.</li>
+            <li>Reduced AppSec team overload, centralizing request information.</li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-medium text-ink">Measuring success</p>
+          <p>Reduced time to merge, as the process of ignoring is more streamlined and effective.</p>
+        </div>
+      </ColorCard>
+      <ColorCard title="In-house approval workflow" color="sage-soft">
+        <div>
+          <p class="font-medium text-ink">Value</p>
+          <ul>
+            <li>Reduced maintenance of custom, in-house solutions.</li>
+            <li>Centralized audit on all ignore information, for internal audits as well as external ones.</li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-medium text-ink">Measuring success</p>
+          <p>Adoption of the feature as customers are able to stop using their own custom solutions.</p>
+        </div>
+      </ColorCard>
+    </div>
+  </Section>
+
+  <Section id="future-thinking" title="Policies and context would reduce noise and workload">
+    <p class="max-w-2xl text-sm text-muted">
+      As the topic of Ignores continues to evolve, there are interesting opportunities in using AI to deliver value
+      both to customers and to Snyk:
+    </p>
+    <div class="flex flex-col gap-8">
+      <NumberedPoint number={1} title="Suggesting policies to ignore more efficiently">
+        <p>
+          As Snyk learns about the patterns of ignoring issues for different customers, it can make data-driven
+          suggestions about ignore policies which cover specific use cases and are based on context.
+        </p>
+        <p>
+          For example: noticing that a repository only deals with backend services and suggesting to ignore all
+          frontend related issues.
+        </p>
+      </NumberedPoint>
+      <NumberedPoint number={2} title="Better context for issue severity">
+        <p>
+          In some cases it may be possible to go one step further and instead of ignoring more widely, Snyk could do
+          a better job of flagging irrelevant issues in the first place.
+        </p>
+        <p>
+          As per the previous example: instead of ignoring all frontend issues in backend repositories, the issues
+          wouldn't appear in the scans in the first place.
+        </p>
+      </NumberedPoint>
+    </div>
+  </Section>
+
+  <Section id="pm-feedback" title="What the PM said" background="indigo-pale">
+    <div class="flex items-start gap-3">
+      <svg width="34" height="26" viewBox="0 0 34 26" fill="none" class="mt-1 shrink-0 text-ink/30">
+        <path
+          fill="currentColor"
+          d="M0 26V15.6C0 11.1 1.1 7.4 3.3 4.4 5.6 1.5 8.9 0 13.2 0v5.6c-2.2 0-3.9.8-5.1 2.4C6.9 9.4 6.3 11.4 6.3 13.8h6.9V26H0Zm18.5 0V15.6c0-4.5 1.1-8.2 3.3-11.2C24.1 1.5 27.3 0 31.5 0v5.6c-2.1 0-3.8.8-5.1 2.4-1.2 1.4-1.8 3.4-1.8 5.8h6.9V26H18.5Z"
+        />
+      </svg>
+      <div class="max-w-2xl">
+        <p class="font-body text-base whitespace-pre-line text-ink/80">{pmQuote}</p>
+        <div class="mt-5">
+          <p class="text-sm font-medium text-ink">Waleed Arshad</p>
+          <p class="text-xs text-ink/70">Staff Product Manager, Snyk</p>
+        </div>
+      </div>
+    </div>
+  </Section>
+</CaseStudyLayout>

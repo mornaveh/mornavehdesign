@@ -1,0 +1,120 @@
+---
+interface Props {
+  quote: string;
+  name: string;
+  title: string;
+  company: string;
+  id: string;
+}
+
+const { quote, name, title, company, id } = Astro.props;
+// only genuinely long quotes clamp — the real testimonials run 450-520 chars
+// and should sit fully in the card; only Karl's (2000+) needs the modal
+const isLong = quote.length > 700;
+---
+
+<div class="flex flex-col rounded-2xl p-6">
+  <svg width="34" height="26" viewBox="0 0 34 26" fill="none" class="mb-2 shrink-0 text-ink/20">
+    <path
+      fill="currentColor"
+      d="M0 26V15.6C0 11.1 1.1 7.4 3.3 4.4 5.6 1.5 8.9 0 13.2 0v5.6c-2.2 0-3.9.8-5.1 2.4C6.9 9.4 6.3 11.4 6.3 13.8h6.9V26H0Zm18.5 0V15.6c0-4.5 1.1-8.2 3.3-11.2C24.1 1.5 27.3 0 31.5 0v5.6c-2.1 0-3.8.8-5.1 2.4-1.2 1.4-1.8 3.4-1.8 5.8h6.9V26H18.5Z"
+    />
+  </svg>
+  <p class:list={["font-body text-base font-light whitespace-pre-line text-ink", isLong && "line-clamp-10"]}>{quote}</p>
+  {
+    isLong && (
+      <button
+        type="button"
+        data-modal-open={id}
+        class="mt-3 w-fit text-sm font-medium text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink"
+      >
+        Read full testimonial
+      </button>
+    )
+  }
+  <div class="mt-6">
+    <p class="text-sm font-medium text-ink">{name}</p>
+    <p class="text-xs text-ink/50">{title}, {company}</p>
+  </div>
+</div>
+
+{
+  isLong && (
+    <dialog id={id} class="modal">
+      <button type="button" data-modal-close class="modal-close" aria-label="Close">
+        ×
+      </button>
+      <svg width="34" height="26" viewBox="0 0 34 26" fill="none" class="mb-2 shrink-0 text-ink/20">
+        <path
+          fill="currentColor"
+          d="M0 26V15.6C0 11.1 1.1 7.4 3.3 4.4 5.6 1.5 8.9 0 13.2 0v5.6c-2.2 0-3.9.8-5.1 2.4C6.9 9.4 6.3 11.4 6.3 13.8h6.9V26H0Zm18.5 0V15.6c0-4.5 1.1-8.2 3.3-11.2C24.1 1.5 27.3 0 31.5 0v5.6c-2.1 0-3.8.8-5.1 2.4-1.2 1.4-1.8 3.4-1.8 5.8h6.9V26H18.5Z"
+        />
+      </svg>
+      <p class="font-body text-lg font-light whitespace-pre-line text-ink">{quote}</p>
+      <p class="mt-5 text-sm font-medium text-ink">{name}</p>
+      <p class="text-xs text-muted">{title}, {company}</p>
+    </dialog>
+  )
+}
+
+<style>
+  dialog.modal {
+    width: calc(100% - 2.5rem);
+    max-width: 34rem;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    /* Tailwind's preflight zeroes out margin on every element, which breaks the
+       browser's native centering for an open <dialog> (it relies on margin: auto) */
+    margin: auto;
+  }
+  dialog.modal::backdrop {
+    background: rgba(28, 27, 46, 0.45);
+  }
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    height: 2rem;
+    width: 2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    font-size: 1.25rem;
+    line-height: 1;
+    color: var(--color-muted);
+  }
+  .modal-close:hover {
+    background: var(--color-surface);
+    color: var(--color-ink);
+  }
+</style>
+
+<script>
+  // event-delegated so this one listener (deduped by Astro across every
+  // Testimonial instance on the page) handles opening, the close button, and
+  // clicking the backdrop (a backdrop click's target is the <dialog> itself)
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+
+    const openId = target.closest("[data-modal-open]")?.getAttribute("data-modal-open");
+    if (openId) {
+      (document.getElementById(openId) as HTMLDialogElement | null)?.showModal?.();
+      return;
+    }
+
+    if (target.closest("[data-modal-close]")) {
+      target.closest("dialog")?.close();
+      return;
+    }
+
+    if (target.tagName === "DIALOG") {
+      (target as HTMLDialogElement).close();
+    }
+  });
+</script>

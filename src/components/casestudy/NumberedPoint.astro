@@ -1,0 +1,41 @@
+---
+interface Props {
+  number: number;
+  title: string;
+  image?: string;
+  imageAlt?: string;
+  stacked?: boolean;
+  bodyClass?: string;
+  stackedImageClass?: string;
+  textWidthClass?: string;
+}
+
+const {
+  number,
+  title,
+  image,
+  imageAlt,
+  stacked,
+  bodyClass = "text-muted",
+  stackedImageClass = "w-2/5",
+  textWidthClass = "max-w-2xl",
+} = Astro.props;
+const hasAside = Astro.slots.has("aside");
+const hasFull = Astro.slots.has("full");
+---
+
+<div>
+  <div class:list={["grid gap-6", (hasAside || (image && !stacked)) && "md:grid-cols-[1fr_320px] md:items-start"]}>
+    <div>
+      <p class="text-sm text-ink">
+        <span class="font-semibold">{number}. {title}</span>
+      </p>
+      <div class:list={["mt-2 text-sm [&_p]:mt-2 [&_p:first-child]:mt-0", bodyClass, textWidthClass]}>
+        <slot />
+      </div>
+    </div>
+    {hasAside && <slot name="aside" />}
+    {!hasAside && image && <img src={image} alt={imageAlt} class:list={["rounded-2xl border border-border", stacked ? stackedImageClass : "w-full"]} />}
+  </div>
+  {hasFull && <div class="mt-4"><slot name="full" /></div>}
+</div>
