@@ -7,6 +7,7 @@ interface Props {
   accent: "indigo-soft" | "rose-soft" | "sage-soft" | "amber-soft";
   prototypeUrl?: string;
   heroImage?: string;
+  heroImageClass?: string;
   summary?: {
     logo: string;
     logoAlt: string;
@@ -17,14 +18,14 @@ interface Props {
   };
 }
 
-const { title, tagline, accent, prototypeUrl, heroImage, summary } = Astro.props;
+const { title, tagline, accent, prototypeUrl, heroImage, heroImageClass = "w-[60%]", summary } = Astro.props;
 // literal var(...) strings, not built via interpolation, so Tailwind's scanner
 // keeps these @theme tokens instead of tree-shaking them as unused
-const paleAccentVar = {
-  "indigo-soft": "var(--color-indigo-pale)",
-  "rose-soft": "var(--color-rose-pale)",
-  "sage-soft": "var(--color-sage-pale)",
-  "amber-soft": "var(--color-amber-pale)",
+const accentVar = {
+  "indigo-soft": "var(--color-indigo-soft)",
+  "rose-soft": "var(--color-rose-soft)",
+  "sage-soft": "var(--color-sage-soft)",
+  "amber-soft": "var(--color-amber-soft)",
 }[accent];
 ---
 
@@ -32,7 +33,7 @@ const paleAccentVar = {
   {
     heroImage && (
       <section class="mx-auto max-w-[1400px] px-6 pt-16">
-        <img src={heroImage} alt="" class="mx-auto w-[60%]" />
+        <img src={heroImage} alt="" class={`mx-auto rounded-3xl ${heroImageClass}`} />
       </section>
     )
   }
@@ -40,12 +41,12 @@ const paleAccentVar = {
   {
     summary ? (
       <section class="mx-auto max-w-[1400px] px-6 pt-16">
-        <div class="grid gap-10 md:grid-cols-[1fr_280px]">
+        <img src={summary.logo} alt={summary.logoAlt} class="h-7 w-auto" />
+        <p class="font-hand mt-8 text-xl font-normal text-ink/60">{summary.dateLine}</p>
+        <div class="mt-5 grid gap-10 md:grid-cols-[1fr_280px]">
           <div>
-            <img src={summary.logo} alt={summary.logoAlt} class="h-7 w-auto" />
-            <p class="font-hand mt-8 text-xl font-normal text-ink/60">{summary.dateLine}</p>
-            <h1 class="font-display mt-5 text-5xl font-normal text-balance text-ink">{summary.headline}</h1>
-            <div class="mt-8 flex max-w-xl flex-col gap-5 text-sm text-ink/70">
+            <h1 class="font-display text-5xl font-normal text-balance text-ink">{summary.headline}</h1>
+            <div class="mt-8 flex max-w-xl flex-col gap-5 text-sm text-ink/80">
               {summary.body.map((p, i) => (
                 <p class={i === summary.body.length - 1 ? "font-semibold text-ink" : ""}>{p}</p>
               ))}
@@ -53,7 +54,7 @@ const paleAccentVar = {
           </div>
           <div class="flex flex-col gap-6">
             {summary.workSteps && (
-              <div class="aspect-square flex flex-col justify-center rounded-2xl p-6" style={`background: ${paleAccentVar};`}>
+              <div class="aspect-square flex flex-col justify-center rounded-2xl p-6" style={`background: ${accentVar};`}>
                 <p class="font-hand text-xl font-normal text-ink">My work</p>
                 <ul class="mt-4 flex flex-col gap-2.5 text-sm text-ink/80">
                   {summary.workSteps.map((step) => (
@@ -89,7 +90,7 @@ const paleAccentVar = {
       <section class={`mx-auto max-w-[1400px] px-6 ${heroImage ? "pt-10" : "pt-16"}`}>
         <div class="rounded-3xl p-10 md:p-14" style={`background: var(--color-${accent});`}>
           <h1 class="font-display text-5xl font-normal text-balance text-ink">{title}</h1>
-          <p class="mt-4 max-w-2xl text-lg font-light text-ink/70">{tagline}</p>
+          <p class="mt-4 max-w-2xl text-lg font-light text-ink/80">{tagline}</p>
         </div>
       </section>
     )

@@ -9,6 +9,8 @@ const projects = [
     title: "AI Design pipeline",
     description: "Using Claude Code skills to go from idea to prototype to a workable Figma file.",
     tag: "AI Tooling",
+    href: "/case-studies/ai-design-pipeline",
+    image: "/case-studies/ai-design-pipeline/card-image.png",
   },
   {
     title: "Ignore approval workflow",
@@ -78,7 +80,7 @@ As well as being an excellent Product Designer (and producer of crochet patterns
 ---
 
 <Layout title="Mor Naveh — Product Designer">
-  <section class="mx-auto grid max-w-[1400px] gap-24 px-6 pt-20 pb-40 md:grid-cols-[320px_1fr] md:items-center">
+  <section class="mx-auto grid max-w-[1400px] gap-24 px-6 pt-20 pb-48 md:grid-cols-[320px_1fr] md:items-center">
     <div class="relative">
       <div
         class="absolute -inset-6 -z-10 rounded-[60%_40%_55%_45%/45%_55%_40%_60%]"
@@ -96,7 +98,7 @@ As well as being an excellent Product Designer (and producer of crochet patterns
         I make complex things feel <span class="font-hand font-normal">simple</span>.
       </h1>
       <p class="mt-6 text-lg font-light text-[#302e2c]/60">
-        I bring cross-functional teams together around one goal: designing the best experience for the user.
+        Startup or enterprise, I design experiences that work for your users and deliver results.
       </p>
       <div class="mt-8 flex gap-4">
         <a href="/contact" class="rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-accent">
@@ -109,7 +111,7 @@ As well as being an excellent Product Designer (and producer of crochet patterns
     </div>
   </section>
 
-  <section id="work" class="mx-auto max-w-[1400px] px-6 pb-40">
+  <section id="work" class="mx-auto max-w-[1400px] px-6 pb-48">
     <h2 class="font-display text-4xl font-normal text-ink">Selected work</h2>
     <div class="mt-8 flex flex-col gap-6">
       {
@@ -121,7 +123,7 @@ As well as being an excellent Product Designer (and producer of crochet patterns
             <div class={i % 2 === 1 ? "md:order-2" : ""}>
               <span class="inline-block rounded-full bg-bg/60 px-3 py-1 text-xs font-medium text-ink">{project.tag}</span>
               <h3 class="font-display mt-3 text-2xl font-semibold text-ink">{project.title}</h3>
-              <p class="mt-3 max-w-sm text-sm text-ink/70">{project.description}</p>
+              <p class="mt-3 max-w-sm text-sm text-ink/80">{project.description}</p>
               <a
                 href={project.href ?? "#"}
                 class="mt-5 inline-flex items-center gap-1.5 rounded-full border border-ink/20 bg-bg px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-ink"
@@ -133,7 +135,7 @@ As well as being an excellent Product Designer (and producer of crochet patterns
               class={`flex aspect-video items-center justify-center rounded-2xl ${project.image ? "" : "border border-ink/10 bg-bg/50"} ${i % 2 === 1 ? "md:order-1" : ""}`}
             >
               {project.image ? (
-                <img src={project.image} alt={project.title} class="h-[85%] w-[85%] object-contain" />
+                <img src={project.image} alt={project.title} class="max-h-[85%] max-w-[85%] rounded-2xl" />
               ) : (
                 <span class="text-xs text-ink/50">Project image</span>
               )}
@@ -144,7 +146,7 @@ As well as being an excellent Product Designer (and producer of crochet patterns
     </div>
   </section>
 
-  <section class="mx-auto max-w-[1400px] px-6 pb-40">
+  <section class="mx-auto max-w-[1400px] px-6 pb-48">
     <h2 class="font-display text-4xl font-normal text-ink">My process</h2>
     <div class="mt-8 grid gap-8 md:grid-cols-5">
       {
@@ -164,37 +166,41 @@ As well as being an excellent Product Designer (and producer of crochet patterns
     </div>
   </section>
 
-  <section class="mx-auto max-w-[1400px] px-6 pb-40">
-    <div class="mx-auto grid max-w-[1000px] gap-6 md:grid-cols-[200px_175px_1fr] md:items-start">
-      <div class="overflow-hidden rounded-2xl border border-border">
-        <img src="/images/mor-about.png" alt="Mor Naveh" class="h-auto w-full" />
-      </div>
-      <div class="flex flex-col gap-6">
-        <div class="overflow-hidden rounded-2xl border border-border">
-          <img src="/images/mor-about-2.png" alt="Mor Naveh in a witch costume" class="h-auto w-full" />
+  <section class="pb-48">
+    <div class="relative left-1/2 w-screen -translate-x-1/2 py-16" style="background: var(--color-sage-soft);">
+      <div class="mx-auto max-w-[1400px] px-6">
+        <div class="mx-auto grid max-w-[1000px] gap-6 md:grid-cols-[200px_175px_1fr] md:items-start">
+          <div class="overflow-hidden rounded-2xl border border-border">
+            <img src="/images/mor-about.png" alt="Mor Naveh" class="h-auto w-full" />
+          </div>
+          <div class="flex flex-col gap-6">
+            <div class="overflow-hidden rounded-2xl border border-border">
+              <img src="/images/mor-about-2.png" alt="Mor Naveh in a witch costume" class="h-auto w-full" />
+            </div>
+            <div class="overflow-hidden rounded-2xl border border-border">
+              <img src="/images/mor-about-3.png" alt="Mor Naveh with her dog" class="h-auto w-full" />
+            </div>
+          </div>
+          <div>
+            <h2 class="font-display text-4xl font-normal text-ink">About me</h2>
+            <p class="mt-3 text-sm text-ink/80">
+              I'm a Product Designer based in Israel. I've been an information systems engineer since 2006, working
+              across complex systems and dozens of customers from different backgrounds — which has helped me refine
+              the process of turning wishes into goal-oriented, user-friendly systems.
+            </p>
+            <a
+              href="/about"
+              class="mt-5 inline-flex items-center gap-1.5 rounded-full border border-ink/20 bg-bg px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-ink"
+            >
+              More about me →
+            </a>
+          </div>
         </div>
-        <div class="overflow-hidden rounded-2xl border border-border">
-          <img src="/images/mor-about-3.png" alt="Mor Naveh with her dog" class="h-auto w-full" />
-        </div>
-      </div>
-      <div>
-        <h2 class="font-display text-4xl font-normal text-ink">About me</h2>
-        <p class="mt-3 text-sm text-ink/60">
-          I'm a Product Designer based in Israel. I've been an information systems engineer since 2006, working
-          across complex systems and dozens of customers from different backgrounds — which has helped me refine
-          the process of turning wishes into goal-oriented, user-friendly systems.
-        </p>
-        <a
-          href="/about"
-          class="mt-5 inline-flex items-center gap-1.5 rounded-full border border-ink/20 bg-bg px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-ink"
-        >
-          More about me →
-        </a>
       </div>
     </div>
   </section>
 
-  <section class="mx-auto max-w-[1400px] px-6 pb-40">
+  <section class="mx-auto max-w-[1400px] px-6 pb-48">
     <div class="flex items-baseline justify-between">
       <h2 class="font-display text-4xl font-normal text-ink">Testimonials</h2>
       <div class="flex gap-2">
@@ -240,47 +246,25 @@ As well as being an excellent Product Designer (and producer of crochet patterns
     });
   </script>
 
-  <section class="mx-auto max-w-[1400px] px-6 pb-40">
-    <h2 class="font-display text-4xl font-normal text-ink">Skills & tools</h2>
-    <div class="mt-8 flex min-h-24 items-center justify-center rounded-2xl border border-dashed border-border">
-      <span class="text-sm text-muted">Skills & tools list goes here</span>
-    </div>
-  </section>
-
-  <section id="contact" class="mx-auto max-w-[1400px] px-6 pb-40">
-    <div class="rounded-3xl p-10" style="background: var(--color-indigo-soft);">
-      <h2 class="font-display text-4xl font-normal text-ink">What's your next big challenge?</h2>
-      <p class="mt-2 max-w-xl text-sm text-ink/60">I'd love to help tackle it. Contact me, or send a message below.</p>
-      <form class="mt-8 grid gap-6 sm:grid-cols-2">
-        <div class="flex flex-col gap-4">
-          <label class="grid gap-1.5 text-sm text-ink">
-            Name
-            <input
-              type="text"
-              class="rounded-lg border border-ink/15 bg-bg px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none"
-            />
-          </label>
-          <label class="grid gap-1.5 text-sm text-ink">
-            Email
-            <input
-              type="email"
-              class="rounded-lg border border-ink/15 bg-bg px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none"
-            />
-          </label>
+  <section id="contact" class="pb-48">
+    <div class="relative left-1/2 w-screen -translate-x-1/2 py-16" style="background: var(--color-indigo-soft);">
+      <div class="mx-auto flex max-w-[1400px] flex-col gap-8 px-6 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 class="font-display text-4xl font-normal text-ink">What's your next big challenge?</h2>
+          <p class="mt-2 max-w-xl text-sm text-ink/80">
+            I bring clarity to products and alignment to teams, so you can move faster and see real results. Let's
+            work together.
+          </p>
         </div>
-        <label class="flex h-full flex-col gap-1.5 text-sm text-ink">
-          Message
-          <textarea
-            class="min-h-[135px] flex-1 rounded-lg border border-ink/15 bg-bg px-4 py-3 text-sm text-ink focus:border-ink focus:outline-none"
-          ></textarea>
-        </label>
-        <button
-          type="submit"
-          class="w-fit justify-self-end rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-accent sm:col-span-2"
-        >
-          Send message
-        </button>
-      </form>
+        <div class="flex shrink-0 gap-4">
+          <a href="/contact" class="rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-accent">
+            Book a free discovery call
+          </a>
+          <a href="/services" class="rounded-full border border-ink/30 px-6 py-3 text-sm font-medium text-ink transition-colors hover:border-ink">
+            View services
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 </Layout>

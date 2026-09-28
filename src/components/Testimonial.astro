@@ -5,16 +5,17 @@ interface Props {
   title: string;
   company: string;
   id: string;
+  color?: "indigo-soft" | "rose-soft" | "sage-soft" | "amber-soft";
 }
 
-const { quote, name, title, company, id } = Astro.props;
+const { quote, name, title, company, id, color = "indigo-soft" } = Astro.props;
 // only genuinely long quotes clamp — the real testimonials run 450-520 chars
 // and should sit fully in the card; only Karl's (2000+) needs the modal
 const isLong = quote.length > 700;
 ---
 
 <div class="flex flex-col rounded-2xl p-6">
-  <svg width="34" height="26" viewBox="0 0 34 26" fill="none" class="mb-2 shrink-0 text-ink/20">
+  <svg width="34" height="26" viewBox="0 0 34 26" fill="none" class="mb-2 shrink-0" style={`color: var(--color-${color});`}>
     <path
       fill="currentColor"
       d="M0 26V15.6C0 11.1 1.1 7.4 3.3 4.4 5.6 1.5 8.9 0 13.2 0v5.6c-2.2 0-3.9.8-5.1 2.4C6.9 9.4 6.3 11.4 6.3 13.8h6.9V26H0Zm18.5 0V15.6c0-4.5 1.1-8.2 3.3-11.2C24.1 1.5 27.3 0 31.5 0v5.6c-2.1 0-3.8.8-5.1 2.4-1.2 1.4-1.8 3.4-1.8 5.8h6.9V26H18.5Z"
@@ -44,7 +45,7 @@ const isLong = quote.length > 700;
       <button type="button" data-modal-close class="modal-close" aria-label="Close">
         ×
       </button>
-      <svg width="34" height="26" viewBox="0 0 34 26" fill="none" class="mb-2 shrink-0 text-ink/20">
+      <svg width="34" height="26" viewBox="0 0 34 26" fill="none" class="mb-2 shrink-0" style={`color: var(--color-${color});`}>
         <path
           fill="currentColor"
           d="M0 26V15.6C0 11.1 1.1 7.4 3.3 4.4 5.6 1.5 8.9 0 13.2 0v5.6c-2.2 0-3.9.8-5.1 2.4C6.9 9.4 6.3 11.4 6.3 13.8h6.9V26H0Zm18.5 0V15.6c0-4.5 1.1-8.2 3.3-11.2C24.1 1.5 27.3 0 31.5 0v5.6c-2.1 0-3.8.8-5.1 2.4-1.2 1.4-1.8 3.4-1.8 5.8h6.9V26H18.5Z"

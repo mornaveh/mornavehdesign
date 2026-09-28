@@ -1,0 +1,262 @@
+---
+import CaseStudyLayout from "../../layouts/CaseStudyLayout.astro";
+import Section from "../../components/casestudy/Section.astro";
+import Figure from "../../components/casestudy/Figure.astro";
+import IconItem from "../../components/casestudy/IconItem.astro";
+import NumberedPoint from "../../components/casestudy/NumberedPoint.astro";
+
+const base = "/case-studies/ai-design-pipeline";
+---
+
+<CaseStudyLayout
+  title="AI Design pipeline"
+  tagline="Using Claude Code skills to go from idea to prototype to a workable Figma file."
+  accent="indigo-soft"
+  heroImage={`${base}/card-image.png`}
+  heroImageClass="w-[40%] border border-border"
+  summary={{
+    logo: `${base}/snyk-logo.webp`,
+    logoAlt: "Snyk",
+    dateLine: "AI Design pipeline, 2026",
+    headline: "Claude Code skills that turn ideas into prototypes, Figma files, and developer input.",
+    body: [
+      "The way we look at design, engineering and product work has changed a great deal since AI became an inseparable part of the process. The lines between areas of expertise have blurred, and different functions can now explore domains which only recently were out of their reach. While this has the potential to create some chaos, it's also a great opportunity for closer collaboration and barrier-crossing communication.",
+      "I created two AI skills that turn any idea into a realistic Snyk prototype and a matching Figma design." ,
+      "The result: design, product, and engineering work from one shared, technically accurate starting point, which makes collaboration faster and more aligned.",
+    ],
+    workSteps: [
+      "Workflow definition",
+      "Writing and maintaining skills",
+      "Writing evaluation skill",
+      "Rollout to PMs & designers",
+      "internal usability research"
+    ],
+  }}
+>
+  <p class="mt-10 text-xs text-muted">
+    *Asset names, paths, and internal structures have been redacted/changed to protect the company's private information.
+  </p>
+
+  <Section id="how-it-works" title="How does it work?" background="sage-pale">
+    <div class="grid gap-10 md:grid-cols-2 md:items-start">
+      <div class="flex max-w-2xl flex-col gap-4 text-sm text-ink/80">
+        <p>
+          Prototypes and design files complement each other, each strong in a different way. A product creation process
+          can follow different paths depending on the starting point: an idea, an existing Figma design, customer
+          feedback, and more.
+        </p>
+        <p>
+          The two skills are designed to support each other, as each skill's output can be the input for the other, but
+          they can also work independently. /prototype-builder can receive different types of input, whereas
+          /figma-builder works best when receiving a prototype created by /prototype-builder.
+        </p>
+      </div>
+      <!-- pulled up by the Section h2 height (text-4xl = 40px) + its mt-8 (32px) so the image top lines up with the title -->
+      <div class="md:-mt-[72px]">
+        <Figure src={`${base}/flows.png`} alt="Diagram of the paths between idea, prototype, and Figma file" imgClass="w-full max-w-xl bg-bg p-8" />
+      </div>
+    </div>
+  </Section>
+
+  <Section id="prototype-builder" eyebrow="Skill #1: prototype-builder" title="From description, screenshot, or Figma to a working prototype ">
+    <div class="grid gap-10 md:grid-cols-2">
+      <div class="flex flex-col gap-10">
+        <IconItem title="Input" icon="/icons/input.png" color="indigo-soft">
+          <p>
+            A description of the need (in natural language, a PRD file, client feedback and more), a screenshot of an
+            existing screen, a Figma file, or any combination of these.
+          </p>
+        </IconItem>
+        <IconItem title="Foundation" icon="/icons/foundation.png" color="rose-soft">
+          <p>The skill uses clones of the Snyk component library, token library, and application codebase as the foundation for the prototype.</p>
+        </IconItem>
+      </div>
+      <IconItem title="Final product" icon="/icons/final-product.png" color="sage-soft">
+        <p>
+          A prototype using the same page structure as other Snyk pages (or the same one, if the page already exists),
+          with copies of the needed Vue components and tokens, and full context of wider Snyk behavior like hierarchy
+          and navigation.
+        </p>
+        <div>
+          <p class="font-medium text-ink">Evaluation file</p>
+          <ul>
+            <li>Checks passed/failed (for failures, the skill tries to fix or prompts the user for next steps)</li>
+            <li>Changes since the previous evaluation</li>
+            <li>Notes on annotations in the prototype: "prototype-only" sections, components used, and more</li>
+          </ul>
+        </div>
+      </IconItem>
+    </div>
+
+    <div class="mt-8">
+      <div class="grid gap-10 md:grid-cols-[3fr_7fr] md:items-center">
+        <div>
+          <h2 class="font-display text-4xl font-normal text-ink">Design, delivered in code</h2>
+          <p class="mt-8 max-w-2xl text-sm text-ink/80">
+            In a prototype created by /prototype-builder, it's easy to see which components are used throughout the page, and
+            in which variants. This is a massive improvement in process:
+          </p>
+          <div class="mt-6 flex flex-col gap-8">
+            <NumberedPoint number={1} title="Engineers can feed the prototype to their agents" bodyClass="text-ink/80">
+              <p>
+                and instruct them to use the components exactly as is. The names and variants are identical to what the agent
+                would find in the component library, which makes the work more efficient and less prone to errors.
+              </p>
+            </NumberedPoint>
+            <NumberedPoint number={2} title="Engineers work in a space they know" bodyClass="text-ink/80">
+              <p>
+                When learning the structure of a page before implementation, engineers can navigate the developer tools,
+                which they're familiar and comfortable with, rather than working through the design environment.
+              </p>
+            </NumberedPoint>
+          </div>
+        </div>
+        <Figure src={`${base}/prototype-devtools.png`} alt="Prototype open with developer tools showing component names and variants" />
+      </div>
+      <div class="mt-32 grid gap-10 md:grid-cols-[3fr_2fr] md:items-center">
+        <Figure src={`${base}/prototype-evaluation.png`} alt="Evaluation file listing passed and failed checks" />
+        <div>
+          <h2 class="font-display text-4xl font-normal text-ink">Evaluation file for extra clarity</h2>
+          <p class="mt-8 text-sm text-ink/80">
+            The evaluation file explains which checks passed or failed, which annotations the engineer should be mindful of, and more.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="text-lg font-normal text-ink">Design meets product</p>
+      <div class="mt-4 flex items-start gap-3">
+        <svg width="26" height="20" viewBox="0 0 34 26" fill="none" class="shrink-0 text-ink/30">
+          <path
+            fill="currentColor"
+            d="M0 26V15.6C0 11.1 1.1 7.4 3.3 4.4 5.6 1.5 8.9 0 13.2 0v5.6c-2.2 0-3.9.8-5.1 2.4C6.9 9.4 6.3 11.4 6.3 13.8h6.9V26H0Zm18.5 0V15.6c0-4.5 1.1-8.2 3.3-11.2C24.1 1.5 27.3 0 31.5 0v5.6c-2.1 0-3.8.8-5.1 2.4-1.2 1.4-1.8 3.4-1.8 5.8h6.9V26H18.5Z"
+          />
+        </svg>
+        <div>
+          <p class="font-accent text-lg text-ink italic">A picture is worth a thousand words. An interface is worth a thousand pictures.</p>
+          <p class="mt-1 text-sm text-muted">— Ben Shneiderman</p>
+        </div>
+      </div>
+      <div class="mt-6 flex max-w-2xl flex-col gap-4 text-sm text-ink/80">
+        <p>This skill is just as powerful a tool for Product Managers as it is for designers and engineers.</p>
+        <p>
+          I've often found that the fastest way to align a team isn't another meeting, it's a prototype. Discussing a
+          visual that demonstrates functionality keeps the conversation focused and significantly reduces
+          misunderstandings.
+        </p>
+        <p>
+          The skill was shared widely and received great feedback from PMs in particular, because of how easy it made it
+          for them to think and express themselves visually, not just in writing. One piece of feedback from a very happy
+          PM:
+        </p>
+      </div>
+      <div class="mt-6">
+        <Figure src={`${base}/pm-feedback.png`} imgClass="w-full max-w-3xl" alt="Slack message from a PM praising the prototype builder" />
+      </div>
+    </div>
+  </Section>
+
+  <Section id="figma-builder" eyebrow="Skill #2" title="/figma-builder">
+    <div class="grid gap-10 md:grid-cols-2">
+      <div class="flex flex-col gap-10">
+        <IconItem title="Input" icon="/icons/input.png" color="indigo-soft">
+          <p>Preferably a prototype created by /prototype-builder, using the components and tokens from Snyk's component library.</p>
+        </IconItem>
+        <IconItem title="Foundation" icon="/icons/foundation.png" color="rose-soft">
+          <p>
+            The skill translates the components used in the prototype to their counterparts in the Figma design system,
+            using the components and their variants exactly the same way.
+          </p>
+        </IconItem>
+      </div>
+      <IconItem title="Final product" icon="/icons/final-product.png" color="sage-soft">
+        <p>The prototype's pages and sections laid out on a single Figma page, along with a handoff section for the engineer or agent, containing:</p>
+        <ul>
+          <li>The main parts (pages, modals, etc.)</li>
+          <li>Components used</li>
+          <li>Skill and product library versions</li>
+          <li>Machine-readable JSON of the above, for more efficient agentic work</li>
+        </ul>
+      </IconItem>
+    </div>
+
+    <div>
+      <p class="text-lg font-normal text-ink">Design meets code</p>
+      <p class="mt-2 max-w-2xl text-sm text-ink/80">
+        Here too, the road from design to code is shorter and easier. Engineers can feed the Figma file to their agents
+        and instruct them to use the components stated in the handoff and shown in the design.
+      </p>
+      <div class="mt-6 grid gap-8 md:grid-cols-[1fr_360px] md:items-start">
+        <div class="flex flex-col gap-4 text-sm text-ink/80">
+          <p>
+            The handoff section connects the Figma components to the component library used by engineers, making
+            implementation faster and less prone to mistakes.
+          </p>
+          <div>
+            <p class="font-medium text-ink">Components</p>
+            <p class="mt-1">Every component used in the design is listed with:</p>
+            <ul class="mt-1.5 list-disc space-y-1 pl-5">
+              <li>Name in the component library</li>
+              <li>Name in the Figma design system</li>
+              <li>The component library containing it (there's more than one)</li>
+              <li>States in the design</li>
+              <li>Link to the documentation</li>
+            </ul>
+          </div>
+          <p><span class="font-medium text-ink">Custom</span> describes patterns not contained in the design system.</p>
+          <p><span class="font-medium text-ink">Provenance</span> lists the versions of the relevant assets, for future reference.</p>
+          <p>
+            <span class="font-medium text-ink">Machine-readable JSON</span> is set up so an agent reading the design can
+            easily digest the information in it.
+          </p>
+        </div>
+        <Figure src={`${base}/figma-handoff.png`} alt="Handoff section of a generated Figma file" />
+      </div>
+      <div class="mt-10">
+        <Figure src={`${base}/figma-designs.png`} imgClass="w-full max-w-3xl" alt="Designs generated by the figma-builder skill" label="Designs created by the skill" />
+      </div>
+    </div>
+
+    <div>
+      <p class="text-lg font-normal text-ink">Design meets product</p>
+      <div class="mt-2 flex max-w-2xl flex-col gap-4 text-sm text-ink/80">
+        <p>
+          For people less acquainted with Figma, this skill is a great shortcut. After creating a prototype from their
+          ideas or PRD documents, /figma-builder creates an organized, complete design file using the correct layouts and
+          design system components. They can then edit, annotate, and co-work on the file with colleagues, without
+          needing to be a Figma power user.
+        </p>
+        <p>
+          Even for experienced designers, letting the skill create the bulk of the work instead of starting from scratch
+          is a great time saver. It's a much better starting point, and leaves time to tackle the more complex
+          challenges.
+        </p>
+      </div>
+      <div class="mt-6">
+        <Figure
+          src={`${base}/figma-button-focus.png`} imgClass="w-full max-w-3xl"
+          alt="Focus state on a button in the generated Figma design, showing its variants"
+          caption="A focus state on one of the buttons, using exactly the variants created in the prototype."
+        />
+      </div>
+    </div>
+  </Section>
+
+  <Section id="next-steps" eyebrow="Final thoughts" title="Next steps">
+    <div class="flex flex-col gap-8">
+      <NumberedPoint number={1} title="Collaboration with engineering" bodyClass="text-ink/80">
+        <p>
+          Tying these skills to skills and agents written by engineers, and refining how they interact. Creating a smooth
+          workflow where the prototype and/or Figma design can be handed off to an agent seamlessly.
+        </p>
+      </NumberedPoint>
+      <NumberedPoint number={2} title="Two-way synchronization" bodyClass="text-ink/80">
+        <p>When the Figma file is updated, update the corresponding prototype, and vice versa.</p>
+      </NumberedPoint>
+      <NumberedPoint number={3} title="More guardrails" bodyClass="text-ink/80">
+        <p>If someone tries to change the prototype in a way that violates the design guidelines, prompt them and suggest alternatives.</p>
+      </NumberedPoint>
+    </div>
+  </Section>
+</CaseStudyLayout>

@@ -15,7 +15,7 @@ const pmQuote =
 <CaseStudyLayout
   title="Ignore approval workflow"
   tagline="Providing Application Security Engineers with more control over issues being ignored, and Developers more agency in ignoring them"
-  accent="indigo-soft"
+  accent="rose-soft"
   prototypeUrl="https://v0-ignore-approvals.vercel.app/"
   heroImage={`${base}/hero-mockup.png`}
   summary={{
@@ -131,7 +131,7 @@ const pmQuote =
       <div class="mt-5">
         <Figure src={`${base}/main-request-flow-v5.png`} alt="Diagram of the main ignore request flow across surfaces" noBorder square />
       </div>
-      <div class="mt-1 rounded-xl bg-accent-soft/40 p-4 text-sm text-ink/70">
+      <div class="mt-1 rounded-xl bg-accent-soft/40 p-4 text-sm text-ink/80">
         <p>
           *When analyzing the user flows, it was apparent that ignore requests can come through many different
           surfaces (Snyk UI, CLI, IDE, PR Checks). The consistency across these surfaces, as well as across different
@@ -213,7 +213,7 @@ const pmQuote =
               imageAlt="Annotated screenshot noting the Details field is not auditable"
               stacked
               stackedImageClass="w-4/5"
-              bodyClass="text-ink/70"
+              bodyClass="text-ink/80"
             >
               <p>
                 Instead of a Details field which can be edited by anyone, customers needed a way for all parties to
@@ -228,7 +228,7 @@ const pmQuote =
               imageAlt="Annotated screenshot noting the request context is not enough"
               stacked
               stackedImageClass="w-4/5"
-              bodyClass="text-ink/70"
+              bodyClass="text-ink/80"
             >
               <p>
                 The AppSec team would need as much information as they could get in order to effectively investigate
@@ -237,7 +237,7 @@ const pmQuote =
               </p>
             </NumberedPoint>
           </div>
-          <NumberedPoint number={3} title="Assigning reviewers to a request" bodyClass="text-ink/70">
+          <NumberedPoint number={3} title="Assigning reviewers to a request" bodyClass="text-ink/80">
             <p>
               This provides visibility into who is handling the request, preventing duplicate effort and allowing the
               requester to be informed that their request is in progress.
@@ -331,18 +331,18 @@ const pmQuote =
     title="The new design was much better, and more feedback was received"
     background="amber-pale"
   >
-    <p class="max-w-2xl text-sm text-ink/70">I conducted a second round of research on the updated designs to test the changes.</p>
+    <p class="max-w-2xl text-sm text-ink/80">I conducted a second round of research on the updated designs to test the changes.</p>
     <Figure src={`${base}/validation-research-board.jpg`} alt="Affinity map of design validation research findings" />
 
     <div>
       <p class="text-lg font-normal text-ink">Additional points for future consideration were brought up:</p>
       <div class="mt-5 flex flex-col gap-8">
-        <NumberedPoint number={1} title="Showing even more information about the issue" bodyClass="text-ink/70">
+        <NumberedPoint number={1} title="Showing even more information about the issue" bodyClass="text-ink/80">
           <p>
             For example, the relevant code snippet — this information is crucial to understanding the context of the
             request.
           </p>
-          <UnderTheHood bodyClass="text-ink/70">
+          <UnderTheHood bodyClass="text-ink/80">
             <p>Showing the code snippet was not possible for most requests generated in the IDE and the CLI, because:</p>
             <ol class="list-decimal space-y-1 pl-5">
               <li>Snyk doesn't save any of its customers' code.</li>
@@ -356,19 +356,19 @@ const pmQuote =
             <p>In the future we will explore ways to connect the local code to the remote repository.</p>
           </UnderTheHood>
         </NumberedPoint>
-        <NumberedPoint number={2} title="Different options for being notified about requests" bodyClass="text-ink/70">
+        <NumberedPoint number={2} title="Different options for being notified about requests" bodyClass="text-ink/80">
           <p>Both in frequency and method of communication.</p>
         </NumberedPoint>
-        <NumberedPoint number={3} title="Saving request history for a longer period of time" bodyClass="text-ink/70">
+        <NumberedPoint number={3} title="Saving request history for a longer period of time" bodyClass="text-ink/80">
           <p>Would be helpful for audit purposes.</p>
         </NumberedPoint>
-        <NumberedPoint number={4} title="Editing an approved request" bodyClass="text-ink/70">
+        <NumberedPoint number={4} title="Editing an approved request" bodyClass="text-ink/80">
           <p>
             Some customers mentioned wanting the requests to persist past rejection/approval, allowing the audit
             history to show how many times the vulnerability was ignored/requested to ignore, and when.
           </p>
           <p>For now, this request would be answered by providing audit history for the issues, rather than the requests.</p>
-          <UnderTheHood bodyClass="text-ink/70">
+          <UnderTheHood bodyClass="text-ink/80">
             <p>
               In one of the design iterations not presented here, the option to send approved requests back to
               Pending was presented as an option to edit/reject.
@@ -393,7 +393,7 @@ const pmQuote =
     </div>
   </Section>
 
-  <Section id="outcome-value" title="Went back to user patterns to review the benefits">
+  <Section id="outcome-value" title="Went back to user patterns to review the value">
     <div class="grid gap-6 md:grid-cols-3">
       <ColorCard title="Ignoring freely" color="indigo-soft">
         <div>
@@ -439,7 +439,7 @@ const pmQuote =
 
   <Section id="future-thinking" title="Policies and context would reduce noise and workload">
     <p class="max-w-2xl text-sm text-muted">
-      As the topic of Ignores continues to evolve, there are interesting opportunities in using AI to deliver value
+      As the topic of Ignores continues to evolve, there are interesting opportunities in AI which can deliver value
       both to customers and to Snyk:
     </p>
     <div class="flex flex-col gap-8">
@@ -466,7 +466,7 @@ const pmQuote =
     </div>
   </Section>
 
-  <Section id="pm-feedback" title="What the PM said" background="indigo-pale">
+  <Section id="pm-feedback" eyebrow="Testimonial" title="What the PM said" background="indigo-pale">
     <div class="flex items-start gap-3">
       <svg width="34" height="26" viewBox="0 0 34 26" fill="none" class="mt-1 shrink-0 text-ink/30">
         <path
@@ -478,7 +478,7 @@ const pmQuote =
         <p class="font-body text-base whitespace-pre-line text-ink/80">{pmQuote}</p>
         <div class="mt-5">
           <p class="text-sm font-medium text-ink">Waleed Arshad</p>
-          <p class="text-xs text-ink/70">Staff Product Manager, Snyk</p>
+          <p class="text-xs text-ink/80">Staff Product Manager, Snyk</p>
         </div>
       </div>
     </div>
