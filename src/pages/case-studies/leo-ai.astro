@@ -1,0 +1,212 @@
+---
+import CaseStudyLayout from "../../layouts/CaseStudyLayout.astro";
+import Section from "../../components/casestudy/Section.astro";
+import Figure from "../../components/casestudy/Figure.astro";
+import NumberedPoint from "../../components/casestudy/NumberedPoint.astro";
+
+const base = "/case-studies/leo-ai";
+
+const themes = [
+  {
+    title: "Where do I start?",
+    quotes: [
+      "How do I start a new chat?",
+      "I don't know how to put [a model file] into the Leo chat.",
+    ],
+  },
+  {
+    title: "How do I work with Leo?",
+    quotes: [
+      "I don't know how to put [the model file] into the Leo chat.",
+      "How do I add more [files]?",
+    ],
+  },
+  {
+    title: "Where did my work go?",
+    quotes: [
+      "I don't know how to see where [my] prompts [are]… I don't see any history.",
+      "Can you ask Leo to provide [the drawing] in the chat? Where?",
+    ],
+  },
+];
+---
+
+<CaseStudyLayout
+  title="LeoAI"
+  tagline="Making an AI engineering copilot easier to start with, follow, and trust."
+  accent="amber-soft"
+  heroImage={`${base}/hero-mockup.png`}
+  plainCta
+  summary={{
+    logo: `${base}/leo-logo.png`,
+    logoAlt: "LeoAI",
+    dateLine: "LeoAI, 2026",
+    headline: "An AI copilot that guides engineers through the work, instead of waiting to be prompted.",
+    body: [
+      "Leo is an AI copilot for mechanical engineers. From a single chat, it can edit and create CAD models, inspect drawings, and research parts and standards.",
+      "Leo's users are experts in their field, and it's a field that's relatively new to AI tools. Customer feedback showed they weren't sure where to start, what Leo needed from them, what it was assuming, or where their results had gone.",
+      "I redesigned the core chat experience so Leo walks engineers through each task step by step, shows its assumptions, and keeps every output within reach.",
+    ],
+    workSteps: [
+      "Hands-on product audit",
+      "Customer feedback synthesis",
+      "Flow definition",
+      "Interaction & UI design",
+      "AI prototype",
+    ],
+  }}
+>
+  <Section id="challenge" background="amber-pale">
+    <div class="grid gap-10 md:grid-cols-2 md:items-start">
+      <div class="flex max-w-2xl flex-col gap-4 text-sm text-ink/80">
+        <h2 class="mb-4 font-display text-4xl font-normal text-ink">Reviewing the user feedback, a few clear themes stood out</h2>
+        <p>
+          Leo is AI-native: everything starts with a conversation. It's a standard for AI tools, but where does that standard meet mechanical engineers who spend their days using CAD tools, working on drawings, datasheets, and documentation? 
+          How might we make Leo more discoverable in the services it provides?
+        </p>
+        <p>
+          The PM and customer success team collected almost 50 statements from customers, through written feedback
+          and conversations. Across very different product areas, the same questions kept coming up:
+        </p>
+      </div>
+      <div class="flex flex-col gap-6">
+        {
+          themes.map((theme) => (
+            <div class="rounded-2xl bg-bg p-6">
+              <p class="font-display text-lg font-semibold text-ink">{theme.title}</p>
+              <div class="mt-3 flex flex-col gap-3">
+                {theme.quotes.map((q) => (
+                  <p class="font-accent text-base text-ink/80 italic">"{q}"</p>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </Section>
+
+  <Section id="hands-on">
+    <div class="grid gap-10 md:grid-cols-[2fr_3fr] md:items-start">
+      <div class="flex max-w-2xl flex-col gap-4 text-sm text-ink/80">
+        <div class="mb-4">
+          <p class="font-hand text-xl font-normal text-ink/60">Research</p>
+          <h2 class="font-display text-4xl font-normal text-ink">I used Leo like an engineer would</h2>
+        </div>
+        <p>
+          Before designing anything, I went through onboarding myself and used Leo for a real task: editing a drill
+          assembly to reduce vibration at the handle. Seeing the product through a new user's eyes made the feedback
+          concrete.
+        </p>
+        <div class="mt-4 flex flex-col gap-8">
+          <NumberedPoint number={1} title="The starting point was unclear to me" bodyClass="text-ink/80">
+            <p>
+              The empty state offered four examples (Learn, Ideate, Develop, Part search). I wasn't sure whether those were sample text
+              examples or available actions, and how they map to the engineering job at hand.
+            </p>
+          </NumberedPoint>
+          <NumberedPoint number={2} title="Limited visiblity into progress" bodyClass="text-ink/80">
+            <p>What does Leo still need? What is already understood and what assumptions are being made?
+            This information was available in part when scrolling through the chat, but it wasn't always easy to find, especially as conversations grew longer. </p>
+          </NumberedPoint>
+          <NumberedPoint number={3} title="Outputs were woven into the conversation" bodyClass="text-ink/80">
+            <p>
+              Files Leo created, like CAD models and spec documents, only lived inside the chat. Finding those could mean
+              scrolling back through long answers.
+            </p>
+          </NumberedPoint>
+        </div>
+      </div>
+      <div class="flex flex-col gap-6">
+        <Figure src={`${base}/before-empty-state.png`} label="Before: the empty state" alt="Leo's original empty state with four example prompts" />
+        <Figure src={`${base}/before-long-conversation.png`} label="Before: an output woven into a long answer" alt="A long Leo conversation with a generated document in the middle of it" />
+      </div>
+    </div>
+  </Section>
+
+  <Section id="redesign" eyebrow="The redesign" title="From an open chat to a guided flow" background="sage-pale">
+    <div class="flex max-w-2xl flex-col gap-4 text-sm text-ink/80">
+      <p>
+        I turned Leo's open-ended chat into guided flows built around the main jobs engineers use it for - these can change depending on the customer. A new sidebar keeps the flow's progress, Leo's assumptions, and every output in view,
+        so users always know where they are, what Leo is working with, and where to find their results.
+      </p>
+      <p class="mt-4 flex items-center gap-2">
+        And in more detail
+        <span class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full" style="background: var(--color-sage-soft);">
+          <img src="/icons/arrow-right.png" alt="" class="h-[14px] w-[14px] rotate-90" />
+        </span>
+      </p>
+    </div>
+  </Section>
+
+  <Section id="redesign-details">
+    <div class="grid gap-10 md:gap-20 md:grid-cols-[1fr_2fr] md:items-center">
+      <div>
+        <h2 class="font-display text-4xl font-normal text-ink">Three clear starting points</h2>
+        <div class="mt-8 flex max-w-2xl flex-col gap-4 text-sm text-ink/80">
+          <p>
+            By asking users what they want to do, we guide them straight to the value Leo offers. Three clear paths (Edit, Create, and Inspect) match the main jobs engineers use Leo for,
+            so <span class="font-medium text-ink">users can see right away what's possible</span> and start without having to think about how to phrase a request. <br />
+             </p>
+          <p>
+            I put an empahsis on their design as clickable options for better flow and ease of use.<br />
+            The chat box is still available for anyone who prefers to type, so every user has an easy way in.
+          </p>
+        </div>
+      </div>
+      <Figure src={`${base}/after-empty-state.png`} alt="Redesigned empty state with Edit, Create and Inspect options" />
+    </div>
+
+    <div class="mt-16 grid gap-10 md:gap-20 md:grid-cols-[2fr_1fr] md:items-center">
+      <Figure src={`${base}/after-flow-steps.png`} alt="An Edit flow in progress, with steps and confirmed and missing facts in the sidebar" />
+      <div>
+        <h2 class="font-display text-4xl font-normal text-ink">A guided flow, with a way out</h2>
+        <div class="mt-8 flex max-w-2xl flex-col gap-4 text-sm text-ink/80">
+          <p>
+            Since each flow follows a consistent structure, Leo can show users exactly where they are in the process and what comes next. <span class="font-medium text-ink">The experience is more predictable, making Leo's features more visible.</span>
+          </p>
+          <p>
+            The new sidebar keeps this progress visible at all times. Each step is clickable, so users can move around the process easily instead of scrolling back through the chat.
+          </p>
+          <p>
+            If a flow no longer fits the user's needs, they can leave it at any point and continue the conversation freely without losing any context.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 grid gap-10 md:grid-cols-[1fr_2fr] md:items-center">
+      <div>
+        <h2 class="font-display text-4xl font-normal text-ink">Assumptions and outputs, always visible</h2>
+        <div class="mt-8 flex max-w-2xl flex-col gap-4 text-sm text-ink/80">
+          <p>
+            Some of Leo's assumptions get confirmed along the way, and others may need checking later. Seeing them clearly helps users understand what each output is based on, and what still needs a second look.
+          </p>
+          <p>
+            The output files, like documentation and design files, are often the reason users open Leo in the first place. The new sidebar keeps them within reach so they're available without scrolling through the conversation.</p>
+        </div>
+      </div>
+      <Figure src={`${base}/after-assumptions-outputs.png`} alt="Completed Edit flow with assumptions and outputs listed in the sidebar" />
+    </div>
+
+    <div class="mt-16 grid gap-10 md:grid-cols-[2fr_1fr] md:items-center">
+      <Figure src={`${base}/after-preview-sidebar.png`} alt="CAD preview open with the sidebar folded to the side" />
+      <div>
+        <h2 class="font-display text-4xl font-normal text-ink">Room for the model</h2>
+        <div class="mt-8 flex max-w-2xl flex-col gap-4 text-sm text-ink/80">
+          <p>
+            The user doesn't lose context or location when a CAD model opens in the preview, the sidebar folds away to give it space buts still remains avaible.
+          </p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="outcome" title="Final thoughts" background="indigo-pale">
+    <div class="flex max-w-2xl flex-col gap-4 text-sm text-ink/80">
+      <p>
+        Leo's power was already there, my role was to make it easier to reach. Starting from user feedback, I designed guided flows, visible progress, and easy access to outputs, turning an open chat into a clear experience users can understand. I made it easy to start and follow a structured process, while keeping the freedom to explore Leo's features.
+      </p>
+    </div>
+  </Section>
+</CaseStudyLayout>

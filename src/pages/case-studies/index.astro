@@ -1,0 +1,49 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { projects } from "../../data/projects";
+
+const swatches = ["indigo-soft", "rose-soft", "sage-soft", "amber-soft"];
+---
+
+<Layout title="Case studies — Mor Naveh">
+  <section class="mx-auto max-w-[1400px] px-6 pt-20 pb-16">
+    <h1 class="font-display text-5xl font-normal text-balance text-ink">Case studies</h1>
+  </section>
+
+  <section class="mx-auto max-w-[1400px] px-6 pb-28">
+    <div class="grid gap-8 md:grid-cols-2">
+      {
+        projects.map((project, i) => {
+          const Tag = project.href ? "a" : "div";
+          return (
+            <Tag
+              href={project.href}
+              class:list={[
+                "group flex flex-col rounded-3xl p-5 transition-transform",
+                project.href && "hover:-translate-y-1",
+              ]}
+              style={`background: var(--color-${project.color ?? swatches[i % swatches.length]});`}
+            >
+              <div class={`relative flex aspect-[2/1] items-center justify-center rounded-2xl ${project.image ? "" : "border border-ink/10 bg-bg/50"}`}>
+                {project.image ? (
+                  <img src={project.image} alt="" class="absolute inset-0 m-auto h-[75%] w-auto max-w-[90%] rounded-xl object-contain" />
+                ) : (
+                  <span class="text-xs text-ink/50">Project image</span>
+                )}
+              </div>
+              <div class="flex flex-wrap items-center gap-2 px-1 pt-5">
+                <span class="rounded-full bg-bg/60 px-3 py-1 text-xs font-medium text-ink">{project.tag}</span>
+                {!project.href && <span class="text-xs text-ink/50">Coming soon</span>}
+              </div>
+              <h2 class="font-display mt-3 px-1 text-xl font-semibold text-ink">
+                {project.title}
+                {project.href && <span class="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>}
+              </h2>
+              <p class="mt-2 max-w-md px-1 pb-2 text-sm text-ink/80">{project.description}</p>
+            </Tag>
+          );
+        })
+      }
+    </div>
+  </section>
+</Layout>

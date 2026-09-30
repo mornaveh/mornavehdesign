@@ -1,9 +1,10 @@
 ---
 interface Props {
   bodyClass?: string;
+  label?: string;
 }
 
-const { bodyClass = "text-muted" } = Astro.props;
+const { bodyClass = "text-muted", label = "Under the hood (for the curious reader)" } = Astro.props;
 ---
 
 <details class="group mt-3 rounded-xl bg-ink/[0.03] p-4">
@@ -20,7 +21,7 @@ const { bodyClass = "text-muted" } = Astro.props;
       >
         <path d="m9 6 6 6-6 6" />
       </svg>
-      Under the hood (for the curious reader)
+      {label}
     </span>
   </summary>
   <div class:list={["mt-3 text-sm [&_p]:mt-2 [&_p:first-child]:mt-0", bodyClass]}>
