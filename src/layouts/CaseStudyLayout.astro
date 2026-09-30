@@ -1,5 +1,6 @@
 ---
 import Layout from "./Layout.astro";
+import ContactCTA from "../components/ContactCTA.astro";
 
 interface Props {
   title: string;
@@ -8,6 +9,7 @@ interface Props {
   prototypeUrl?: string;
   heroImage?: string;
   heroImageClass?: string;
+  plainCta?: boolean;
   summary?: {
     logo: string;
     logoAlt: string;
@@ -18,7 +20,7 @@ interface Props {
   };
 }
 
-const { title, tagline, accent, prototypeUrl, heroImage, heroImageClass = "w-[60%]", summary } = Astro.props;
+const { title, tagline, accent, prototypeUrl, heroImage, heroImageClass = "w-[60%]", summary, plainCta } = Astro.props;
 // literal var(...) strings, not built via interpolation, so Tailwind's scanner
 // keeps these @theme tokens instead of tree-shaking them as unused
 const accentVar = {
@@ -96,7 +98,11 @@ const accentVar = {
     )
   }
 
-  <article class="mx-auto max-w-[1400px] px-6 pb-28">
+  <article class="mx-auto max-w-[1400px] px-6">
     <slot />
   </article>
+
+  <section>
+    <ContactCTA plain={plainCta} />
+  </section>
 </Layout>

@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Testimonial from "../components/Testimonial.astro";
+import ContactCTA from "../components/ContactCTA.astro";
 
 const swatches = ["indigo-soft", "rose-soft", "sage-soft", "amber-soft"] as const;
 
@@ -247,24 +248,6 @@ As well as being an excellent Product Designer (and producer of crochet patterns
   </script>
 
   <section id="contact" class="pb-48">
-    <div class="relative left-1/2 w-screen -translate-x-1/2 py-16" style="background: var(--color-indigo-soft);">
-      <div class="mx-auto flex max-w-[1400px] flex-col gap-8 px-6 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h2 class="font-display text-4xl font-normal text-ink">What's your next big challenge?</h2>
-          <p class="mt-2 max-w-xl text-sm text-ink/80">
-            I bring clarity to products and alignment to teams, so you can move faster and see real results. Let's
-            work together.
-          </p>
-        </div>
-        <div class="flex shrink-0 gap-4">
-          <a href="/contact" class="rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-accent">
-            Book a free discovery call
-          </a>
-          <a href="/services" class="rounded-full border border-ink/30 px-6 py-3 text-sm font-medium text-ink transition-colors hover:border-ink">
-            View services
-          </a>
-        </div>
-      </div>
-    </div>
+    <ContactCTA />
   </section>
 </Layout>
