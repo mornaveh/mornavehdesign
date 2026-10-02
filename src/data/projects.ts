@@ -38,6 +38,8 @@ export const projects: {
     color: "sage-soft",
     description: "Updating a security database search to include non-vulnerable packages, not just vulnerable ones.",
     tag: "Enterprise UX",
+    href: "/case-studies/security-db-search",
+    image: "/case-studies/security-db-search/hero-mockup.png",
   },
   {
     title: "Notification settings",

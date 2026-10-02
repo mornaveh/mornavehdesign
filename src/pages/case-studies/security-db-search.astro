@@ -1,0 +1,281 @@
+---
+import CaseStudyLayout from "../../layouts/CaseStudyLayout.astro";
+import Section from "../../components/casestudy/Section.astro";
+import Figure from "../../components/casestudy/Figure.astro";
+import NumberedPoint from "../../components/casestudy/NumberedPoint.astro";
+import ColorCard from "../../components/casestudy/ColorCard.astro";
+
+const base = "/case-studies/security-db-search";
+
+const flows = [
+  {
+    title: "Searching for a CVE",
+    steps: [
+      "The user searches for a CVE",
+      "Results are filtered by default to <b>only include Application results and show CVEs first</b> (affected packages are secondary)",
+      "In nearly all cases, a single result appears, and it is the correct one",
+      "The user can adjust the search to include OS results as well as affected packages",
+    ],
+  },
+  {
+    title: "Searching for a package",
+    steps: [
+      "The user searches for a package",
+      "Results are filtered by default to <b>only include Application results and show packages</b> (a CVE is rarely returned in a package search)",
+      "The most relevant results are displayed, with exact matches clearly identified and labeled",
+      "The user can adjust the search to include OS results and explore any CVEs returned",
+    ],
+  },
+  {
+    title: "Browsing a package manager",
+    steps: [
+      "The user clicks the package manager logo on the homepage",
+      "All CVEs and packages associated with the package manager are displayed",
+      "The user can easily filter different types of results, like Application/OS or CVE/package",
+    ],
+  },
+];
+---
+
+<CaseStudyLayout
+  title="Security DB search"
+  tagline="Updating Snyk's Security DB search to include non-vulnerable packages, not just vulnerable ones"
+  accent="sage-soft"
+  heroImage={`${base}/hero-mockup.png`}
+  plainCta
+  summary={{
+    logo: `${base}/snyk-logo.webp`,
+    logoAlt: "Snyk",
+    dateLine: "Security DB search, 2025",
+    headline: "Redesigning search for a growing database",
+    body: [
+      "The Snyk Vulnerability Database helps developers and AppSec engineers evaluate open-source packages: how secure they are, how well maintained, how popular, and more. Originally it only supported packages with known vulnerabilities. Since users want to learn about every package they consider using, not just the vulnerable ones, the database needed expanding to include secure packages too.",
+      "This expansion put new demands on the database's search, which already had usability challenges. It needed a redesign to handle both secure and vulnerable packages.",
+      "I redesigned the search experience to support non-vulnerable packages and improve overall usability.",
+    ],
+    workSteps: ["Problem definition", "Current state research", "Goal definition", "Flow mapping", "Final designs"],
+  }}
+>
+  <Section id="final-designs-preview" eyebrow="Before diving in" title="Some of the final designs" background="sage-pale">
+    <div class="grid gap-10 md:grid-cols-2 md:items-start">
+      <Figure
+        src={`${base}/preview-exploration.png`}
+        alt="Browsing the latest vulnerabilities in a package manager"
+        caption="Staying up to date with the latest vulnerabilities discovered"
+      />
+      <div class="flex flex-col gap-10">
+        <Figure
+          src={`${base}/preview-cve-search.png`}
+          alt="Search results for a CVE, showing a single vulnerability result"
+          caption="Avoiding vulnerable, risky packages."
+        />
+        <Figure
+          src={`${base}/preview-package-search.png`}
+          alt="Package search results with health scores and status tags"
+          caption="Finding healthy and up-to-date packages to use."
+        />
+      </div>
+    </div>
+  </Section>
+
+  <Section id="pain-points">
+    <div class="grid gap-16 md:grid-cols-[1fr_1.4fr] md:items-center">
+      <div>
+        <h2 class="font-display text-4xl font-normal text-ink">Understanding the problems with the current state</h2>
+        <div class="mt-8 flex flex-col gap-8">
+        <p>
+            I researched the current state to make sure focus is being put on the right problems:
+          </p>
+          <NumberedPoint number={1} title="Secure packages are invisible" bodyClass="text-ink/80">
+          <p>Results only include vulnerabilities, so packages without known vulnerabilities never appear, even once they're added to the database.</p>
+        </NumberedPoint>
+        <NumberedPoint number={2} title="Packages aren't standalone results" bodyClass="text-ink/80">
+          <p>
+            Searching for a package returns a separate entry for each of its vulnerabilities, so the same package
+            appears many times (see the "Affects" column).
+          </p>
+        </NumberedPoint>
+        <NumberedPoint number={3} title="CVE searches bury the source" bodyClass="text-ink/80">
+          <p>
+            A CVE search returns the package where the vulnerability originated, mixed in with many operating system packages that depend on it. This makes the original source hard to find.
+          </p>
+        </NumberedPoint>
+        <NumberedPoint number={4} title="Package searches return the wrong packages" bodyClass="text-ink/80">
+          <p>OS packages with similar names crowd the results, hiding the package the user wanted.</p>
+        </NumberedPoint>
+        <p class="flex items-center gap-2 text-sm text-muted">
+          Original search design
+          <span class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full" style="background: var(--color-sage-soft);">
+            <img src="/icons/arrow-right.png" alt="" class="h-[14px] w-[14px]" />
+          </span>
+        </p>
+        </div>
+      </div>
+      <Figure src={`${base}/current-search.png`} alt="The current search design, a table of vulnerabilities" />
+    </div>
+  </Section>
+
+  <Section id="goals" title="Goals">
+    <div class="flex flex-col gap-8">
+      <NumberedPoint number={1} title="Help users quickly find and clearly identify the results they're looking for" />
+      <NumberedPoint number={2} title="Include vulnerability-free packages in the search results" />
+    </div>
+  </Section>
+
+  <Section id="research" title="Three ways people search">
+    <div class="flex items-start gap-3">
+      <svg width="26" height="20" viewBox="0 0 34 26" fill="none" class="shrink-0 text-ink/30">
+        <path
+          fill="currentColor"
+          d="M0 26V15.6C0 11.1 1.1 7.4 3.3 4.4 5.6 1.5 8.9 0 13.2 0v5.6c-2.2 0-3.9.8-5.1 2.4C6.9 9.4 6.3 11.4 6.3 13.8h6.9V26H0Zm18.5 0V15.6c0-4.5 1.1-8.2 3.3-11.2C24.1 1.5 27.3 0 31.5 0v5.6c-2.1 0-3.8.8-5.1 2.4-1.2 1.4-1.8 3.4-1.8 5.8h6.9V26H18.5Z"
+        />
+      </svg>
+      <p class="font-accent text-lg text-ink italic">I need Snyk to help me vet an open source package based on its parameters.</p>
+    </div>
+
+    <div>
+      <p class="text-lg font-normal text-ink">Exploratory research into how customers search for packages surfaced three use cases</p>
+      <div class="mt-5 grid gap-6 md:grid-cols-3">
+        <ColorCard title="Learning about a new vulnerability" color="indigo-soft">
+          <p>The user (usually an AppSec engineer) discovers a newly disclosed vulnerability and wants to learn about it and the packages it affects.</p>
+        </ColorCard>
+        <ColorCard title="Evaluating a package" color="rose-soft">
+          <p>The user (usually a developer) wants to evaluate a package's security status and health before deciding to use it.</p>
+        </ColorCard>
+        <ColorCard title="Exploring a package manager" color="amber-soft">
+          <p>The user (for example, a security researcher) wants to explore different package managers to check for newly discovered vulnerabilities.</p>
+        </ColorCard>
+      </div>
+      <p class="mt-4 text-sm text-muted">
+        *The project is ongoing. Customer testing of the new search designs hasn't happened yet and is planned for a
+        future phase.
+      </p>
+    </div>
+  </Section>
+
+  <Section id="user-flows" title="A logical search flow for each use case">
+    {
+      flows.map((flow) => (
+        <div>
+          <p class="text-lg font-normal text-ink">{flow.title}</p>
+          <div class="mt-5 flex flex-col gap-3 md:flex-row md:items-stretch">
+            {flow.steps.map((step, i) => (
+              <>
+                {i > 0 && <span class="self-center text-xl text-ink/40 max-md:rotate-90">→</span>}
+                <div
+                  class="flex flex-1 items-center rounded-2xl p-5 text-sm text-ink/80 [&_b]:font-semibold [&_b]:text-ink"
+                  style="background: var(--color-sage-pale);"
+                  set:html={step}
+                />
+              </>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </Section>
+
+  <Section id="designs" title="Designs">
+    <div>
+      <p class="text-lg font-normal text-ink">Searching for a CVE</p>
+      <div class="mt-5 flex flex-col gap-8">
+        <NumberedPoint number={1} title="Filters only show values that appear in the results">
+          <p>Unlike the current search, empty filters are hidden.</p>
+        </NumberedPoint>
+        <NumberedPoint number={2} title={`Only the "Application" filter is selected by default`}>
+          <p>Making the results more likely to match the user's intent.</p>
+        </NumberedPoint>
+        <NumberedPoint number={3} title={`"Has fix" was added to the results`}>
+          <p>Based on customer feedback highlighting its usefulness.</p>
+        </NumberedPoint>
+        <NumberedPoint number={4} title="Vulnerabilities and packages were separated into tabs">
+          <p>This displays the right type of result based on the user's intent, and enables sorting, which wasn't possible when the types were combined.</p>
+        </NumberedPoint>
+        <NumberedPoint number={5} title="Each package result shows it's affected by the CVE, and which versions">
+          <p>Users can quickly assess relevance without navigating to the package page.</p>
+        </NumberedPoint>
+      </div>
+      <div class="mt-8 flex flex-col gap-6">
+        <Figure src={`${base}/design-cve-1.png`} alt="CVE search showing the vulnerability result with Has fix tag" />
+        <div class="flex items-start gap-6">
+          <Figure
+            src={`${base}/design-cve-2.png`}
+            alt="CVE search with operating system results included"
+            class="grow-[1.3319] basis-0 min-w-0"
+            imgClass="w-full aspect-[1.3319]"
+          />
+          <Figure
+            src={`${base}/design-cve-3.png`}
+            alt="Packages tab listing packages affected by the CVE"
+            class="grow-[1.3382] basis-0 min-w-0"
+            imgClass="w-full aspect-[1.3382]"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="text-lg font-normal text-ink">Searching for a package</p>
+      <p class="mt-2 text-sm text-muted">In addition to the highlights above:</p>
+      <div class="mt-5 flex flex-col gap-8">
+        <NumberedPoint number={1} title="Packages appear whether or not they have vulnerabilities" />
+        <NumberedPoint number={2} title="Exact matches are marked for quicker recognition" />
+        <NumberedPoint number={3} title="Results include more information">
+          <p>Security status, health, description and more, so users can assess relevance without navigating to the package page.</p>
+        </NumberedPoint>
+      </div>
+      <div class="mt-8 flex items-start gap-6">
+        <Figure
+          src={`${base}/design-package-1.png`}
+          alt="Package search results with exact match labels and health scores"
+          class="grow-[1.4901] basis-0 min-w-0"
+          imgClass="w-full aspect-[1.4901]"
+        />
+        <Figure
+          src={`${base}/design-package-2.png`}
+          alt="Package search result detail"
+          class="grow-[1.1034] basis-0 min-w-0"
+          imgClass="w-full aspect-[1.1034]"
+        />
+      </div>
+    </div>
+
+    <div>
+      <p class="text-lg font-normal text-ink">Browsing a package manager</p>
+      <p class="mt-2 text-sm text-muted">In addition to the highlights above:</p>
+      <div class="mt-5 grid gap-16 md:grid-cols-2 md:items-start">
+        <div class="flex flex-col gap-8">
+          <NumberedPoint number={1} title="Filter values are sorted alphabetically">
+            <p>
+              Sorting by number of results is typically best practice, but with so many values changing dynamically
+              as filters are selected, alphabetical order is clearer and easier to navigate.
+            </p>
+          </NumberedPoint>
+          <NumberedPoint number={2} title="Severity and Has fix filters were considered, and left out">
+            <p>
+              They'd be more effective for exploring package options to find the best fit. That's a valuable future
+              use case, but the current search only supports exact matches and can't accommodate it.
+            </p>
+          </NumberedPoint>
+        </div>
+        <Figure src={`${base}/design-package-manager.png`} alt="Browsing all results for a package manager with filters" />
+      </div>
+    </div>
+  </Section>
+
+  <Section id="next-steps" eyebrow="Next steps" title="Part of a bigger initiative" background="amber-pale">
+    <div class="flex max-w-2xl flex-col gap-4 text-sm text-ink/80">
+      <p>
+        These designs are part of a broader initiative to include non-vulnerable packages in the Snyk Vulnerability
+        Database, now renamed the Snyk Security Database. The package page was also redesigned to bring in
+        information from other Snyk domains, and the homepage was updated with the latest Snyk branding and several UX
+        improvements. I'd be glad to walk through these as well.
+      </p>
+      <p>
+        So far I've done more extensive usability research on the package page redesign, since it's first in the
+        implementation plan. Next, I'll research the search results and keep iterating toward the best experience for
+        users.
+      </p>
+    </div>
+  </Section>
+</CaseStudyLayout>

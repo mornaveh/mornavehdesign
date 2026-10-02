@@ -1,6 +1,8 @@
 ---
 import Layout from "./Layout.astro";
 import ContactCTA from "../components/ContactCTA.astro";
+import Section from "../components/casestudy/Section.astro";
+import { projects } from "../data/projects";
 
 interface Props {
   title: string;
@@ -29,6 +31,11 @@ const accentVar = {
   "sage-soft": "var(--color-sage-soft)",
   "amber-soft": "var(--color-amber-soft)",
 }[accent];
+
+// next two published case studies, wrapping from the last back to the first
+const published = projects.filter((p) => p.href);
+const current = published.findIndex((p) => p.href === Astro.url.pathname.replace(/\/$/, ""));
+const more = [1, 2].map((n) => published[(current + n) % published.length]).filter((p, i, a) => p !== published[current] && a.indexOf(p) === i);
 ---
 
 <Layout title={`${title} — Mor Naveh`} description={tagline}>
@@ -47,7 +54,7 @@ const accentVar = {
         <p class="font-hand mt-8 text-xl font-normal text-ink/60">{summary.dateLine}</p>
         <div class="mt-5 grid gap-10 md:grid-cols-[1fr_280px]">
           <div>
-            <h1 class="font-display text-5xl font-normal text-balance text-ink">{summary.headline}</h1>
+            <h1 class="max-w-[850px] font-display text-5xl leading-[1.1] font-normal text-pretty text-ink">{summary.headline}</h1>
             <div class="mt-8 flex max-w-xl flex-col gap-5 text-sm text-ink/80">
               {summary.body.map((p, i) => (
                 <p class={i === summary.body.length - 1 ? "font-semibold text-ink" : ""}>{p}</p>
@@ -56,8 +63,8 @@ const accentVar = {
           </div>
           <div class="flex flex-col gap-6">
             {summary.workSteps && (
-              <div class="aspect-square flex flex-col justify-center rounded-2xl p-6" style={`background: ${accentVar};`}>
-                <p class="font-hand text-xl font-normal text-ink">My work</p>
+              <div class="flex flex-col rounded-2xl p-6" style={`background: ${accentVar};`}>
+                <p class="font-hand text-xl font-semibold text-ink">My work</p>
                 <ul class="mt-4 flex flex-col gap-2.5 text-sm text-ink/80">
                   {summary.workSteps.map((step) => (
                     <li>{step}</li>
@@ -72,7 +79,7 @@ const accentVar = {
                 rel="noreferrer"
                 class="flex flex-col gap-3 rounded-2xl bg-ink/[0.03] p-5 transition-colors hover:bg-ink/[0.06]"
               >
-                <div class="flex items-start gap-4">
+                <div class="flex items-center gap-4">
                   <img src="/images/prototype-illustration.png" alt="" class="h-14 w-auto shrink-0" />
                   <p class="text-sm font-medium text-ink underline underline-offset-4">
                     Get a feel for the project through an interactive AI prototype
@@ -98,8 +105,26 @@ const accentVar = {
     )
   }
 
-  <article class="mx-auto max-w-[1400px] px-6">
+  <article class="mx-auto max-w-[1400px] px-6 pb-16">
     <slot />
+    <Section id="more-case-studies" title="More case studies">
+      <div class="grid gap-6 md:grid-cols-2">
+      {more.map((next) => (
+      <a
+        href={next.href}
+        class="group flex flex-col rounded-3xl p-8 transition-transform hover:-translate-y-0.5"
+        style={`background: var(--color-${next.color});`}
+      >
+        <span class="self-start rounded-full bg-bg/60 px-3 py-1 text-xs font-medium text-ink">{next.tag}</span>
+        <h3 class="font-display mt-3 text-2xl font-semibold text-ink">{next.title}</h3>
+        <p class="mt-3 text-sm text-ink/80">{next.description}</p>
+        <p class="mt-auto pt-5 text-sm font-medium text-ink">
+          Read case study <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
+        </p>
+      </a>
+      ))}
+      </div>
+    </Section>
   </article>
 
   <section>
