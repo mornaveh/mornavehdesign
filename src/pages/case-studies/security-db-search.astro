@@ -4,37 +4,32 @@ import Section from "../../components/casestudy/Section.astro";
 import Figure from "../../components/casestudy/Figure.astro";
 import NumberedPoint from "../../components/casestudy/NumberedPoint.astro";
 import ColorCard from "../../components/casestudy/ColorCard.astro";
+import IconItem from "../../components/casestudy/IconItem.astro";
 
 const base = "/case-studies/security-db-search";
 
 const flows = [
   {
-    title: "Searching for a CVE",
-    steps: [
-      "The user searches for a CVE",
-      "Results are filtered by default to <b>only include Application results and show CVEs first</b> (affected packages are secondary)",
-      "In nearly all cases, a single result appears, and it is the correct one",
-      "The user can adjust the search to include OS results as well as affected packages",
-    ],
+    title: "Learning about a new vulnerability (searching for a CVE)",
+    image: `${base}/flow-cve.png`,
+    width: 1544,
+    alt: "The user searches for a CVE, results show Application packages focusing on CVEs, the single right result appears, and the user can adjust the search to see more results",
   },
   {
-    title: "Searching for a package",
-    steps: [
-      "The user searches for a package",
-      "Results are filtered by default to <b>only include Application results and show packages</b> (a CVE is rarely returned in a package search)",
-      "The most relevant results are displayed, with exact matches clearly identified and labeled",
-      "The user can adjust the search to include OS results and explore any CVEs returned",
-    ],
+    title: "Evaluating a package (searching for a package)",
+    image: `${base}/flow-package.png`,
+    width: 1851,
+    alt: "The user searches for a package, search results show Application packages, most relevant results show with exact matches clearly labeled, and the user can adjust the results to show operating system packages and explore any CVE",
   },
   {
-    title: "Browsing a package manager",
-    steps: [
-      "The user clicks the package manager logo on the homepage",
-      "All CVEs and packages associated with the package manager are displayed",
-      "The user can easily filter different types of results, like Application/OS or CVE/package",
-    ],
+    title: "Exploring a package manager",
+    image: `${base}/flow-package-manager.png`,
+    width: 1427,
+    alt: "The user clicks a package manager logo in the homepage, all relevant CVEs and packages appear in the search, and the user can filter by different Applications and operating systems",
   },
 ];
+// All flow images share one height (186px), so sizing each relative to the widest keeps block height equal.
+const widestFlow = Math.max(...flows.map((flow) => flow.width));
 ---
 
 <CaseStudyLayout
@@ -78,14 +73,12 @@ const flows = [
     </div>
   </Section>
 
-  <Section id="pain-points">
-    <div class="grid gap-16 md:grid-cols-[1fr_1.4fr] md:items-center">
+  <Section id="pain-points" eyebrow="Back to the start" title="Understanding the problems with the current state">
+    <div>
+    <div class="grid gap-16 md:grid-cols-[1fr_1.4fr] md:items-end">
       <div>
-        <h2 class="font-display text-4xl font-normal text-ink">Understanding the problems with the current state</h2>
-        <div class="mt-8 flex flex-col gap-8">
-        <p>
-            I researched the current state to make sure focus is being put on the right problems:
-          </p>
+        <div class="flex flex-col gap-8">
+        <p class="text-sm text-ink/80">I researched the current state to make sure focus is being put on the right problems:</p>
           <NumberedPoint number={1} title="Secure packages are invisible" bodyClass="text-ink/80">
           <p>Results only include vulnerabilities, so packages without known vulnerabilities never appear, even once they're added to the database.</p>
         </NumberedPoint>
@@ -101,7 +94,7 @@ const flows = [
           </p>
         </NumberedPoint>
         <NumberedPoint number={4} title="Package searches return the wrong packages" bodyClass="text-ink/80">
-          <p>OS packages with similar names crowd the results, hiding the package the user wanted.</p>
+          <p>Open source packages with similar names crowd the results, hiding the package the user wanted.</p>
         </NumberedPoint>
         <p class="flex items-center gap-2 text-sm text-muted">
           Original search design
@@ -113,29 +106,35 @@ const flows = [
       </div>
       <Figure src={`${base}/current-search.png`} alt="The current search design, a table of vulnerabilities" />
     </div>
-  </Section>
-
-  <Section id="goals" title="Goals">
-    <div class="flex flex-col gap-8">
-      <NumberedPoint number={1} title="Help users quickly find and clearly identify the results they're looking for" />
-      <NumberedPoint number={2} title="Include vulnerability-free packages in the search results" />
     </div>
   </Section>
 
-  <Section id="research" title="Three ways people search">
-    <div class="flex items-start gap-3">
-      <svg width="26" height="20" viewBox="0 0 34 26" fill="none" class="shrink-0 text-ink/30">
-        <path
-          fill="currentColor"
-          d="M0 26V15.6C0 11.1 1.1 7.4 3.3 4.4 5.6 1.5 8.9 0 13.2 0v5.6c-2.2 0-3.9.8-5.1 2.4C6.9 9.4 6.3 11.4 6.3 13.8h6.9V26H0Zm18.5 0V15.6c0-4.5 1.1-8.2 3.3-11.2C24.1 1.5 27.3 0 31.5 0v5.6c-2.1 0-3.8.8-5.1 2.4-1.2 1.4-1.8 3.4-1.8 5.8h6.9V26H18.5Z"
-        />
-      </svg>
-      <p class="font-accent text-lg text-ink italic">I need Snyk to help me vet an open source package based on its parameters.</p>
+  <Section id="goals" title="I identified the key goals derived from the pain points">
+    <div class="flex flex-col gap-10">
+      <IconItem title="Find the right result, fast" icon="/icons/target.png" color="indigo-soft">
+        <p>Help users quickly find and clearly identify the results they're looking for.</p>
+      </IconItem>
+      <IconItem title="Find any package, vulnerable or not" icon="/icons/package.png" color="rose-soft">
+        <p>Include vulnerability-free packages in the search results.</p>
+      </IconItem>
     </div>
+  </Section>
 
-    <div>
-      <p class="text-lg font-normal text-ink">Exploratory research into how customers search for packages surfaced three use cases</p>
-      <div class="mt-5 grid gap-6 md:grid-cols-3">
+  <Section id="research">
+    <div class="grid gap-16 md:grid-cols-[1fr_1.4fr] md:items-start">
+      <div>
+        <h2 class="font-display text-4xl font-normal text-ink">Through research, I uncovered three main search scenarios</h2>
+        <div class="mt-8 flex items-start gap-3">
+          <svg width="26" height="20" viewBox="0 0 34 26" fill="none" class="shrink-0 text-ink/30">
+            <path
+              fill="currentColor"
+              d="M0 26V15.6C0 11.1 1.1 7.4 3.3 4.4 5.6 1.5 8.9 0 13.2 0v5.6c-2.2 0-3.9.8-5.1 2.4C6.9 9.4 6.3 11.4 6.3 13.8h6.9V26H0Zm18.5 0V15.6c0-4.5 1.1-8.2 3.3-11.2C24.1 1.5 27.3 0 31.5 0v5.6c-2.1 0-3.8.8-5.1 2.4-1.2 1.4-1.8 3.4-1.8 5.8h6.9V26H18.5Z"
+            />
+          </svg>
+          <p class="font-accent text-lg text-ink italic">I need Snyk to help me vet an open source package based on its parameters.</p>
+        </div>
+      </div>
+      <div class="flex flex-col gap-6">
         <ColorCard title="Learning about a new vulnerability" color="indigo-soft">
           <p>The user (usually an AppSec engineer) discovers a newly disclosed vulnerability and wants to learn about it and the packages it affects.</p>
         </ColorCard>
@@ -146,70 +145,49 @@ const flows = [
           <p>The user (for example, a security researcher) wants to explore different package managers to check for newly discovered vulnerabilities.</p>
         </ColorCard>
       </div>
-      <p class="mt-4 text-sm text-muted">
-        *The project is ongoing. Customer testing of the new search designs hasn't happened yet and is planned for a
-        future phase.
-      </p>
     </div>
   </Section>
 
   <Section id="user-flows" title="A logical search flow for each use case">
+    <p class="-mb-8 text-sm text-ink/80">To make sure the designs cater to the user needs, I mapped the desirable flow for each scenario:</p>
     {
       flows.map((flow) => (
         <div>
           <p class="text-lg font-normal text-ink">{flow.title}</p>
-          <div class="mt-5 flex flex-col gap-3 md:flex-row md:items-stretch">
-            {flow.steps.map((step, i) => (
-              <>
-                {i > 0 && <span class="self-center text-xl text-ink/40 max-md:rotate-90">→</span>}
-                <div
-                  class="flex flex-1 items-center rounded-2xl p-5 text-sm text-ink/80 [&_b]:font-semibold [&_b]:text-ink"
-                  style="background: var(--color-sage-pale);"
-                  set:html={step}
-                />
-              </>
-            ))}
+          <div class="mt-5 max-w-4xl">
+            <img src={flow.image} alt={flow.alt} style={`width: ${(flow.width / widestFlow) * 100}%`} />
           </div>
         </div>
       ))
     }
   </Section>
 
-  <Section id="designs" title="Designs">
+  <Section id="designs">
     <div>
-      <p class="text-lg font-normal text-ink">Searching for a CVE</p>
-      <div class="mt-5 flex flex-col gap-8">
-        <NumberedPoint number={1} title="Filters only show values that appear in the results">
-          <p>Unlike the current search, empty filters are hidden.</p>
-        </NumberedPoint>
-        <NumberedPoint number={2} title={`Only the "Application" filter is selected by default`}>
-          <p>Making the results more likely to match the user's intent.</p>
-        </NumberedPoint>
-        <NumberedPoint number={3} title={`"Has fix" was added to the results`}>
-          <p>Based on customer feedback highlighting its usefulness.</p>
-        </NumberedPoint>
-        <NumberedPoint number={4} title="Vulnerabilities and packages were separated into tabs">
-          <p>This displays the right type of result based on the user's intent, and enables sorting, which wasn't possible when the types were combined.</p>
-        </NumberedPoint>
-        <NumberedPoint number={5} title="Each package result shows it's affected by the CVE, and which versions">
-          <p>Users can quickly assess relevance without navigating to the package page.</p>
-        </NumberedPoint>
-      </div>
+      <h2 class="font-display text-4xl font-normal text-ink">Learning about a new vulnerability - the new design</h2>
+      <p class="mt-4 text-sm text-ink/80">Letting the user goals lead the way, the needed design changes were clear enough: </p>
       <div class="mt-8 flex flex-col gap-6">
-        <Figure src={`${base}/design-cve-1.png`} alt="CVE search showing the vulnerability result with Has fix tag" />
-        <div class="flex items-start gap-6">
-          <Figure
-            src={`${base}/design-cve-2.png`}
-            alt="CVE search with operating system results included"
-            class="grow-[1.3319] basis-0 min-w-0"
-            imgClass="w-full aspect-[1.3319]"
-          />
-          <Figure
-            src={`${base}/design-cve-3.png`}
-            alt="Packages tab listing packages affected by the CVE"
-            class="grow-[1.3382] basis-0 min-w-0"
-            imgClass="w-full aspect-[1.3382]"
-          />
+        <div class="grid gap-16 md:grid-cols-[3fr_2fr] md:items-center">
+          <Figure src={`${base}/design-cve-1.png`} alt="CVE search showing the vulnerability result with Has fix tag" />
+          <div>
+            <h3 class="font-display text-4xl font-normal text-ink">By default, only the most likely result is shown.</h3>
+            <p class="mt-4 text-sm text-ink/80">Users are most likely looking for the application package with the name they searched, so the Application filter is on by default.</p>
+          </div>
+        </div>
+        <div class="grid gap-16 md:grid-cols-[3fr_2fr] md:items-center">
+          <Figure src={`${base}/design-cve-2.png`} alt="CVE search with operating system results included" />
+          <div>
+            <h3 class="font-display text-4xl font-normal text-ink">Other relevant CVEs are still available for browsing.</h3>
+            <p class="mt-4 text-sm text-ink/80">If the default result isn't the package the user was looking for, they can change the filter (for example, select Open Source packages) to see the rest.
+            <br />Added details on each CVE, like fix availability, let users quickly assess its risk and the effort to fix it.</p>
+          </div>
+        </div>
+        <div class="grid gap-16 md:grid-cols-[3fr_2fr] md:items-center">
+          <Figure src={`${base}/design-cve-3.png`} alt="Packages tab listing packages affected by the CVE" />
+          <div>
+            <h3 class="font-display text-4xl font-normal text-ink">Packages are visually tied to the CVEs which affect them.</h3>
+            <p class="mt-4 text-sm text-ink/80">Under the Packages tab, it's much easier to assess whether a package is vulnerable and by which CVE, as well as other key factors like how active and well maintained it is.</p>
+          </div>
         </div>
       </div>
     </div>
