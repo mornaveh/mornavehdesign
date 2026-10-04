@@ -162,66 +162,70 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
     }
   </Section>
 
-  <Section id="designs">
+  <Section id="designs" eyebrow="The new designs" title="The new search: a faster path to the right answer">
     <div>
-      <h2 class="font-display text-4xl font-normal text-ink">Learning about a new vulnerability - the new design</h2>
-      <p class="mt-4 text-sm text-ink/80">Letting the user goals lead the way, the needed design changes were clear enough: </p>
-      <div class="mt-8 flex flex-col gap-6">
+      <p class="-mt-4 text-sm text-ink/80">Letting the user goals lead the way, the needed design changes were clear enough: </p>
+      <div class="mt-16 flex flex-col gap-24">
         <div class="grid gap-16 md:grid-cols-[3fr_2fr] md:items-center">
           <Figure src={`${base}/design-cve-1.png`} alt="CVE search showing the vulnerability result with Has fix tag" />
           <div>
-            <h3 class="font-display text-4xl font-normal text-ink">By default, only the most likely result is shown.</h3>
-            <p class="mt-4 text-sm text-ink/80">Users are most likely looking for the application package with the name they searched, so the Application filter is on by default.</p>
+            <h3 class="font-display text-4xl font-normal text-ink">Finding the right CVE faster</h3>
+            <ol class="mt-4 flex list-decimal flex-col gap-2 pl-5 text-sm text-ink/80">
+              <li><span class="font-semibold text-ink">Application filter on by default.</span> Users are most likely looking for the application package, so that result comes first.</li>
+              <li><span class="font-semibold text-ink">"See operating system results" link added.</span> If the default result isn't what the user was looking for, there's easy access to the rest.</li>
+              <li><span class="font-semibold text-ink">Severity and "Has fix" added on each CVE.</span> Users can quickly assess the risk and the effort to fix it.</li>
+            </ol>
           </div>
         </div>
-        <div class="grid gap-16 md:grid-cols-[3fr_2fr] md:items-center">
-          <Figure src={`${base}/design-cve-2.png`} alt="CVE search with operating system results included" />
+       <div class="grid gap-16 md:grid-cols-[2fr_3fr] md:items-center">
           <div>
-            <h3 class="font-display text-4xl font-normal text-ink">Other relevant CVEs are still available for browsing.</h3>
-            <p class="mt-4 text-sm text-ink/80">If the default result isn't the package the user was looking for, they can change the filter (for example, select Open Source packages) to see the rest.
-            <br />Added details on each CVE, like fix availability, let users quickly assess its risk and the effort to fix it.</p>
+            <h3 class="font-display text-4xl font-normal text-ink">Finding and assessing packages is faster and easier</h3>
+            <ol class="mt-4 flex list-decimal flex-col gap-2 pl-5 text-sm text-ink/80">
+              <li><span class="font-semibold text-ink">Non-vulnerable packages appear in the search.</span> Previously, only packages with vulnerabilities were returned.</li>
+              <li><span class="font-semibold text-ink">Exact matches are marked for quicker recognition</span></li>
+              <li><span class="font-semibold text-ink">Security status, health score and description added. </span>Users can now assess relevance without opening the package page.</li>
+              <li><span class="font-semibold text-ink">"Affected by" added.</span> Packages are tied to the CVEs that affect them. The lodash screen doesn't show this, so add a small cropped inset of one row from the CVE search's Packages tab.</li>
+            </ol>
           </div>
+          <Figure src={`${base}/design-package-lodash.png`} alt="Package search results for lodash with exact match labels, security tags and health scores" />
+        </div> 
+      </div>
+    </div>
+  </Section>
+
+  <Section id="package-search">
+    <div>
+      <p class="font-hand text-xl font-normal text-ink/60">The new designs</p>
+      <h2 class="font-display text-4xl font-normal text-ink">Searching for packages of all types is now possible</h2>
+      <p class="mt-4 text-sm text-ink/80">Finding the right package in the old designs could be a hassle, and non-vulnerable packages were not returned.<br /> The new design fixed those issues with a few targeted changes:</p>
+      <div class="mt-8 flex flex-col gap-6">
+        <div class="grid gap-16 md:grid-cols-[2fr_3fr] md:items-center">
+          <div>
+            <h3 class="font-display text-4xl font-normal text-ink">Finding and assessing packages is faster and easier</h3>
+            <ol class="mt-4 flex list-decimal flex-col gap-2 pl-5 text-sm text-ink/80">
+              <li>Packages appear whether or not they have vulnerabilities</li>
+              <li>Exact matches are marked for quicker recognition</li>
+              <li>Results include more information: security status, health, description and more, so users can assess relevance without navigating to the package page.</li>
+            </ol>
+          </div>
+          <Figure src={`${base}/design-package-lodash.png`} alt="Package search results for lodash with exact match labels, security tags and health scores" />
         </div>
-        <div class="grid gap-16 md:grid-cols-[3fr_2fr] md:items-center">
-          <Figure src={`${base}/design-cve-3.png`} alt="Packages tab listing packages affected by the CVE" />
+        <div class="grid gap-16 md:grid-cols-[2fr_3fr] md:items-center">
           <div>
-            <h3 class="font-display text-4xl font-normal text-ink">Packages are visually tied to the CVEs which affect them.</h3>
-            <p class="mt-4 text-sm text-ink/80">Under the Packages tab, it's much easier to assess whether a package is vulnerable and by which CVE, as well as other key factors like how active and well maintained it is.</p>
+            <h3 class="font-display text-4xl font-normal text-ink">All packages still available</h3>
+            <p class="mt-4 text-sm text-ink/80">While filters are applied by default to make the search more accurate, if the user was looking for a different package they can still see it by deselecting filters.</p>
           </div>
+          <Figure src={`${base}/design-package-clear-filter.png`} alt="Package search with all package types shown after clearing the Application filter" />
         </div>
       </div>
     </div>
+  </Section>
 
+  <Section id="package-manager" eyebrow="The new designs" title="Browsing a package manager">
     <div>
-      <p class="text-lg font-normal text-ink">Searching for a package</p>
-      <p class="mt-2 text-sm text-muted">In addition to the highlights above:</p>
-      <div class="mt-5 flex flex-col gap-8">
-        <NumberedPoint number={1} title="Packages appear whether or not they have vulnerabilities" />
-        <NumberedPoint number={2} title="Exact matches are marked for quicker recognition" />
-        <NumberedPoint number={3} title="Results include more information">
-          <p>Security status, health, description and more, so users can assess relevance without navigating to the package page.</p>
-        </NumberedPoint>
-      </div>
-      <div class="mt-8 flex items-start gap-6">
-        <Figure
-          src={`${base}/design-package-1.png`}
-          alt="Package search results with exact match labels and health scores"
-          class="grow-[1.4901] basis-0 min-w-0"
-          imgClass="w-full aspect-[1.4901]"
-        />
-        <Figure
-          src={`${base}/design-package-2.png`}
-          alt="Package search result detail"
-          class="grow-[1.1034] basis-0 min-w-0"
-          imgClass="w-full aspect-[1.1034]"
-        />
-      </div>
-    </div>
-
-    <div>
-      <p class="text-lg font-normal text-ink">Browsing a package manager</p>
-      <p class="mt-2 text-sm text-muted">In addition to the highlights above:</p>
-      <div class="mt-5 grid gap-16 md:grid-cols-2 md:items-start">
+      <p class="text-sm text-ink/80">In addition to the highlights above:</p>
+      <div class="mt-8 grid gap-16 md:grid-cols-[3fr_2fr] md:items-center">
+        <Figure src={`${base}/design-package-manager.png`} alt="Browsing all results for a package manager with filters" />
         <div class="flex flex-col gap-8">
           <NumberedPoint number={1} title="Filter values are sorted alphabetically">
             <p>
@@ -236,7 +240,6 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
             </p>
           </NumberedPoint>
         </div>
-        <Figure src={`${base}/design-package-manager.png`} alt="Browsing all results for a package manager with filters" />
       </div>
     </div>
   </Section>
