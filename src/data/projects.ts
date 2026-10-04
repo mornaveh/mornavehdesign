@@ -14,7 +14,7 @@ export const projects: {
     description: "Making an AI engineering copilot easier to start with, follow, and trust.",
     tag: "AI UX",
     href: "/case-studies/leo-ai",
-    image: "/case-studies/leo-ai/hero-mockup.png",
+    image: "/case-studies/leo-ai/card-image.png",
   },
   {
     title: "AI Design pipeline",
@@ -36,15 +36,24 @@ export const projects: {
   {
     title: "Security DB search",
     color: "sage-soft",
-    description: "Updating a security database search to include non-vulnerable packages, not just vulnerable ones.",
+    description: "A search redesign built around what users are looking for.",
     tag: "Enterprise UX",
     href: "/case-studies/security-db-search",
     image: "/case-studies/security-db-search/hero-mockup.png",
   },
   {
-    title: "Notification settings",
-    color: "amber-soft",
-    description: "Redesigning a user notification settings page to improve usability and provide greater flexibility.",
-    tag: "Systems",
+    title: "Git research",
+    color: "indigo-soft",
+    description: "Finding out where Snyk's Git integration gets in developers' way, and deciding what to fix first.",
+    tag: "UX Research",
+    href: "/case-studies/git-research",
+    image: "/case-studies/git-research/card-image.png",
   },
+  // Hidden until the case study is written.
+  // {
+  //   title: "Notification settings",
+  //   color: "amber-soft",
+  //   description: "Redesigning a user notification settings page to improve usability and provide greater flexibility.",
+  //   tag: "Systems",
+  // },
 ];

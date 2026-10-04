@@ -34,7 +34,7 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
 
 <CaseStudyLayout
   title="Security DB search"
-  tagline="Updating Snyk's Security DB search to include non-vulnerable packages, not just vulnerable ones"
+  tagline="A search redesign built around what users are looking for"
   accent="sage-soft"
   heroImage={`${base}/hero-mockup.png`}
   plainCta
@@ -51,7 +51,7 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
     workSteps: ["Problem definition", "Current state research", "Goal definition", "Flow mapping", "Final designs"],
   }}
 >
-  <Section id="final-designs-preview" eyebrow="Before diving in" title="Some of the final designs" background="sage-pale">
+  <Section id="final-designs-preview" eyebrow="Before diving in" title="Some of the final designs" background="sage-soft">
     <div class="grid gap-10 md:grid-cols-2 md:items-start">
       <Figure
         src={`${base}/preview-exploration.png`}
@@ -170,7 +170,7 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
           <Figure src={`${base}/design-cve-1.png`} alt="CVE search showing the vulnerability result with Has fix tag" />
           <div>
             <h3 class="font-display text-4xl font-normal text-ink">Finding the right CVE faster</h3>
-            <ol class="mt-4 flex list-decimal flex-col gap-2 pl-5 text-sm text-ink/80">
+            <ol class="mt-4 flex list-decimal flex-col gap-3 pl-5 text-sm text-ink/80">
               <li><span class="font-semibold text-ink">Application filter on by default.</span> Users are most likely looking for the application package, so that result comes first.</li>
               <li><span class="font-semibold text-ink">"See operating system results" link added.</span> If the default result isn't what the user was looking for, there's easy access to the rest.</li>
               <li><span class="font-semibold text-ink">Severity and "Has fix" added on each CVE.</span> Users can quickly assess the risk and the effort to fix it.</li>
@@ -180,7 +180,7 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
        <div class="grid gap-16 md:grid-cols-[2fr_3fr] md:items-center">
           <div>
             <h3 class="font-display text-4xl font-normal text-ink">Finding and assessing packages is faster and easier</h3>
-            <ol class="mt-4 flex list-decimal flex-col gap-2 pl-5 text-sm text-ink/80">
+            <ol class="mt-4 flex list-decimal flex-col gap-3 pl-5 text-sm text-ink/80">
               <li><span class="font-semibold text-ink">Non-vulnerable packages appear in the search.</span> Previously, only packages with vulnerabilities were returned.</li>
               <li><span class="font-semibold text-ink">Exact matches are marked for quicker recognition</span></li>
               <li><span class="font-semibold text-ink">Security status, health score and description added. </span>Users can now assess relevance without opening the package page.</li>
@@ -188,74 +188,25 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
             </ol>
           </div>
           <Figure src={`${base}/design-package-lodash.png`} alt="Package search results for lodash with exact match labels, security tags and health scores" />
-        </div> 
-      </div>
-    </div>
-  </Section>
-
-  <Section id="package-search">
-    <div>
-      <p class="font-hand text-xl font-normal text-ink/60">The new designs</p>
-      <h2 class="font-display text-4xl font-normal text-ink">Searching for packages of all types is now possible</h2>
-      <p class="mt-4 text-sm text-ink/80">Finding the right package in the old designs could be a hassle, and non-vulnerable packages were not returned.<br /> The new design fixed those issues with a few targeted changes:</p>
-      <div class="mt-8 flex flex-col gap-6">
-        <div class="grid gap-16 md:grid-cols-[2fr_3fr] md:items-center">
+        </div>
+        <div class="grid gap-16 md:grid-cols-[3fr_2fr] md:items-center">
+          <Figure src={`${base}/design-package-manager.png`} alt="Browsing all results for a package manager with filters" />
           <div>
-            <h3 class="font-display text-4xl font-normal text-ink">Finding and assessing packages is faster and easier</h3>
-            <ol class="mt-4 flex list-decimal flex-col gap-2 pl-5 text-sm text-ink/80">
-              <li>Packages appear whether or not they have vulnerabilities</li>
-              <li>Exact matches are marked for quicker recognition</li>
-              <li>Results include more information: security status, health, description and more, so users can assess relevance without navigating to the package page.</li>
-            </ol>
+            <h3 class="font-display text-4xl font-normal text-ink">Browsing with a purpose - focusing on the most important information</h3>
+            <p class="mt-4 text-sm text-ink/80">Whether looking for the most recent vulnerabilities, or browsing to discover new packages, the added information and filtering helps.<br />It's visible right away which vulnerabilities can be fixed, how packages are affected by them, and how recent they are.</p>
           </div>
-          <Figure src={`${base}/design-package-lodash.png`} alt="Package search results for lodash with exact match labels, security tags and health scores" />
-        </div>
-        <div class="grid gap-16 md:grid-cols-[2fr_3fr] md:items-center">
-          <div>
-            <h3 class="font-display text-4xl font-normal text-ink">All packages still available</h3>
-            <p class="mt-4 text-sm text-ink/80">While filters are applied by default to make the search more accurate, if the user was looking for a different package they can still see it by deselecting filters.</p>
-          </div>
-          <Figure src={`${base}/design-package-clear-filter.png`} alt="Package search with all package types shown after clearing the Application filter" />
         </div>
       </div>
     </div>
   </Section>
 
-  <Section id="package-manager" eyebrow="The new designs" title="Browsing a package manager">
-    <div>
-      <p class="text-sm text-ink/80">In addition to the highlights above:</p>
-      <div class="mt-8 grid gap-16 md:grid-cols-[3fr_2fr] md:items-center">
-        <Figure src={`${base}/design-package-manager.png`} alt="Browsing all results for a package manager with filters" />
-        <div class="flex flex-col gap-8">
-          <NumberedPoint number={1} title="Filter values are sorted alphabetically">
-            <p>
-              Sorting by number of results is typically best practice, but with so many values changing dynamically
-              as filters are selected, alphabetical order is clearer and easier to navigate.
-            </p>
-          </NumberedPoint>
-          <NumberedPoint number={2} title="Severity and Has fix filters were considered, and left out">
-            <p>
-              They'd be more effective for exploring package options to find the best fit. That's a valuable future
-              use case, but the current search only supports exact matches and can't accommodate it.
-            </p>
-          </NumberedPoint>
-        </div>
-      </div>
-    </div>
-  </Section>
-
-  <Section id="next-steps" eyebrow="Next steps" title="Part of a bigger initiative" background="amber-pale">
+  <Section id="next-steps" eyebrow="Next steps" title="Part of a bigger initiative" background="rose-soft">
     <div class="flex max-w-2xl flex-col gap-4 text-sm text-ink/80">
       <p>
         These designs are part of a broader initiative to include non-vulnerable packages in the Snyk Vulnerability
-        Database, now renamed the Snyk Security Database. The package page was also redesigned to bring in
-        information from other Snyk domains, and the homepage was updated with the latest Snyk branding and several UX
-        improvements. I'd be glad to walk through these as well.
-      </p>
-      <p>
-        So far I've done more extensive usability research on the package page redesign, since it's first in the
-        implementation plan. Next, I'll research the search results and keep iterating toward the best experience for
-        users.
+        Database, now renamed the Snyk Security Database. I also redesigned the package page to bring in
+        information from other Snyk domains, as well as the homepage to add the latest Snyk branding and several UX
+        improvements. I'd be glad to walk through these on request.
       </p>
     </div>
   </Section>

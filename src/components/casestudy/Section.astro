@@ -3,13 +3,13 @@ interface Props {
   id: string;
   title?: string;
   eyebrow?: string;
-  background?: "indigo-pale" | "rose-pale" | "sage-pale" | "amber-pale";
+  background?: "indigo-pale" | "rose-pale" | "sage-pale" | "amber-pale" | "indigo-soft" | "rose-soft" | "sage-soft" | "amber-soft";
 }
 
 const { id, title, eyebrow, background } = Astro.props;
 ---
 
-<section id={id} class="scroll-mt-24 pt-36">
+<section id={id} class="scroll-mt-24 pt-36 [section:has(>[style])+&]:pt-24">
   {
     background ? (
       <div class="relative left-1/2 w-screen -translate-x-1/2 pt-24 pb-24" style={`background: var(--color-${background});`}>

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-@theme {
+/* static: always emit every token, since Section and cards build var(--color-${name}) at runtime and Tailwind can't see those uses */
+@theme static {
   --color-bg: #ffffff;
   --color-surface: #e7e7f4;
   --color-accent-soft: #dcdcf7;

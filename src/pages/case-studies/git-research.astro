@@ -1,0 +1,279 @@
+---
+import CaseStudyLayout from "../../layouts/CaseStudyLayout.astro";
+import Section from "../../components/casestudy/Section.astro";
+import Figure from "../../components/casestudy/Figure.astro";
+import ColorCard from "../../components/casestudy/ColorCard.astro";
+
+const base = "/case-studies/git-research";
+
+const method = [
+  { title: "Learn", text: "Review existing knowledge & learn more about the subject" },
+  { title: "Assume", text: "Come up with assumptions to validate / invalidate" },
+  { title: "Ask", text: "Phrase the questions to validate / invalidate the assumptions" },
+  { title: "Interview", text: "Conduct interviews to gather data" },
+  { title: "Review", text: "Summarize data from interviews and existing knowledge" },
+  { title: "Conclude", text: "Form conclusions and share forward" },
+];
+
+const momTest = [
+  { dont: "Talk about your idea", do: "Talk about their life" },
+  { dont: "Ask about their opinions", do: "Gather facts" },
+  { dont: "Avoid generic claims (I usually, I always, I never)", do: "Ask about specifics in the past / current behavior" },
+  { dont: "Ask yes/no questions", do: "Keep questions open ended" },
+  { dont: "Lead, pitch", do: "Listen" },
+];
+
+const questions = [
+  "Can you tell us about the last time you imported code into Snyk?",
+  "Can you tell us about the last time you had a PR check fail due to security? What did you do?",
+  "Looking at this auto-PR (created by Snyk), can you read through it and explain what you see?",
+];
+
+const flows = [
+  { title: "Vulnerability discovery and fix, by notification", image: `${base}/flow-notification.png`, width: 4196, alt: "Flow from a developer or AppSec team being notified by email or Slack, through PR review, risk investigation, and fix decisions based on risk" },
+  { title: "Periodical security meetings", image: `${base}/flow-meetings.png`, width: 5096, alt: "Flow of vulnerabilities being reviewed and prioritized in periodical security meetings" },
+  { title: "Using a new Open Source library", caption: "As described by developers who are not using Snyk", image: `${base}/flow-new-library.png`, width: 3624, alt: "Flow of a developer vetting a new open source library before using it" },
+];
+// All flows are exported at the same scale, so sizing each relative to the widest keeps their blocks the same height.
+const widestFlow = Math.max(...flows.map((flow) => flow.width));
+
+const quoteIcon =
+  "M0 26V15.6C0 11.1 1.1 7.4 3.3 4.4 5.6 1.5 8.9 0 13.2 0v5.6c-2.2 0-3.9.8-5.1 2.4C6.9 9.4 6.3 11.4 6.3 13.8h6.9V26H0Zm18.5 0V15.6c0-4.5 1.1-8.2 3.3-11.2C24.1 1.5 27.3 0 31.5 0v5.6c-2.1 0-3.8.8-5.1 2.4-1.2 1.4-1.8 3.4-1.8 5.8h6.9V26H18.5Z";
+---
+
+<CaseStudyLayout
+  title="Git research"
+  tagline="Finding out where Snyk's Git integration gets in developers' way, and deciding what to fix first"
+  accent="indigo-soft"
+  heroImage={`${base}/hero-mockup.png`}
+  heroImageClass="w-[50%]"
+  plainCta
+  summary={{
+    logo: `${base}/snyk-logo.webp`,
+    logoAlt: "Snyk",
+    dateLine: "Git research, 2024",
+    headline: "Investigating the developer experience of Snyk's Git functionality",
+    body: [
+      "An end-to-end overview of planning and conducting exploratory research on the Git experience in Snyk.",
+      "Snyk enables users to scan their code for vulnerabilities and provides guidance on how to address them. To support this, it integrates directly with the platforms where code is managed.",
+      "I led research to help Snyk uncover opportunities to enhance the Git experience for its users, and surface existing pain points.",
+    ],
+    workSteps: [
+      "Research planning",
+      "Analysis of reqeust backlog",
+      "Writing interview script",
+      "User interviews",
+      "Analysis of results",
+      "Findings synthesis & recommendations",
+    ],
+  }}
+>
+  <Section id="background" eyebrow="Background" title="Understanding the impact, usability and pain points of Snyk's Git experience" background="amber-soft">
+    <div class="grid gap-6 md:grid-cols-2">
+      <div class="rounded-2xl bg-bg p-6">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style="background: var(--color-amber-soft);"><img src="/icons/target.png" alt="" class="h-[18px] w-[18px]" /></span>
+          <p class="font-display text-lg font-semibold text-ink">In a nutshell</p>
+        </div>
+        <p class="mt-3 text-sm text-ink/80">In this research, I set out to <span class="font-semibold text-ink">understand the impact, usability, pain points, and feedback</span> Snyk's customers have on the current Git experience.</p>
+      </div>
+      <div class="rounded-2xl bg-bg p-6">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style="background: var(--color-amber-soft);"><img src="/icons/campaign.png" alt="" class="h-[18px] w-[18px]" /></span>
+          <p class="font-display text-lg font-semibold text-ink">What prompted the research</p>
+        </div>
+        <p class="mt-3 text-sm text-ink/80">Snyk was getting <span class="font-semibold text-ink">feedback and critique regarding its Git experience.</span> There were features being requested by the users and critique on the current ones, and we wanted to learn more in order to prioritize and create the upcoming roadmap.</p>
+      </div>
+      <div class="rounded-2xl bg-bg p-6">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style="background: var(--color-amber-soft);"><img src="/icons/assignment.png" alt="" class="h-[18px] w-[18px]" /></span>
+          <p class="font-display text-lg font-semibold text-ink">Approach</p>
+        </div>
+        <ul class="mt-3 flex list-disc flex-col gap-2 pl-5 text-sm text-ink/80">
+          <li><span class="font-semibold text-ink">In depth interviews</span> regarding the customers' current work processes.</li>
+          <li><span class="font-semibold text-ink">Exploration of specific Snyk features</span> and how they're being used.</li>
+          <li><span class="font-semibold text-ink">A study of previous user requests</span> regarding this topic, specifically blockers for working with Snyk.</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl bg-bg p-6">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style="background: var(--color-amber-soft);"><img src="/icons/hourglass.png" alt="" class="h-[18px] w-[18px]" /></span>
+          <p class="font-display text-lg font-semibold text-ink">Constraints</p>
+        </div>
+        <p class="mt-3 text-sm text-ink/80"><span class="font-semibold text-ink">Only one month</span> was allocated for all stages of the research: gaining in depth knowledge of the topic, planning, scheduling, executing calls, summarizing and presenting.</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="assumptions" title="Noting my assumptions to focus the research">
+    <div>
+      <ol class="mt-8 flex list-decimal flex-col gap-3 pl-5 text-sm text-ink/80">
+        <li>Snyk's Git experience is missing features which some of its customers define as key to their work processes.</li>
+        <li>It is worth investing in these features in the near future in order to create growth in the company.</li>
+        <li>The Git experience affects the relationship between the AppSec team and the developers. Enough that they'd opt out if it wasn't up to par.</li>
+        <li>The customer size does not affect the Git experience.</li>
+      </ol>
+    </div>
+  </Section>
+
+  <Section id="goals" title="Goals">
+    <div class="grid gap-6 md:grid-cols-3">
+      <ColorCard title="Identify blockers" color="indigo-soft">
+        <p>Identify the key features which could be blockers for potential customers.</p>
+      </ColorCard>
+      <ColorCard title="Missing features" color="rose-soft">
+        <p>Understand which missing key features would make the most impact.</p>
+      </ColorCard>
+      <ColorCard title="Learn how customers work" color="amber-soft">
+        <p>Learn more about Snyk's customers' ways of working around Git and security.</p>
+      </ColorCard>
+    </div>
+  </Section>
+
+  <Section id="method" eyebrow="Method" title="I used these steps to run a thourough research" background="indigo-soft">
+    <div class="grid gap-x-10 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
+      {
+        method.map((step, i) => (
+          <div>
+            <p class="font-hand text-xl text-ink/60">{String(i + 1).padStart(2, "0")}</p>
+            <p class="mt-1 text-lg font-normal text-ink">{step.title}</p>
+            <p class="mt-1 text-sm text-ink/80">{step.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section id="mom-test" title="Forming questions using The Mom Test method">
+    <p class="-mt-4 max-w-3xl text-sm text-ink/80">The Mom Test method teaches how to ask questions that encourage honest, unbiased answers by focusing on real experiences instead of opinions. I applied it in this project to help phrase our questions, following these key guidelines:</p>
+    <div class="grid gap-6 md:grid-cols-2">
+      <ColorCard title="Don'ts" color="rose-soft">
+        <ul>{momTest.map((row) => <li>{row.dont}</li>)}</ul>
+      </ColorCard>
+      <ColorCard title="Do's" color="sage-soft">
+        <ul>{momTest.map((row) => <li>{row.do}</li>)}</ul>
+      </ColorCard>
+    </div>
+    <div>
+      <div>
+        <p class="text-lg font-normal text-ink">Examples of questions</p>
+        <div class="mt-5 flex flex-col gap-4">
+          {
+            questions.map((q) => (
+              <div class="flex items-start gap-3">
+                <svg width="20" height="15" viewBox="0 0 34 26" fill="none" class="mt-1 shrink-0 text-ink/30">
+                  <path fill="currentColor" d={quoteIcon} />
+                </svg>
+                <p class="font-accent text-lg text-ink italic">{q}</p>
+              </div>
+            ))
+          }
+        </div>
+        <p class="mt-5 text-sm text-ink/80">We were able to dig further by asking follow-up questions to get to the bottom of the pain points.</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="participants">
+    <div class="grid gap-16 md:grid-cols-[auto_1fr] md:items-center">
+      <div>
+        <h2 class="font-display text-4xl font-normal text-ink">Participants</h2>
+        <ul class="mt-8 flex list-disc flex-col gap-3 pl-5 text-sm text-ink/80">
+          <li>Snyk developers who use Snyk regularly (dogfooding)</li>
+          <li>Existing customers (AppSec Engineers)</li>
+          <li>Developers who are not Snyk users (to understand whether they have security processes in place and how they work)</li>
+        </ul>
+      </div>
+      <Figure src={`${base}/participants.png`} alt="Interview note boards for dogfooding sessions, user interviews and customer calls" class="max-w-md md:order-first" noBorder square />
+    </div>
+  </Section>
+
+  <Section id="interaction-models" eyebrow="Research findings" title="Interaction models emerge to tell the detailed story">
+    <p class="-mt-4 max-w-3xl text-sm text-ink/80">Throughout the many calls conducted during this research, a wide range of workflows emerged.<br />Below is an overview of the different approaches observed.</p>
+    <p class="-mt-12 flex items-center gap-2 text-sm text-ink/80"><img src={`${base}/branch-circle.png`} alt="" class="h-4 w-4 shrink-0" />A branching in the process indicates different approaches we've heard from various customers.</p>
+    {
+      flows.map((flow) => (
+        <div>
+          <p class="text-lg font-normal text-ink">{flow.title}</p>
+          {flow.caption && <p class="mt-1 text-sm text-muted">{flow.caption}</p>}
+          <img src={flow.image} alt={flow.alt} class="mt-5" style={`width: ${(flow.width / widestFlow) * 100}%`} />
+        </div>
+      ))
+    }
+  </Section>
+
+  <Section id="feedback" eyebrow="Research findings" title="Feedback summary">
+    <p class="-mt-4 max-w-3xl text-sm text-muted">The conclusions presented here are a sample of the breadth of conclusions the research generated. Not all are shared due to data sensitivity.</p>
+
+    <div class="grid gap-16 md:grid-cols-[2fr_3fr] md:items-start">
+      <div>
+        <p class="text-lg font-normal text-ink">AppSec Engineer & Developer relationship</p>
+        <div class="mt-5 flex items-start gap-3">
+          <svg width="26" height="20" viewBox="0 0 34 26" fill="none" class="shrink-0 text-ink/30">
+            <path fill="currentColor" d={quoteIcon} />
+          </svg>
+          <p class="font-accent text-lg text-ink italic">It needs to be a great developer tool first, we'll work around the problems in the security team. We prefer having everyone do the right thing.</p>
+        </div>
+      </div>
+      <ul class="flex list-disc flex-col gap-3 pl-5 text-sm text-ink/80">
+        <li>Customers may stop using the product if developers are frustrated or if the relationship with them is hurt.</li>
+        <li>All AppSecs we spoke with emphasized how important their relationship with developers is.</li>
+        <li>Some customers even said that the relationship with the developers is more important than having a robust security solution.</li>
+        <li>One customer consciously made a decision to have less reporting visibility (for the AppSec team) in order to use Snyk because it's better for developers than other tools.</li>
+        <li>Although some tasks are better handled in the UI, ideally developers shouldn't need to leave their SCM frequently (or at all).</li>
+      </ul>
+    </div>
+
+    <div class="grid gap-16 md:grid-cols-[2fr_3fr] md:items-start">
+      <div>
+        <p class="text-lg font-normal text-ink">Scaling</p>
+        <p class="mt-2 text-sm text-ink/80">We could do a better job catering to big companies.</p>
+      </div>
+      <ul class="flex list-disc flex-col gap-3 pl-5 text-sm text-ink/80">
+        <li><span class="font-semibold text-ink">Imports at scale:</span> customers are experiencing time out issues and hitting GitHub rate limits.</li>
+        <li><span class="font-semibold text-ink">PR checks for large repos:</span> errors in resolving the PR status check (and then failing the PR).</li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="grid gap-16 md:grid-cols-[2fr_3fr] md:items-start">
+        <p class="text-lg font-normal text-ink">Understanding communication errors</p>
+        <ul class="flex list-disc flex-col gap-3 pl-5 text-sm text-ink/80">
+          <li>Snyk's import logs aren't detailed and customers have to reach out to the TSMs to understand why PRs failed.</li>
+          <li>Snyk's customers need a centralized way for viewing PR check errors to help unblock developers.</li>
+          <li>There isn't a history of failed PR checks, which makes it hard to debug and differentiate Snyk errors from actual vulnerabilities.</li>
+          <li>When customers contact support about issues, it's very hard to tell if Snyk is set up correctly. For example, it's hard to tell whether PRs are active for a repo through the Settings. It won't appear on the Settings page for the project but only in the Settings page for the integration.</li>
+        </ul>
+      </div>
+      <Figure src={`${base}/settings.png`} alt="Research notes on import logs, PR check errors, failed PR history and settings visibility" class="mt-10" noBorder square />
+    </div>
+
+    <div>
+      <div class="grid gap-16 md:grid-cols-[2fr_3fr] md:items-start">
+        <p class="text-lg font-normal text-ink">Greater customization and visibility</p>
+        <div class="text-sm text-ink/80">
+          <p>Adding more granularity to features like Policies and Status Check Rules would make using Snyk more efficient, ensuring developers are only blocked when truly necessary. Some examples that came up in the research:</p>
+          <ul class="mt-3 flex list-disc flex-col gap-3 pl-5">
+            <li>Setting up status check rules with more granular parameters</li>
+            <li>Disabling certain types of vulnerabilities, like License vulnerabilities</li>
+            <li>Creating Jira Issues for multiple vulnerabilities, selected by the user</li>
+          </ul>
+        </div>
+      </div>
+      <Figure src={`${base}/customization.png`} alt="Research notes requesting more granular status check rules and PR block policies" class="mt-10" noBorder square />
+    </div>
+  </Section>
+
+  <Section id="next-steps" eyebrow="What next?" title="Recommendations for further exploration" background="amber-soft">
+    <div class="max-w-3xl text-sm text-ink/80">
+      <p>Although this project surfaced many valuable insights (outlined in the Feedback summary), we (the research team) recommended further exploration in order to:</p>
+      <ul class="mt-4 flex list-disc flex-col gap-3 pl-5">
+        <li>Speak with more developers on the customer side, as most of our conversations so far have been with AppSecs and PMs.</li>
+        <li>Allow more time to base the research on feedback from Snyk's own customers, rather than developers who aren't current users.</li>
+        <li>Have time to investigate competitor offerings and analyze churned customer cases.</li>
+        <li>Have an opportunity to dive deeper into the human interactions around PRs and better understand the related workflows.</li>
+        <li>Conduct the research closer to when the feature is planned to be developed to ensure the results are as accurate and relevant as possible.</li>
+      </ul>
+    </div>
+  </Section>
+</CaseStudyLayout>
