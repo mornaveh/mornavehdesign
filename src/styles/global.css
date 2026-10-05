@@ -21,9 +21,9 @@
 
   /* even lighter/softer versions of the companion palette, for cards that sit
      on top of or beside a -soft block and need less visual weight */
-  --color-indigo-pale: #efeffb;
-  --color-rose-pale: #fceff1;
-  --color-sage-pale: #eef7f0;
+  --color-indigo-pale: #f6f4fd;
+  --color-rose-pale: #fff1f2;
+  --color-sage-pale: #ecf6f0;
   --color-amber-pale: #fcf3e4;
 
   /* one family for everything on the site; kept as three token names since

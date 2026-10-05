@@ -31,11 +31,58 @@ const questions = [
 
 const flows = [
   { title: "Vulnerability discovery and fix, by notification", image: `${base}/flow-notification.png`, width: 4196, alt: "Flow from a developer or AppSec team being notified by email or Slack, through PR review, risk investigation, and fix decisions based on risk" },
-  { title: "Periodical security meetings", image: `${base}/flow-meetings.png`, width: 5096, alt: "Flow of vulnerabilities being reviewed and prioritized in periodical security meetings" },
+  { title: "Periodical security meetings", image: `${base}/flow-meetings.png`, width: 5136, alt: "Flow of vulnerabilities being reviewed and prioritized in periodical security meetings" },
   { title: "Using a new Open Source library", caption: "As described by developers who are not using Snyk", image: `${base}/flow-new-library.png`, width: 3624, alt: "Flow of a developer vetting a new open source library before using it" },
 ];
 // All flows are exported at the same scale, so sizing each relative to the widest keeps their blocks the same height.
 const widestFlow = Math.max(...flows.map((flow) => flow.width));
+
+const bold = (text: string) => `<span class="font-semibold text-ink">${text}</span>`;
+const findings = [
+  {
+    title: "AppSec Engineer & Developer relationship",
+    subtitle: "AppSec teams put developer experience first, even ahead of their own security and reporting needs.",
+    points: [
+      "Customers may stop using the product if developers are frustrated or if the relationship with them is hurt.",
+      "All AppSecs we spoke with emphasized how important their relationship with developers is.",
+      `Some customers even said that the relationship with the developers is ${bold("more important than having a robust security solution.")}`,
+      "One customer consciously made a decision to have less reporting visibility (for the AppSec team) in order to use Snyk because it's better for developers than other tools.",
+      "Although some tasks are better handled in the UI, ideally developers shouldn't need to leave their SCM frequently (or at all).",
+    ],
+  },
+  {
+    title: "Scaling",
+    subtitle: "Snyk could do a better job catering to big companies.",
+    points: [
+      `Customers are experiencing import ${bold("time out issues and hitting GitHub rate limits.")}`,
+      `${bold("Errors in resolving the PR status")} check (and then failing the PR) for large repositories.`,
+    ],
+  },
+  {
+    title: "Understanding communication errors",
+    subtitle: "Customers can't diagnose failures on their own, so they depend on support to find out what went wrong.",
+    points: [
+      `Snyk's ${bold("import logs aren't detailed")} and customers have to reach out to the TSMs to understand why PRs failed.`,
+      "Snyk's customers need a centralized way for viewing PR check errors to help unblock developers.",
+      `${bold("There isn't a history of failed PR checks")}, which makes it hard to debug and differentiate Snyk errors from actual vulnerabilities.`,
+      `When customers contact support about issues, it's ${bold("very hard to tell if Snyk is set up correctly.")} For example, it's hard to tell whether PRs are active for a repo through the Settings. It won't appear on the Settings page for the project but only in the Settings page for the integration.`,
+    ],
+    image: `${base}/settings.png`,
+    alt: "Research notes on import logs, PR check errors, failed PR history and settings visibility",
+  },
+  {
+    title: "Greater customization and visibility",
+    subtitle: "Customers want finer control, so developers are only blocked when it's necessary.",
+    intro: `${bold("More granular Policies and Status Check Rules")} would mean developers are only blocked when necessary. Examples from the research:`,
+    points: [
+      "Setting up status check rules with more granular parameters",
+      "Disabling certain types of vulnerabilities, like License vulnerabilities",
+      "Creating Jira Issues for multiple vulnerabilities, selected by the user",
+    ],
+    image: `${base}/customization.png`,
+    alt: "Research notes requesting more granular status check rules and PR block policies",
+  },
+];
 
 const quoteIcon =
   "M0 26V15.6C0 11.1 1.1 7.4 3.3 4.4 5.6 1.5 8.9 0 13.2 0v5.6c-2.2 0-3.9.8-5.1 2.4C6.9 9.4 6.3 11.4 6.3 13.8h6.9V26H0Zm18.5 0V15.6c0-4.5 1.1-8.2 3.3-11.2C24.1 1.5 27.3 0 31.5 0v5.6c-2.1 0-3.8.8-5.1 2.4-1.2 1.4-1.8 3.4-1.8 5.8h6.9V26H18.5Z";
@@ -68,7 +115,7 @@ const quoteIcon =
     ],
   }}
 >
-  <Section id="background" eyebrow="Background" title="Understanding the impact, usability and pain points of Snyk's Git experience" background="amber-soft">
+  <Section id="background" eyebrow="Background" title="Understanding the impact, usability and pain points of Snyk's Git experience" background="amber-pale">
     <div class="grid gap-6 md:grid-cols-2">
       <div class="rounded-2xl bg-bg p-6">
         <div class="flex items-center gap-3">
@@ -130,7 +177,7 @@ const quoteIcon =
     </div>
   </Section>
 
-  <Section id="method" eyebrow="Method" title="I used these steps to run a thourough research" background="indigo-soft">
+  <Section id="method" eyebrow="Method" title="I used these steps to run a thourough research" background="indigo-pale">
     <div class="grid gap-x-10 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
       {
         method.map((step, i) => (
@@ -202,77 +249,48 @@ const quoteIcon =
     }
   </Section>
 
-  <Section id="feedback" eyebrow="Research findings" title="Feedback summary">
-    <p class="-mt-4 max-w-3xl text-sm text-muted">The conclusions presented here are a sample of the breadth of conclusions the research generated. Not all are shared due to data sensitivity.</p>
+  <Section id="feedback" eyebrow="Research findings" title="What cusomters told us, and what to do about it">
+    <p class="-mt-4 max-w-3xl text-sm text-muted">The conclusions presented here are a sample of the breadth of conclusions the research generated.<br />Not all are shared due to data sensitivity.</p>
 
-    <div class="grid gap-16 md:grid-cols-[2fr_3fr] md:items-start">
-      <div>
-        <p class="text-lg font-normal text-ink">AppSec Engineer & Developer relationship</p>
-        <div class="mt-5 flex items-start gap-3">
-          <svg width="26" height="20" viewBox="0 0 34 26" fill="none" class="shrink-0 text-ink/30">
-            <path fill="currentColor" d={quoteIcon} />
-          </svg>
-          <p class="font-accent text-lg text-ink italic">It needs to be a great developer tool first, we'll work around the problems in the security team. We prefer having everyone do the right thing.</p>
+    <div class="flex max-w-3xl items-start gap-3">
+      <svg width="26" height="20" viewBox="0 0 34 26" fill="none" class="shrink-0 text-ink/30">
+        <path fill="currentColor" d={quoteIcon} />
+      </svg>
+      <p class="font-accent text-lg text-ink italic">It needs to be a great developer tool first, we'll work around the problems in the security team. We prefer having everyone do the right thing.</p>
+    </div>
+
+    {
+      findings.map((finding, i) => (
+        <div class="rounded-3xl border border-border p-8 md:p-10">
+          <div class="grid gap-8 md:grid-cols-[2fr_3fr] md:gap-16">
+            <div>
+              <p class="font-hand text-xl text-ink/60">{String(i + 1).padStart(2, "0")}</p>
+              <p class="mt-1 text-lg font-normal text-ink">{finding.title}</p>
+              {finding.subtitle && <p class="mt-2 text-sm text-ink/80">{finding.subtitle}</p>}
+            </div>
+            <div class="text-sm text-ink/80">
+              {finding.intro && <p class="mb-3" set:html={finding.intro} />}
+              <ul class="flex list-disc flex-col gap-3 pl-5">
+                {finding.points.map((point) => <li set:html={point} />)}
+              </ul>
+              {finding.image && <img src={finding.image} alt={finding.alt} class="mt-8 w-full" />}
+            </div>
+          </div>
         </div>
-      </div>
-      <ul class="flex list-disc flex-col gap-3 pl-5 text-sm text-ink/80">
-        <li>Customers may stop using the product if developers are frustrated or if the relationship with them is hurt.</li>
-        <li>All AppSecs we spoke with emphasized how important their relationship with developers is.</li>
-        <li>Some customers even said that the relationship with the developers is more important than having a robust security solution.</li>
-        <li>One customer consciously made a decision to have less reporting visibility (for the AppSec team) in order to use Snyk because it's better for developers than other tools.</li>
-        <li>Although some tasks are better handled in the UI, ideally developers shouldn't need to leave their SCM frequently (or at all).</li>
-      </ul>
-    </div>
-
-    <div class="grid gap-16 md:grid-cols-[2fr_3fr] md:items-start">
-      <div>
-        <p class="text-lg font-normal text-ink">Scaling</p>
-        <p class="mt-2 text-sm text-ink/80">We could do a better job catering to big companies.</p>
-      </div>
-      <ul class="flex list-disc flex-col gap-3 pl-5 text-sm text-ink/80">
-        <li><span class="font-semibold text-ink">Imports at scale:</span> customers are experiencing time out issues and hitting GitHub rate limits.</li>
-        <li><span class="font-semibold text-ink">PR checks for large repos:</span> errors in resolving the PR status check (and then failing the PR).</li>
-      </ul>
-    </div>
-
-    <div>
-      <div class="grid gap-16 md:grid-cols-[2fr_3fr] md:items-start">
-        <p class="text-lg font-normal text-ink">Understanding communication errors</p>
-        <ul class="flex list-disc flex-col gap-3 pl-5 text-sm text-ink/80">
-          <li>Snyk's import logs aren't detailed and customers have to reach out to the TSMs to understand why PRs failed.</li>
-          <li>Snyk's customers need a centralized way for viewing PR check errors to help unblock developers.</li>
-          <li>There isn't a history of failed PR checks, which makes it hard to debug and differentiate Snyk errors from actual vulnerabilities.</li>
-          <li>When customers contact support about issues, it's very hard to tell if Snyk is set up correctly. For example, it's hard to tell whether PRs are active for a repo through the Settings. It won't appear on the Settings page for the project but only in the Settings page for the integration.</li>
-        </ul>
-      </div>
-      <Figure src={`${base}/settings.png`} alt="Research notes on import logs, PR check errors, failed PR history and settings visibility" class="mt-10" noBorder square />
-    </div>
-
-    <div>
-      <div class="grid gap-16 md:grid-cols-[2fr_3fr] md:items-start">
-        <p class="text-lg font-normal text-ink">Greater customization and visibility</p>
-        <div class="text-sm text-ink/80">
-          <p>Adding more granularity to features like Policies and Status Check Rules would make using Snyk more efficient, ensuring developers are only blocked when truly necessary. Some examples that came up in the research:</p>
-          <ul class="mt-3 flex list-disc flex-col gap-3 pl-5">
-            <li>Setting up status check rules with more granular parameters</li>
-            <li>Disabling certain types of vulnerabilities, like License vulnerabilities</li>
-            <li>Creating Jira Issues for multiple vulnerabilities, selected by the user</li>
-          </ul>
-        </div>
-      </div>
-      <Figure src={`${base}/customization.png`} alt="Research notes requesting more granular status check rules and PR block policies" class="mt-10" noBorder square />
-    </div>
+      ))
+    }
   </Section>
 
-  <Section id="next-steps" eyebrow="What next?" title="Recommendations for further exploration" background="amber-soft">
+  <Section id="next-steps" eyebrow="What next?" title="Recommendations for further exploration" background="amber-pale">
     <div class="max-w-3xl text-sm text-ink/80">
-      <p>Although this project surfaced many valuable insights (outlined in the Feedback summary), we (the research team) recommended further exploration in order to:</p>
+      <p>This project surfaced many valuable insights, and I recommended further exploration in order to:</p>
       <ul class="mt-4 flex list-disc flex-col gap-3 pl-5">
-        <li>Speak with more developers on the customer side, as most of our conversations so far have been with AppSecs and PMs.</li>
-        <li>Allow more time to base the research on feedback from Snyk's own customers, rather than developers who aren't current users.</li>
-        <li>Have time to investigate competitor offerings and analyze churned customer cases.</li>
-        <li>Have an opportunity to dive deeper into the human interactions around PRs and better understand the related workflows.</li>
-        <li>Conduct the research closer to when the feature is planned to be developed to ensure the results are as accurate and relevant as possible.</li>
+        <li><span class="font-semibold text-ink">Speak with more developers</span> - most of the conversations have been with AppSecs and PMs.</li>
+        <li>Allow more time to base the research on feedback from <span class="font-semibold text-ink">Snyk's own customers</span>, rather than developers who aren't current users.</li>
+        <li><span class="font-semibold text-ink">Conduct the research closer to when a feature is planned</span> for release to ensure the results are as accurate and relevant as possible.</li>
+        <li>Investigate competitor offerings further and analyze churned customer cases.</li>
+        <li>Dive deeper into the human interactions around PRs and better understand the related workflows.</li>
+        
       </ul>
     </div>
   </Section>
