@@ -1,37 +1,199 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Testimonial from "../components/Testimonial.astro";
 
 const swatches = ["indigo-soft", "rose-soft", "sage-soft", "amber-soft"] as const;
 
 const tracks = [
-  { name: "Track name", description: "One-line description of what this track covers." },
-  { name: "Track name", description: "One-line description of what this track covers." },
-  { name: "Track name", description: "One-line description of what this track covers." },
+  {
+    name: "Find the focus",
+    tagline: "Clarity on what's broken and what to fix first.",
+    price: "From $[TBD]",
+    cta: "Find your focus",
+    services: [
+      {
+        name: "UX audit",
+        description:
+          "A review of usability issues in your product and recommended fixes, in order of priority.",
+      },
+      {
+        name: "Design sprint",
+        description:
+          "A well-defined project in a few working days: users, paint point, goals, KPIs, key user flows, and more.",
+      },
+      {
+        name: "User research",
+        description:
+          "Clear user insights for smarter product decisions.",
+      },
+    ],
+  },
+  {
+    name: "Design the flow",
+    tagline: "From problem to a ready-to-build design.",
+    price: "From $[TBD]",
+    cta: "Let's design",
+    services: [
+      {
+        name: "Flow design",
+        description:
+          "Designed from scratch or an existing flow, based on your organizational knowdledge. Delievered as a prototype, full Figma file, or both.",
+      },
+      {
+        name: "Full UX process",
+        description:
+          "Full project definitions, research, designs, and usability testing.",
+      },
+    ],
+  },
+  {
+    name: "Ongoing partnership",
+    tagline: "A design partner embedded with your team.",
+    price: "Pricing varies",
+    cta: "Let's work together",
+
+    services: [
+      {
+        name: "Retainer",
+        description:
+          "Monthly ongoing work — research, design, reviews, and everything in between, with a consistent partner who knows your product.",
+      },
+      {
+        name: "Hourly",
+        description: "Flexible support for smaller tasks (design updates, fixes, reviews, etc.), at an hourly rate.",
+      },
+    ],
+  },
+];
+
+// TODO(Mor): fill in real questions & answers
+const faqs = [
+  { q: "Question goes here?", a: "Answer goes here." },
+  { q: "Question goes here?", a: "Answer goes here." },
+  { q: "Question goes here?", a: "Answer goes here." },
+  { q: "Question goes here?", a: "Answer goes here." },
 ];
 ---
 
 <Layout title="Services — Mor Naveh">
-  <section class="mx-auto max-w-[1400px] px-6 pt-20 pb-16">
-    <h1 class="font-display text-5xl font-normal text-balance text-ink">Work tracks</h1>
-    <p class="mt-4 max-w-xl text-lg font-light text-[#302e2c]/60">The different ways I can help.</p>
-  </section>
-
-  <section class="mx-auto max-w-[1400px] px-6 pb-28">
-    <div class="grid gap-6 md:grid-cols-3">
-      {
-        tracks.map((track, i) => (
-          <div class="rounded-2xl p-6" style={`background: var(--color-${swatches[(i + 1) % swatches.length]});`}>
-            <h3 class="font-display text-base font-semibold text-ink">{track.name}</h3>
-            <p class="mt-2 text-sm text-ink/80">{track.description}</p>
-          </div>
-        ))
-      }
-    </div>
+  <section class="mx-auto max-w-[1400px] px-6 pt-20 pb-32">
+    <h1 class="max-w-4xl font-display text-5xl font-normal text-balance text-ink">Get a clear direction for your product, and a design your team can build.</h1>
+    <p class="mt-6 max-w-2xl text-lg font-light text-[#302e2c]/60">
+      I help teams turn hazy problems into focused decisions and well-crafted flows, so you can spend your time
+      shipping what matters.<br /><br /> Pick the track that fits where you are, or let's talk and find the
+      right fit together.
+    </p>
     <a
-      href="/#contact"
-      class="mt-10 inline-flex w-fit items-center gap-1.5 rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-accent"
+      href="#contact"
+      class="mt-8 inline-flex w-fit items-center gap-1.5 rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-accent"
     >
       Book a free intro call
     </a>
   </section>
+
+  <section class="mx-auto max-w-[1400px] px-6 pb-28">
+    <h2 class="mb-10 font-display text-4xl font-normal text-ink">Tracks and pricing</h2>
+    <div class="grid gap-6 md:grid-cols-3">
+      {
+        tracks.map((track, i) => (
+          <div class="flex flex-col overflow-hidden rounded-3xl" style={`border: 2px solid var(--color-${swatches[(i + 1) % swatches.length]});`}>
+            <div class="p-8" style={`background: var(--color-${swatches[(i + 1) % swatches.length]});`}>
+              <h2 class="font-display text-2xl font-normal text-ink">{track.name}</h2>
+              <p class="mt-2 text-sm text-ink/80">{track.tagline}</p>
+              <p class="mt-4 text-sm font-semibold text-ink">{track.price}</p>
+            </div>
+            <ul class="flex-1 space-y-5 p-8">
+              {track.services.map((s) => (
+                <li>
+                  <h3 class="font-display text-base font-semibold text-ink">{s.name}</h3>
+                  <p class="mt-1 text-sm text-ink/80">{s.description}</p>
+                </li>
+              ))}
+            </ul>
+            <a
+              href={`?track=${encodeURIComponent(track.name)}#contact`}
+              class="mx-8 mb-8 inline-flex w-fit items-center gap-1.5 rounded-full border border-ink/30 px-6 py-3 text-sm font-medium text-ink transition-colors hover:border-ink"
+            >
+              {track.cta} →
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1400px] px-6 pb-28">
+    <div class="mx-auto max-w-3xl text-center [&>div]:items-center">
+        <Testimonial
+          quote={"Mor has a rare ability to turn ambiguous ideas and raw user feedback into clear, intuitive products, and she does it fast without ever compromising on quality. She's a true partner to product."}
+          name="Limor Peleg"
+          title="Product Manager, Agentic Solutions"
+          company="Workday"
+          id="services-testimonial"
+          color="rose-soft"
+        />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1400px] px-6 pb-28">
+    <h2 class="mb-10 font-display text-4xl font-normal text-ink">FAQs</h2>
+    <div class="max-w-3xl divide-y divide-border border-y border-border">
+      {
+        faqs.map((f) => (
+          <details class="group py-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-base font-medium text-ink marker:content-none">
+              {f.q}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="shrink-0 transition-transform group-open:rotate-180">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-sm text-ink/80">{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
+  <section id="contact" class="mx-auto max-w-[1400px] scroll-mt-24 px-6 pb-28">
+    <h2 class="font-display text-4xl font-normal text-ink">How can I help?</h2>
+    <p class="mt-2 max-w-xl text-sm text-ink/80">Tell me what's on your mind or that you'd like a free intro call, let's tackle the challenge together.</p>
+    <!-- ponytail: no form backend yet — point action at Formspree/Web3Forms (or a Vercel function) before launch -->
+    <form action="#" method="POST" class="mt-10 grid max-w-2xl gap-5 sm:grid-cols-2">
+      <label class="flex flex-col gap-2 text-sm font-medium text-ink">
+        Name
+        <input name="name" required autocomplete="name" class="rounded-2xl border border-border px-4 py-3 font-normal focus:border-accent focus:outline-none" />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-ink">
+        Email
+        <input name="email" type="email" required autocomplete="email" class="rounded-2xl border border-border px-4 py-3 font-normal focus:border-accent focus:outline-none" />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-ink">
+        <span>Company <span class="font-normal text-muted">(optional)</span></span>
+        <input name="company" autocomplete="organization" class="rounded-2xl border border-border px-4 py-3 font-normal focus:border-accent focus:outline-none" />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-ink">
+        Track
+        <select id="track" name="track" class="appearance-none rounded-2xl border border-border bg-bg bg-[length:16px] bg-[position:right_1rem_center] bg-no-repeat py-3 pr-10 pl-4 font-normal focus:border-accent focus:outline-none"
+          style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231C1B2E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E&quot;);">
+          <option>Not sure yet</option>
+          {tracks.map((t) => <option>{t.name}</option>)}
+        </select>
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-ink sm:col-span-2">
+        <span>What's on your mind? <span class="font-normal text-muted">(optional)</span></span>
+        <textarea name="message" rows="5" class="rounded-2xl border border-border px-4 py-3 font-normal focus:border-accent focus:outline-none"></textarea>
+      </label>
+      <button
+        type="submit"
+        class="w-fit rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-accent"
+      >
+        Send
+      </button>
+    </form>
+  </section>
+
+  <script>
+    const track = new URLSearchParams(location.search).get("track");
+    if (track) (document.getElementById("track") as HTMLSelectElement).value = track;
+  </script>
 </Layout>
