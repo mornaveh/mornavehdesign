@@ -8,7 +8,8 @@ const tracks = [
   {
     name: "Find the focus",
     tagline: "Clarity on what's broken and what to fix first.",
-    price: "From $[TBD]",
+    priceLabel: "From",
+    price: "$1.8K",
     cta: "Find your focus",
     services: [
       {
@@ -19,7 +20,7 @@ const tracks = [
       {
         name: "Design sprint",
         description:
-          "A well-defined project in a few working days: users, paint point, goals, KPIs, key user flows, and more.",
+          "A well-defined project in a few working days: users, pain points, goals, KPIs, key user flows, and more.",
       },
       {
         name: "User research",
@@ -31,13 +32,14 @@ const tracks = [
   {
     name: "Design the flow",
     tagline: "From problem to a ready-to-build design.",
-    price: "From $[TBD]",
+    priceLabel: "From",
+    price: "$3K",
     cta: "Let's design",
     services: [
       {
         name: "Flow design",
         description:
-          "Designed from scratch or an existing flow, based on your organizational knowdledge. Delievered as a prototype, full Figma file, or both.",
+          "Designed from scratch or an existing flow, based on your organizational knowledge. Delivered as a prototype, full Figma file, or both.",
       },
       {
         name: "Full UX process",
@@ -49,14 +51,14 @@ const tracks = [
   {
     name: "Ongoing partnership",
     tagline: "A design partner embedded with your team.",
-    price: "Pricing varies",
+    priceLabel: "Pricing varies",
     cta: "Let's work together",
 
     services: [
       {
         name: "Retainer",
         description:
-          "Monthly ongoing work — research, design, reviews, and everything in between, with a consistent partner who knows your product.",
+          "Monthly ongoing work - research, design, reviews, and everything in between, with a consistent partner who knows your product.",
       },
       {
         name: "Hourly",
@@ -68,7 +70,15 @@ const tracks = [
 
 // TODO(Mor): fill in real questions & answers
 const faqs = [
-  { q: "Question goes here?", a: "Answer goes here." },
+  {
+    q: "Which is the right track for me?",
+    a: `If you're not sure which track is right for you, <a href="#contact" class="underline">reach out</a> for a free 30-minute call and we'll figure it out together. But in a nutshell:
+      <ul class="mt-3 list-disc space-y-1 pl-5">
+        <li><strong class="font-medium text-ink">Find the focus</strong>: you're not sure what to build, or what to fix first.</li>
+        <li><strong class="font-medium text-ink">Design the flow</strong>: you know what you want designed.</li>
+        <li><strong class="font-medium text-ink">Ongoing partnership</strong>: you'd like a designer working alongside your team over time.</li>
+      </ul>`,
+  },
   { q: "Question goes here?", a: "Answer goes here." },
   { q: "Question goes here?", a: "Answer goes here." },
   { q: "Question goes here?", a: "Answer goes here." },
@@ -100,7 +110,7 @@ const faqs = [
             <div class="p-8" style={`background: var(--color-${swatches[(i + 1) % swatches.length]});`}>
               <h2 class="font-display text-2xl font-normal text-ink">{track.name}</h2>
               <p class="mt-2 text-sm text-ink/80">{track.tagline}</p>
-              <p class="mt-4 text-sm font-semibold text-ink">{track.price}</p>
+              <p class="mt-4 text-2xl font-light leading-none tracking-tight text-ink"><span class="mr-1.5 text-sm font-normal tracking-normal text-ink/70">{track.priceLabel}</span>{track.price}</p>
             </div>
             <ul class="flex-1 space-y-5 p-8">
               {track.services.map((s) => (
@@ -136,21 +146,23 @@ const faqs = [
   </section>
 
   <section class="mx-auto max-w-[1400px] px-6 pb-28">
-    <h2 class="mb-10 font-display text-4xl font-normal text-ink">FAQs</h2>
-    <div class="max-w-3xl divide-y divide-border border-y border-border">
+    <div class="grid gap-10 md:grid-cols-[1fr_2fr]">
+    <h2 class="font-display text-4xl font-normal text-ink">FAQs</h2>
+    <div class="divide-y divide-border border-y border-border">
       {
         faqs.map((f) => (
           <details class="group py-5">
-            <summary class="flex cursor-pointer items-center justify-between gap-4 text-base font-medium text-ink marker:content-none">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-base text-ink marker:content-none">
               {f.q}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="shrink-0 transition-transform group-open:rotate-180">
                 <path d="m6 9 6 6 6-6" />
               </svg>
             </summary>
-            <p class="mt-3 text-sm text-ink/80">{f.a}</p>
+            <div class="mt-3 text-sm text-ink/80" set:html={f.a} />
           </details>
         ))
       }
+    </div>
     </div>
   </section>
 
