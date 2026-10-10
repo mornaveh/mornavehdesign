@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import ContactCTA from "../../components/ContactCTA.astro";
 import { projects } from "../../data/projects";
 
 const swatches = ["indigo-soft", "rose-soft", "sage-soft", "amber-soft"];
@@ -45,5 +46,13 @@ const swatches = ["indigo-soft", "rose-soft", "sage-soft", "amber-soft"];
         })
       }
     </div>
+  </section>
+
+  <section>
+    <ContactCTA
+      plain
+      title="Want to hear more?"
+      text="I’d love to walk you through these projects in more detail and learn about your team, your goals, and what you’re working to solve."
+    />
   </section>
 </Layout>

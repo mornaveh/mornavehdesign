@@ -1,0 +1,51 @@
+---
+const { tracks = [] }: { tracks?: string[] } = Astro.props;
+---
+
+<section id="contact" class="mx-auto max-w-[1400px] scroll-mt-24 px-6 pb-48">
+  <h2 class="font-display text-4xl font-normal text-ink">How can I help?</h2>
+  <p class="mt-2 max-w-xl text-sm text-ink/80">Tell me what's on your mind, let's tackle the challenge together.</p>
+  <!-- ponytail: no form backend yet — point action at Formspree/Web3Forms (or a Vercel function) before launch -->
+  <form action="#" method="POST" class="mt-10 grid max-w-2xl gap-5 sm:grid-cols-2">
+    <label class="flex flex-col gap-2 text-sm font-medium text-ink">
+      Name
+      <input name="name" required autocomplete="name" class="rounded-2xl border border-border px-4 py-3 font-normal focus:border-accent focus:outline-none" />
+    </label>
+    <label class="flex flex-col gap-2 text-sm font-medium text-ink">
+      Email
+      <input name="email" type="email" required autocomplete="email" class="rounded-2xl border border-border px-4 py-3 font-normal focus:border-accent focus:outline-none" />
+    </label>
+    <label class:list={["flex flex-col gap-2 text-sm font-medium text-ink", !tracks.length && "sm:col-span-2"]}>
+      <span>Company <span class="font-normal text-muted">(optional)</span></span>
+      <input name="company" autocomplete="organization" class="rounded-2xl border border-border px-4 py-3 font-normal focus:border-accent focus:outline-none" />
+    </label>
+    {
+      tracks.length > 0 && (
+        <label class="flex flex-col gap-2 text-sm font-medium text-ink">
+          Track
+          <select id="track" name="track" class="appearance-none rounded-2xl border border-border bg-bg bg-[length:16px] bg-[position:right_1rem_center] bg-no-repeat py-3 pr-10 pl-4 font-normal focus:border-accent focus:outline-none"
+            style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231C1B2E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E&quot;);">
+            <option>Not sure yet</option>
+            {tracks.map((t) => <option>{t}</option>)}
+          </select>
+        </label>
+      )
+    }
+    <label class="flex flex-col gap-2 text-sm font-medium text-ink sm:col-span-2">
+      <span>What's on your mind? <span class="font-normal text-muted">(optional)</span></span>
+      <textarea name="message" rows="5" class="rounded-2xl border border-border px-4 py-3 font-normal focus:border-accent focus:outline-none"></textarea>
+    </label>
+    <button
+      type="submit"
+      class="w-fit rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-accent"
+    >
+      Send
+    </button>
+  </form>
+</section>
+
+<script>
+  const select = document.getElementById("track") as HTMLSelectElement | null;
+  const track = new URLSearchParams(location.search).get("track");
+  if (track && select) select.value = track;
+</script>

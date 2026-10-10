@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Testimonial from "../components/Testimonial.astro";
+import ContactForm from "../components/ContactForm.astro";
 
 const swatches = ["indigo-soft", "rose-soft", "sage-soft", "amber-soft"] as const;
 
@@ -120,7 +121,7 @@ const faqs = [
       right fit together.
     </p>
     <a
-      href="#contact"
+      href="https://calendly.com/mornaveh/30min" target="_blank" rel="noopener"
       class="mt-8 inline-flex w-fit items-center gap-1.5 rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-accent"
     >
       Book a free intro call
@@ -159,7 +160,7 @@ const faqs = [
   </section>
 
   <section class="mx-auto max-w-[1400px] px-6 pb-28">
-    <div class="mx-auto -my-6 max-w-3xl text-center [&>div]:items-center">
+    <div class="mx-auto max-w-3xl text-center [&>div]:items-center">
         <Testimonial
           quote={"Mor has a rare ability to turn ambiguous ideas and raw user feedback into clear, intuitive products, and she does it fast without ever compromising on quality. She's a true partner to product."}
           name="Limor Peleg"
@@ -207,46 +208,5 @@ const faqs = [
     </div>
   </section>
 
-  <section id="contact" class="mx-auto max-w-[1400px] scroll-mt-24 px-6 pb-48">
-    <h2 class="font-display text-4xl font-normal text-ink">How can I help?</h2>
-    <p class="mt-2 max-w-xl text-sm text-ink/80">Tell me what's on your mind or that you'd like a free intro call, let's tackle the challenge together.</p>
-    <!-- ponytail: no form backend yet — point action at Formspree/Web3Forms (or a Vercel function) before launch -->
-    <form action="#" method="POST" class="mt-10 grid max-w-2xl gap-5 sm:grid-cols-2">
-      <label class="flex flex-col gap-2 text-sm font-medium text-ink">
-        Name
-        <input name="name" required autocomplete="name" class="rounded-2xl border border-border px-4 py-3 font-normal focus:border-accent focus:outline-none" />
-      </label>
-      <label class="flex flex-col gap-2 text-sm font-medium text-ink">
-        Email
-        <input name="email" type="email" required autocomplete="email" class="rounded-2xl border border-border px-4 py-3 font-normal focus:border-accent focus:outline-none" />
-      </label>
-      <label class="flex flex-col gap-2 text-sm font-medium text-ink">
-        <span>Company <span class="font-normal text-muted">(optional)</span></span>
-        <input name="company" autocomplete="organization" class="rounded-2xl border border-border px-4 py-3 font-normal focus:border-accent focus:outline-none" />
-      </label>
-      <label class="flex flex-col gap-2 text-sm font-medium text-ink">
-        Track
-        <select id="track" name="track" class="appearance-none rounded-2xl border border-border bg-bg bg-[length:16px] bg-[position:right_1rem_center] bg-no-repeat py-3 pr-10 pl-4 font-normal focus:border-accent focus:outline-none"
-          style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231C1B2E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E&quot;);">
-          <option>Not sure yet</option>
-          {tracks.map((t) => <option>{t.name}</option>)}
-        </select>
-      </label>
-      <label class="flex flex-col gap-2 text-sm font-medium text-ink sm:col-span-2">
-        <span>What's on your mind? <span class="font-normal text-muted">(optional)</span></span>
-        <textarea name="message" rows="5" class="rounded-2xl border border-border px-4 py-3 font-normal focus:border-accent focus:outline-none"></textarea>
-      </label>
-      <button
-        type="submit"
-        class="w-fit rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-accent"
-      >
-        Send
-      </button>
-    </form>
-  </section>
-
-  <script>
-    const track = new URLSearchParams(location.search).get("track");
-    if (track) (document.getElementById("track") as HTMLSelectElement).value = track;
-  </script>
+  <ContactForm tracks={tracks.map((t) => t.name)} />
 </Layout>
