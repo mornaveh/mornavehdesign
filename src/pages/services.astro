@@ -10,7 +10,7 @@ const tracks = [
     name: "Find the focus",
     tagline: "Where to focus for the biggest impact.",
     priceLabel: "From",
-    price: "$1.8K",
+    price: "$2K",
     cta: "Find your focus",
     services: [
       {
@@ -34,7 +34,7 @@ const tracks = [
     name: "Design the flow",
     tagline: "From concept to dev-ready designs.",
     priceLabel: "From",
-    price: "$3K",
+    price: "$3.5K",
     cta: "Let's design",
     services: [
       {
@@ -44,6 +44,7 @@ const tracks = [
       },
       {
         name: "Full UX process",
+        note: "Flow design upgrade, additional cost",
         description:
           "Full project definitions, research, designs, and usability testing.",
       },
@@ -143,6 +144,7 @@ const faqs = [
               {track.services.map((s) => (
                 <li>
                   <h3 class="font-display text-base font-semibold text-ink">{s.name}</h3>
+                  {"note" in s && <p class="mt-0.5 text-xs text-muted">{s.note}</p>}
                   <p class="mt-1 text-sm text-ink/80">{s.description}</p>
                 </li>
               ))}
