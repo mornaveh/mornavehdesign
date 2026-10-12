@@ -38,7 +38,7 @@ const current = published.findIndex((p) => p.href === Astro.url.pathname.replace
 const more = [1, 2].map((n) => published[(current + n) % published.length]).filter((p, i, a) => p !== published[current] && a.indexOf(p) === i);
 ---
 
-<Layout title={`${title} — Mor Naveh`} description={tagline}>
+<Layout title={`${title} - Mor Naveh`} description={tagline}>
   {
     heroImage && (
       <section class="mx-auto max-w-[1400px] px-6 pt-16">

@@ -103,9 +103,9 @@ const faqs = [
       </ul>`,
   },
   { q: "How do you use AI in your work?",
-    a: "I love using AI for exploring ideas quickly - whether that's drafting copy options, organizing research, or building well-rounded and accurate prototypes. Working this way lets test designs with users earlier and iterate without getting stuck.<br /><br />AI is a very powerful tool, and like any tool, the results depend on who is using it. It handles the heavy lifting when I want to work fast, leaving me with more time to focus on strategy, empathy, and making sure the final product has great experience and caters to the business goals. " },
+    a: "I love using AI for exploring ideas quickly - whether that's drafting copy options, organizing research, or building well-rounded and accurate prototypes. Working this way lets me test designs with users earlier and iterate without getting stuck.<br /><br />AI is a very powerful tool, and like any tool, the results depend on who is using it. It handles the heavy lifting when I want to work fast, leaving me with more time to focus on strategy, empathy, and making sure the final product offers great experience and caters to the business goals. " },
   { q: "How fast can you get up to speed on our product?",
-    a: "Fast. As the only UX designer at the Citibank accelerator, I started a new project every few weeks, so getting up to speed fast was part of the job.<br />There are usually opportunities for improvement which I spot quickly, and more complex one which come up as I learn more about your product and users. This way I keep adding value as my understanding grows." },
+    a: "Fast. As the only UX designer at the Citibank accelerator, I started a new project every few weeks, so getting up to speed fast was part of the job.<br />There are usually opportunities for improvement which I spot quickly, and more complex ones which come up as I learn more about your product and users. This way I keep adding value as my understanding grows." },
   { q: "Do I get Figma files?",
     a: "If you want them, yes. Figma files can be part of the deliverables. If a working prototype is all you need, that works too. We’ll agree at the start on what fits your team best, and I’ll shape the deliverables around that so you get what you need as quickly as possible." },
   { q: "How do you work with product and engineering?",
@@ -116,7 +116,7 @@ const faqs = [
 <Layout title="Services - Mor Naveh">
   <section class="mx-auto max-w-[1400px] px-6 pt-20 pb-48">
     <h1 class="max-w-4xl font-display text-5xl font-normal text-balance text-ink">Get a clear direction for your product, and a design your team can build.</h1>
-    <p class="mt-6 max-w-2xl text-lg font-light text-[#302e2c]/60">
+    <p class="mt-6 max-w-2xl text-lg font-light text-ink/80">
       I help teams turn hazy problems into focused decisions and well-crafted flows, so you can spend your time
       shipping what matters.<br /><br /> Pick the track that fits where you are, or let's talk and find the
       right fit together.
@@ -130,7 +130,8 @@ const faqs = [
   </section>
 
   <section class="mx-auto max-w-[1400px] px-6 pb-28">
-    <h2 class="mb-10 font-display text-4xl font-normal text-ink">Tracks and pricing</h2>
+    <h2 class="font-display text-4xl font-normal text-ink">Tracks</h2>
+    <p class="mt-2 mb-10 max-w-3xl text-sm text-ink/80">Every project is different, so each one is priced individually based on its scope, subject and timeline.<br />After a free intro call, I'll send you a clear proposal detailing scope and milestones.</p>
     <div class="grid gap-6 md:grid-cols-3">
       {
         tracks.map((track, i) => (
@@ -138,7 +139,6 @@ const faqs = [
             <div class="p-8" style={`background: var(--color-${swatches[(i + 1) % swatches.length]});`}>
               <h2 class="font-display text-2xl font-normal text-ink">{track.name}</h2>
               <p class="mt-2 text-sm text-ink/80">{track.tagline}</p>
-              <p class="mt-4 text-2xl font-light leading-none tracking-tight text-ink"><span class="mr-1.5 text-sm font-normal tracking-normal text-ink/70">{track.priceLabel}</span>{track.price}</p>
             </div>
             <ul class="flex-1 space-y-5 p-8">
               {track.services.map((s) => (

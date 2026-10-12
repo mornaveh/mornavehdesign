@@ -25,8 +25,8 @@ const pmQuote =
     dateLine: "Ignore approval workflow, 2026",
     headline: "Streamlining the ignore process: less noise for developers, full visibility for AppSec.",
     body: [
-      "Snyk helps users by scanning their code for vulnerabilities and providing guidance on how to fix them. Since not all vulnerabilities pose risk (false positives, unfixable problems, low-risk findings, etc.), users can choose to ignore/sustain them. For example — a package dependency which introduces a vulnerability, but is not actually being used. In many organizations, AppSec engineers need more control over what gets ignored, for how long, and why.",
-      "I simplified a complex, information-heavy process and designed a user-friendly flow for maximum risk, and minimum noise.",
+      "Snyk helps users by scanning their code for vulnerabilities and providing guidance on how to fix them. Since not all vulnerabilities pose risk (false positives, unfixable problems, low-risk findings, etc.), users can choose to ignore/sustain them. For example - a package dependency which introduces a vulnerability, but is not actually being used. In many organizations, AppSec engineers need more control over what gets ignored, for how long, and why.",
+      "I simplified a complex, information-heavy process and designed a user-friendly flow for maximum control, and minimum noise.",
     ],
     workSteps: [
       "Exploratory research",
@@ -134,7 +134,7 @@ const pmQuote =
       </div>
       <div class="mt-1 rounded-xl bg-indigo-soft p-4 text-sm text-ink/80">
         <p>
-          *When analyzing the user flows, it was apparent that ignore requests can come through many different
+          When analyzing the user flows, it was apparent that ignore requests can come through many different
           surfaces (Snyk UI, CLI, IDE, PR Checks). The consistency across these surfaces, as well as across different
           development branches, was partial at best. It was clear that consistency needs to be achieved before
           implementing the approval process, because:
@@ -147,7 +147,7 @@ const pmQuote =
           </li>
         </ul>
         <p class="mt-2">
-          This resulted in a technical project — "Consistent Ignores" — which was developed as the base for
+          This resulted in a technical project - "Consistent Ignores" - which was developed as the base for
           implementing the approval workflow.
         </p>
       </div>
@@ -167,7 +167,7 @@ const pmQuote =
         <li>Based on what information would the reviewers triage the requests?</li>
         <li>How and when would the users like to be notified of events in the process?</li>
         <li>
-          How would the different parties communicate about the request? For example — if the reviewer needs more
+          How would the different parties communicate about the request? For example - if the reviewer needs more
           information to approve.
         </li>
       </ul>
@@ -286,7 +286,7 @@ const pmQuote =
             </p>
             <ul class="mt-2 list-disc space-y-1.5 pl-5 text-sm text-muted">
               <li>The reviewer and the requester would be able to add comments to the process at every stage</li>
-              <li>These comments will be saved in the Comments tab and be saved in the audit history</li>
+              <li>These comments will be saved in the Comments tab and in the audit history</li>
               <li>The original requester comments would be locked to editing</li>
               <li>
                 Notifications will be sent out when new requests are created, as well as when new comments are added
@@ -340,7 +340,7 @@ const pmQuote =
       <div class="mt-5 flex flex-col gap-8">
         <NumberedPoint number={1} title="Showing even more information about the issue" bodyClass="text-ink/80">
           <p>
-            For example, the relevant code snippet — this information is crucial to understanding the context of the
+            For example, the relevant code snippet - this information is crucial to understanding the context of the
             request.
           </p>
           <UnderTheHood bodyClass="text-ink/80">
@@ -375,13 +375,13 @@ const pmQuote =
               Pending was presented as an option to edit/reject.
             </p>
             <p>
-              Users weren't sure what would happen to the ignored issue when using this option — would it be
+              Users weren't sure what would happen to the ignored issue when using this option - would it be
               "unignored" (as it is called in Snyk)? Would it stay ignored until further changes to the request?
               Would changes kick off a new review process?
             </p>
             <p>
               Following the feedback, I tried adding an "unignore" action to the approved request. This was just as
-              confusing to users, who didn't understand what it would mean in this context — they didn't realize that
+              confusing to users, who didn't understand what it would mean in this context - they didn't realize that
               the action was referring to the issue, and not the request.
             </p>
             <p>

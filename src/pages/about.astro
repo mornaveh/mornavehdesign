@@ -6,13 +6,13 @@ import ContactForm from "../components/ContactForm.astro";
 const swatches = ["indigo-soft", "rose-soft", "sage-soft", "amber-soft"] as const;
 
 const contact = [
-  { label: "Email", value: "mornaveh@gmail.com", href: "mailto:mornaveh@gmail.com" },
+  { label: "Email", value: "mornavehdesign@gmail.com", href: "mailto:mornavehdesign@gmail.com" },
   { label: "Phone", value: "+972 54 790 5759", href: "tel:+972547905759" },
   { label: "LinkedIn", value: "in/mor-naveh", href: "https://il.linkedin.com/in/mor-naveh" },
   {
     label: "Resume",
     value: "View PDF",
-    href: "https://drive.google.com/file/d/1cWux5zATPjghqlL11YaQIQB-9QXTh7QX/view?usp=sharing",
+    href: "https://drive.google.com/file/d/1pP5JQ7-eHlM2DqpZPzQCJwur9-aMOtov/view?usp=sharing",
   },
 ];
 
@@ -27,7 +27,7 @@ const strengths = [
     body: "I help teams filter out the noise and refocus on what matters: the user and the business goal. Turning complex ideas into strategic UX, I keep our direction sharp, steady, and focused on real outcomes.",
   },
   {
-    title: "Bridging the Gap",
+    title: "Bridging the gap",
     body: "When discussions misalign, I spot where communication breaks down and translate opposing viewpoints into a shared understanding.",
   },
   {
@@ -48,10 +48,10 @@ const offScreen = [
 ];
 ---
 
-<Layout title="About — Mor Naveh">
+<Layout title="About - Mor Naveh">
   <section class="mx-auto grid max-w-[1000px] gap-16 px-6 pt-20 pb-28 md:grid-cols-[1fr_280px] md:items-center">
     <div>
-      <p class="font-hand text-lg font-normal text-[#302e2c]/60">Hi, I'm Mor</p>
+      <p class="font-hand text-lg font-normal text-ink/60">Hi, I'm Mor</p>
       <h1 class="font-display mt-6 text-5xl font-normal text-balance text-ink">
         Together, we'll turn complex discussions into clear, intuitive product design.
       </h1>
@@ -92,7 +92,7 @@ const offScreen = [
 
   <section class="mx-auto grid max-w-[1000px] gap-6 px-6 pb-28 md:grid-cols-[240px_1fr]">
     <h2 class="font-display text-4xl font-normal text-ink">My story</h2>
-    <div class="flex flex-col gap-4 text-base text-ink/80">
+    <div class="flex flex-col gap-4 text-sm text-ink/80">
       {story.map((p) => <p>{p}</p>)}
     </div>
   </section>
@@ -130,7 +130,7 @@ const offScreen = [
     </div>
     <div>
       <h2 class="font-display text-4xl font-normal text-ink">Off-screen</h2>
-      <div class="mt-8 flex flex-col gap-4 text-base text-ink/80">
+      <div class="mt-8 flex flex-col gap-4 text-sm text-ink/80">
         {offScreen.map((p) => <p>{p}</p>)}
       </div>
     </div>

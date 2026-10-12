@@ -170,7 +170,7 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
           <Figure src={`${base}/design-cve-1.png`} alt="CVE search showing the vulnerability result with Has fix tag" />
           <div>
             <h3 class="font-display text-4xl font-normal text-ink">Finding the right CVE faster</h3>
-            <ol class="mt-4 flex list-decimal flex-col gap-3 pl-5 text-sm text-ink/80">
+            <ol class="mt-8 flex list-decimal flex-col gap-3 pl-5 text-sm text-ink/80">
               <li><span class="font-semibold text-ink">Application filter on by default.</span> Users are most likely looking for the application package, so that result comes first.</li>
               <li><span class="font-semibold text-ink">"See operating system results" link added.</span> If the default result isn't what the user was looking for, there's easy access to the rest.</li>
               <li><span class="font-semibold text-ink">Severity and "Has fix" added on each CVE.</span> Users can quickly assess the risk and the effort to fix it.</li>
@@ -180,11 +180,11 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
        <div class="grid gap-16 md:grid-cols-[2fr_3fr] md:items-center">
           <div>
             <h3 class="font-display text-4xl font-normal text-ink">Finding and assessing packages is faster and easier</h3>
-            <ol class="mt-4 flex list-decimal flex-col gap-3 pl-5 text-sm text-ink/80">
+            <ol class="mt-8 flex list-decimal flex-col gap-3 pl-5 text-sm text-ink/80">
               <li><span class="font-semibold text-ink">Non-vulnerable packages appear in the search.</span> Previously, only packages with vulnerabilities were returned.</li>
-              <li><span class="font-semibold text-ink">Exact matches are marked for quicker recognition</span></li>
+              <li><span class="font-semibold text-ink">Exact matches are marked for quicker recognition.</span></li>
               <li><span class="font-semibold text-ink">Security status, health score and description added. </span>Users can now assess relevance without opening the package page.</li>
-              <li><span class="font-semibold text-ink">"Affected by" added.</span> Packages are tied to the CVEs that affect them. The lodash screen doesn't show this, so add a small cropped inset of one row from the CVE search's Packages tab.</li>
+              
             </ol>
           </div>
           <Figure src={`${base}/design-package-lodash.png`} alt="Package search results for lodash with exact match labels, security tags and health scores" />
@@ -193,7 +193,7 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
           <Figure src={`${base}/design-package-manager.png`} alt="Browsing all results for a package manager with filters" />
           <div>
             <h3 class="font-display text-4xl font-normal text-ink">Browsing with a purpose - focusing on the most important information</h3>
-            <p class="mt-4 text-sm text-ink/80">Whether looking for the most recent vulnerabilities, or browsing to discover new packages, the added information and filtering helps.<br />It's visible right away which vulnerabilities can be fixed, how packages are affected by them, and how recent they are.</p>
+            <p class="mt-8 text-sm text-ink/80">Whether looking for the most recent vulnerabilities, or browsing to discover new packages, the added information and filtering helps.<br />It's visible right away which vulnerabilities can be fixed, how packages are affected by them, and how recent they are.</p>
           </div>
         </div>
       </div>
