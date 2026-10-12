@@ -28,7 +28,7 @@ export const projects: {
     title: "Ignore approval workflow",
     color: "rose-soft",
     description:
-      "Providing Application Security Engineers with more control over issues being ignored, and developers more agency in ignoring them.",
+      "Providing application security engineers with more control over issues being ignored, and developers more agency in ignoring them.",
     tag: "Enterprise UX",
     href: "/case-studies/ignore-approval-workflow",
     image: "/case-studies/ignore-approval-workflow/hero-mockup.png",

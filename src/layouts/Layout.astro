@@ -8,7 +8,11 @@ interface Props {
   description?: string;
 }
 
-const { title, description = "Mor Naveh - Product Designer" } = Astro.props;
+const { title, description = "Senior product designer with engineering background, experienced in research, growth, and complex products." } = Astro.props;
+
+// link previews (LinkedIn, WhatsApp, Slack) need absolute URLs; Astro.site is set in astro.config.mjs
+const pageUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+const ogImage = new URL("/og-image.png", Astro.site ?? Astro.url);
 ---
 
 <html lang="en">
@@ -20,6 +24,16 @@ const { title, description = "Mor Naveh - Product Designer" } = Astro.props;
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mor Naveh" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mor Naveh logo" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
