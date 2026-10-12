@@ -39,6 +39,16 @@
   --text-base: 1.0625rem; /* 17px, was 16px */
 }
 
+/* phones: step the three display sizes down so headlines don't run 5+ lines;
+   every text-4xl/5xl/6xl on the site picks this up */
+@media (max-width: 767px) {
+  :root {
+    --text-6xl: 2.5rem; /* 40px, was 60px */
+    --text-5xl: 2.125rem; /* 34px, was 48px */
+    --text-4xl: 1.75rem; /* 28px, was 36px */
+  }
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-ink);

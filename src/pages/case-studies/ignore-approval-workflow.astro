@@ -46,7 +46,7 @@ const pmQuote =
           d="M0 26V15.6C0 11.1 1.1 7.4 3.3 4.4 5.6 1.5 8.9 0 13.2 0v5.6c-2.2 0-3.9.8-5.1 2.4C6.9 9.4 6.3 11.4 6.3 13.8h6.9V26H0Zm18.5 0V15.6c0-4.5 1.1-8.2 3.3-11.2C24.1 1.5 27.3 0 31.5 0v5.6c-2.1 0-3.8.8-5.1 2.4-1.2 1.4-1.8 3.4-1.8 5.8h6.9V26H18.5Z"
         />
       </svg>
-      <p class="font-accent text-lg text-ink italic whitespace-nowrap">
+      <p class="font-accent text-lg text-ink italic md:whitespace-nowrap">
         We don't want to wait for developers to have to ask us to look at these issues.
       </p>
     </div>
@@ -172,7 +172,7 @@ const pmQuote =
         </li>
       </ul>
     </div>
-    <div class="flex items-start gap-6">
+    <div class="grid gap-6 md:flex md:items-start">
       <Figure
         src={`${base}/concept-list.png`}
         alt="Early concept for the ignore request list"
@@ -254,7 +254,7 @@ const pmQuote =
       The users provided valuable feedback regarding features they were missing or that they wouldn't be able to
       use. I used their comments to create the next version.
     </p>
-    <div class="flex items-start gap-6">
+    <div class="grid gap-6 md:flex md:items-start">
       <Figure
         src={`${base}/iteration-list.png`}
         alt="Updated ignore request list design"
@@ -274,13 +274,13 @@ const pmQuote =
     <div class="mt-8">
       <p class="text-lg font-normal text-ink">Key changes</p>
       <div class="mt-5 flex flex-col gap-8">
-        <div class="relative">
+        <div class="relative flex flex-col-reverse gap-4 md:block">
           <img
             src={`${base}/iteration-comment-flow-v3.png`}
             alt="Diagram of the in-product comment and notification flow, ending with the resulting ignore reason summary"
             class="w-full rounded-2xl"
           />
-          <div class="absolute top-8 left-8 max-w-sm">
+          <div class="max-w-sm md:absolute md:top-8 md:left-8">
             <p class="text-sm text-ink">
               <span class="font-semibold">1. In-product conversations</span>
             </p>
