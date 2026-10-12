@@ -18,7 +18,7 @@ const {
   label,
   noBorder,
   square,
-  labelClass = "text-sm font-semibold text-ink",
+  labelClass = "text-base font-semibold text-ink",
   imgClass = "w-full",
   class: className = "",
 } = Astro.props;
@@ -29,7 +29,7 @@ const {
     (label || caption) && (
       <figcaption>
         {label && <p class={labelClass}>{label}</p>}
-        {caption && <p class="mt-1 text-sm text-muted">{caption}</p>}
+        {caption && <p class="mt-1 text-base text-muted">{caption}</p>}
       </figcaption>
     )
   }

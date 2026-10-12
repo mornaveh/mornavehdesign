@@ -21,7 +21,7 @@ const isLong = quote.length > 700;
       d="M0 26V15.6C0 11.1 1.1 7.4 3.3 4.4 5.6 1.5 8.9 0 13.2 0v5.6c-2.2 0-3.9.8-5.1 2.4C6.9 9.4 6.3 11.4 6.3 13.8h6.9V26H0Zm18.5 0V15.6c0-4.5 1.1-8.2 3.3-11.2C24.1 1.5 27.3 0 31.5 0v5.6c-2.1 0-3.8.8-5.1 2.4-1.2 1.4-1.8 3.4-1.8 5.8h6.9V26H18.5Z"
     />
   </svg>
-  <p class:list={["font-body text-base font-light whitespace-pre-line text-ink", isLong && "line-clamp-10"]}>{quote}</p>
+  <p class:list={["font-body text-base whitespace-pre-line text-ink/80", isLong && "line-clamp-10"]}>{quote}</p>
   {
     isLong && (
       <button
@@ -51,7 +51,7 @@ const isLong = quote.length > 700;
           d="M0 26V15.6C0 11.1 1.1 7.4 3.3 4.4 5.6 1.5 8.9 0 13.2 0v5.6c-2.2 0-3.9.8-5.1 2.4C6.9 9.4 6.3 11.4 6.3 13.8h6.9V26H0Zm18.5 0V15.6c0-4.5 1.1-8.2 3.3-11.2C24.1 1.5 27.3 0 31.5 0v5.6c-2.1 0-3.8.8-5.1 2.4-1.2 1.4-1.8 3.4-1.8 5.8h6.9V26H18.5Z"
         />
       </svg>
-      <p class="font-body text-lg font-light whitespace-pre-line text-ink">{quote}</p>
+      <p class="font-body text-lg whitespace-pre-line text-ink/80">{quote}</p>
       <p class="mt-5 text-sm font-medium text-ink">{name}</p>
       <p class="text-xs text-muted">{title}, {company}</p>
     </dialog>

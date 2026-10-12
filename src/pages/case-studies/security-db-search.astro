@@ -78,7 +78,7 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
     <div class="grid gap-16 md:grid-cols-[1fr_1.4fr] md:items-end">
       <div>
         <div class="flex flex-col gap-8">
-        <p class="text-sm text-ink/80">I researched the current state to make sure focus is being put on the right problems:</p>
+        <p class="text-base text-ink/80">I researched the current state to make sure focus is being put on the right problems:</p>
           <NumberedPoint number={1} title="Secure packages are invisible" bodyClass="text-ink/80">
           <p>Results only include vulnerabilities, so packages without known vulnerabilities never appear, even once they're added to the database.</p>
         </NumberedPoint>
@@ -96,7 +96,7 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
         <NumberedPoint number={4} title="Package searches return the wrong packages" bodyClass="text-ink/80">
           <p>Open source packages with similar names crowd the results, hiding the package the user wanted.</p>
         </NumberedPoint>
-        <p class="flex items-center gap-2 text-sm text-muted">
+        <p class="flex items-center gap-2 text-base text-muted">
           Original search design
           <span class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full" style="background: var(--color-sage-soft);">
             <img src="/icons/arrow-right.png" alt="" class="h-[14px] w-[14px]" />
@@ -149,7 +149,7 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
   </Section>
 
   <Section id="user-flows" title="A logical search flow for each use case">
-    <p class="-mb-8 text-sm text-ink/80">To make sure the designs cater to the user needs, I mapped the desirable flow for each scenario:</p>
+    <p class="-mb-8 text-base text-ink/80">To make sure the designs cater to the user needs, I mapped the desirable flow for each scenario:</p>
     {
       flows.map((flow) => (
         <div>
@@ -164,13 +164,13 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
 
   <Section id="designs" eyebrow="The new designs" title="The new search: a faster path to the right answer">
     <div>
-      <p class="-mt-4 text-sm text-ink/80">Letting the user goals lead the way, the needed design changes were clear enough: </p>
+      <p class="-mt-4 text-base text-ink/80">Letting the user goals lead the way, the needed design changes were clear enough: </p>
       <div class="mt-16 flex flex-col gap-24">
         <div class="grid gap-16 md:grid-cols-[3fr_2fr] md:items-center">
           <Figure src={`${base}/design-cve-1.png`} alt="CVE search showing the vulnerability result with Has fix tag" />
           <div>
             <h3 class="font-display text-4xl font-normal text-ink">Finding the right CVE faster</h3>
-            <ol class="mt-8 flex list-decimal flex-col gap-3 pl-5 text-sm text-ink/80">
+            <ol class="mt-8 flex list-decimal flex-col gap-3 pl-5 text-base text-ink/80">
               <li><span class="font-semibold text-ink">Application filter on by default.</span> Users are most likely looking for the application package, so that result comes first.</li>
               <li><span class="font-semibold text-ink">"See operating system results" link added.</span> If the default result isn't what the user was looking for, there's easy access to the rest.</li>
               <li><span class="font-semibold text-ink">Severity and "Has fix" added on each CVE.</span> Users can quickly assess the risk and the effort to fix it.</li>
@@ -180,7 +180,7 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
        <div class="grid gap-16 md:grid-cols-[2fr_3fr] md:items-center">
           <div>
             <h3 class="font-display text-4xl font-normal text-ink">Finding and assessing packages is faster and easier</h3>
-            <ol class="mt-8 flex list-decimal flex-col gap-3 pl-5 text-sm text-ink/80">
+            <ol class="mt-8 flex list-decimal flex-col gap-3 pl-5 text-base text-ink/80">
               <li><span class="font-semibold text-ink">Non-vulnerable packages appear in the search.</span> Previously, only packages with vulnerabilities were returned.</li>
               <li><span class="font-semibold text-ink">Exact matches are marked for quicker recognition.</span></li>
               <li><span class="font-semibold text-ink">Security status, health score and description added. </span>Users can now assess relevance without opening the package page.</li>
@@ -193,7 +193,7 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
           <Figure src={`${base}/design-package-manager.png`} alt="Browsing all results for a package manager with filters" />
           <div>
             <h3 class="font-display text-4xl font-normal text-ink">Browsing with a purpose - focusing on the most important information</h3>
-            <p class="mt-8 text-sm text-ink/80">Whether looking for the most recent vulnerabilities, or browsing to discover new packages, the added information and filtering helps.<br />It's visible right away which vulnerabilities can be fixed, how packages are affected by them, and how recent they are.</p>
+            <p class="mt-8 text-base text-ink/80">Whether looking for the most recent vulnerabilities, or browsing to discover new packages, the added information and filtering helps.<br />It's visible right away which vulnerabilities can be fixed, how packages are affected by them, and how recent they are.</p>
           </div>
         </div>
       </div>
@@ -201,7 +201,7 @@ const widestFlow = Math.max(...flows.map((flow) => flow.width));
   </Section>
 
   <Section id="next-steps" eyebrow="Next steps" title="Part of a bigger initiative" background="rose-pale">
-    <div class="flex max-w-2xl flex-col gap-4 text-sm text-ink/80">
+    <div class="flex max-w-2xl flex-col gap-4 text-base text-ink/80">
       <p>
         These designs are part of a broader initiative to include non-vulnerable packages in the Snyk Vulnerability
         Database, now renamed the Snyk Security Database. I also redesigned the package page to bring in

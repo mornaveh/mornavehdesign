@@ -53,7 +53,7 @@ const pmQuote =
 
     <div>
       <p class="text-lg font-normal text-ink">I asked these key questions</p>
-      <ul class="mt-4 list-disc space-y-1.5 pl-5 text-sm text-muted">
+      <ul class="mt-4 list-disc space-y-1.5 pl-5 text-base text-muted">
         <li>How many developers are there in your organization? How many AppSec engineers?</li>
         <li>Can you tell us about the last time an issue was remediated?</li>
         <li>What are your general guidelines around remediation/ignoring?</li>
@@ -132,7 +132,7 @@ const pmQuote =
       <div class="mt-5">
         <Figure src={`${base}/main-request-flow-v5.png`} alt="Diagram of the main ignore request flow across surfaces" noBorder square />
       </div>
-      <div class="mt-1 rounded-xl bg-indigo-soft p-4 text-sm text-ink/80">
+      <div class="mt-1 rounded-xl bg-indigo-soft p-4 text-base text-ink/80">
         <p>
           When analyzing the user flows, it was apparent that ignore requests can come through many different
           surfaces (Snyk UI, CLI, IDE, PR Checks). The consistency across these surfaces, as well as across different
@@ -156,12 +156,12 @@ const pmQuote =
 
   <Section id="concept-testing" title="Tested initial design to validate the concept">
     <div>
-      <p class="text-sm text-muted">
+      <p class="text-base text-muted">
         Having mapped the flow and created an AI prototype, I tested the process and initial screen designs with
         users.
       </p>
-      <p class="mt-4 text-sm text-muted">I collected feedback on these topics:</p>
-      <ul class="mt-2 list-disc space-y-1.5 pl-5 text-sm text-muted">
+      <p class="mt-4 text-base text-muted">I collected feedback on these topics:</p>
+      <ul class="mt-2 list-disc space-y-1.5 pl-5 text-base text-muted">
         <li>Is the process clear? Does it make sense?</li>
         <li>Are we providing enough information to approve/reject the request?</li>
         <li>Based on what information would the reviewers triage the requests?</li>
@@ -191,7 +191,7 @@ const pmQuote =
 
     <div class="mt-12">
       <p class="font-display text-4xl font-normal text-ink">Synthesized the research findings into digestible information</p>
-      <ul class="mt-8 list-disc space-y-1.5 pl-5 text-sm text-muted">
+      <ul class="mt-8 list-disc space-y-1.5 pl-5 text-base text-muted">
         <li>The overall process was on the right track.</li>
         <li>This flow would allow AppSec teams to streamline issue ignoring and reduce developer downtime.</li>
         <li>Audit history would be available (as opposed to when using workarounds like Slack)</li>
@@ -250,7 +250,7 @@ const pmQuote =
   </Section>
 
   <Section id="design-iteration" title="Incorporated feedback into the design">
-    <p class="max-w-2xl text-sm text-muted">
+    <p class="max-w-2xl text-base text-muted">
       The users provided valuable feedback regarding features they were missing or that they wouldn't be able to
       use. I used their comments to create the next version.
     </p>
@@ -281,10 +281,10 @@ const pmQuote =
             class="w-full rounded-2xl"
           />
           <div class="max-w-sm md:absolute md:top-8 md:left-8">
-            <p class="text-sm text-ink">
+            <p class="text-base text-ink">
               <span class="font-semibold">1. In-product conversations</span>
             </p>
-            <ul class="mt-2 list-disc space-y-1.5 pl-5 text-sm text-muted">
+            <ul class="mt-2 list-disc space-y-1.5 pl-5 text-base text-muted">
               <li>The reviewer and the requester would be able to add comments to the process at every stage</li>
               <li>These comments will be saved in the Comments tab and in the audit history</li>
               <li>The original requester comments would be locked to editing</li>
@@ -332,7 +332,7 @@ const pmQuote =
     title="The new design was much better, and more feedback was received"
     background="amber-pale"
   >
-    <p class="max-w-2xl text-sm text-ink/80">I conducted a second round of research on the updated designs to test the changes.</p>
+    <p class="max-w-2xl text-base text-ink/80">I conducted a second round of research on the updated designs to test the changes.</p>
     <Figure src={`${base}/validation-research-board.jpg`} alt="Affinity map of design validation research findings" />
 
     <div>
@@ -439,7 +439,7 @@ const pmQuote =
   </Section>
 
   <Section id="future-thinking" title="Policies and context would reduce noise and workload">
-    <p class="max-w-2xl text-sm text-muted">
+    <p class="max-w-2xl text-base text-muted">
       As the topic of Ignores continues to evolve, there are interesting opportunities in AI which can deliver value
       both to customers and to Snyk:
     </p>

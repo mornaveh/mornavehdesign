@@ -27,10 +27,10 @@ const hasFull = Astro.slots.has("full");
 <div>
   <div class:list={["grid gap-6", (hasAside || (image && !stacked)) && "md:grid-cols-[1fr_320px] md:items-start"]}>
     <div>
-      <p class="text-sm text-ink">
+      <p class="text-base text-ink">
         <span class="font-semibold">{number}. {title}</span>
       </p>
-      <div class:list={["mt-2 text-sm [&_p]:mt-2 [&_p:first-child]:mt-0", bodyClass, textWidthClass]}>
+      <div class:list={["mt-2 text-base [&_p]:mt-2 [&_p:first-child]:mt-0", bodyClass, textWidthClass]}>
         <slot />
       </div>
     </div>
