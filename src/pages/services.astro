@@ -114,7 +114,7 @@ const faqs = [
 ---
 
 <Layout title="Services - Mor Naveh">
-  <section class="mx-auto max-w-[1400px] px-6 pt-20 pb-48">
+  <section class="mx-auto max-w-[1400px] px-6 pt-20 pb-36">
     <h1 class="max-w-4xl font-display text-5xl font-normal text-balance text-ink">Get a clear direction for your product, and a design your team can build.</h1>
     <p class="mt-6 max-w-2xl text-lg font-light text-ink/80">
       I help teams turn hazy problems into focused decisions and well-crafted flows, so you can spend your time
@@ -137,13 +137,13 @@ const faqs = [
         tracks.map((track, i) => (
           <div class="flex flex-col overflow-hidden rounded-3xl" style={`border: 2px solid var(--color-${swatches[(i + 1) % swatches.length]});`}>
             <div class="p-8" style={`background: var(--color-${swatches[(i + 1) % swatches.length]});`}>
-              <h2 class="font-display text-2xl font-normal text-ink">{track.name}</h2>
+              <h3 class="font-display text-2xl font-normal text-ink">{track.name}</h3>
               <p class="mt-2 text-sm text-ink/80">{track.tagline}</p>
             </div>
             <ul class="flex-1 space-y-5 p-8">
               {track.services.map((s) => (
                 <li>
-                  <h3 class="font-display text-base font-semibold text-ink">{s.name}</h3>
+                  <h4 class="font-display text-base font-semibold text-ink">{s.name}</h4>
                   {"note" in s && <p class="mt-0.5 text-xs text-muted">{s.note}</p>}
                   <p class="mt-1 text-sm text-ink/80">{s.description}</p>
                 </li>
