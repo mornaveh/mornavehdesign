@@ -25,8 +25,8 @@ const pmQuote =
     dateLine: "Ignore approval workflow, 2026",
     headline: "Streamlining the ignore process: less noise for developers, full visibility for AppSec.",
     body: [
-      "Snyk helps users by scanning their code for vulnerabilities and providing guidance on how to fix them. Since not all vulnerabilities pose risk (false positives, unfixable problems, low-risk findings, etc.), users can choose to ignore/sustain them. For example - a package dependency which introduces a vulnerability, but is not actually being used. In many organizations, AppSec engineers need more control over what gets ignored, for how long, and why.",
-      "I simplified a complex, information-heavy process and designed a user-friendly flow for maximum control, and minimum noise.",
+      "Snyk helps users by scanning their code for vulnerabilities and providing guidance on how to fix them. Since not all vulnerabilities pose risk (false positives, unfixable problems, low-risk findings, etc.), users can choose to ignore/sustain them. In larger organizations, AppSec engineers need tight control over what gets ignored, for how long, and why.\n\nThis makes ignoring a delicate, collaborative workflow. Done wrong, it doesn't just expose the organization to security risks - it actively strains the relationship between developers and AppSec.",
+      "I simplified a complex, information-heavy process and designed a user-friendly flow that gives AppSec maximum control and developers minimum noise.",
     ],
     workSteps: [
       "Exploratory research",
@@ -48,6 +48,15 @@ const pmQuote =
       </svg>
       <p class="font-accent text-lg text-ink italic md:whitespace-nowrap">
         We don't want to wait for developers to have to ask us to look at these issues.
+      </p>
+    </div>
+
+    <div class="flex max-w-2xl flex-col gap-4 text-base text-ink/80">
+      <p>
+        I wanted to understand how teams handle ignores today: where the friction is, how developers and AppSec communicate, and what we might be missing altogether.
+      </p>
+      <p>
+        By taking these calls as a team with the PM and a representative from engineering, we could all listen to customers as they shared feedback, building a common understanding of the needs behind our work.
       </p>
     </div>
 
@@ -157,8 +166,7 @@ const pmQuote =
   <Section id="concept-testing" title="Tested initial design to validate the concept">
     <div>
       <p class="text-base text-muted">
-        Having mapped the flow and created an AI prototype, I tested the process and initial screen designs with
-        users.
+        Having mapped the flow and created an AI prototype, I tested the process and initial screen designs with users.
       </p>
       <p class="mt-4 text-base text-muted">I collected feedback on these topics:</p>
       <ul class="mt-2 list-disc space-y-1.5 pl-5 text-base text-muted">
@@ -191,7 +199,10 @@ const pmQuote =
 
     <div class="mt-12">
       <p class="font-display text-4xl font-normal text-ink">Synthesized the research findings into digestible information</p>
-      <ul class="mt-8 list-disc space-y-1.5 pl-5 text-base text-muted">
+      <p class="mt-8 max-w-2xl text-base text-muted">
+        I mapped out the research findings so we could review them as a team and align on our top priorities together.
+      </p>
+      <ul class="mt-4 list-disc space-y-1.5 pl-5 text-base text-muted">
         <li>The overall process was on the right track.</li>
         <li>This flow would allow AppSec teams to streamline issue ignoring and reduce developer downtime.</li>
         <li>Audit history would be available (as opposed to when using workarounds like Slack)</li>
