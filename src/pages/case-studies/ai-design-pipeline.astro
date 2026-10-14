@@ -4,13 +4,14 @@ import Section from "../../components/casestudy/Section.astro";
 import Figure from "../../components/casestudy/Figure.astro";
 import IconItem from "../../components/casestudy/IconItem.astro";
 import NumberedPoint from "../../components/casestudy/NumberedPoint.astro";
+import ColorCard from "../../components/casestudy/ColorCard.astro";
 
 const base = "/case-studies/ai-design-pipeline";
 ---
 
 <CaseStudyLayout
   title="AI Design pipeline"
-  tagline="Using Claude Code skills to go from idea to prototype to a workable Figma file."
+  tagline="Claude Code skills that turn any idea into a realistic prototype, a design-system Figma file, and a handoff engineers and their agents can build from."
   accent="indigo-soft"
   heroImage={`${base}/hero-mockup.png`}
   heroImageClass="w-[50%]"
@@ -22,7 +23,7 @@ const base = "/case-studies/ai-design-pipeline";
     headline: "Claude Code skills that turn ideas into prototypes, Figma files, and developer input.",
     body: [
       "The way we look at design, engineering and product work has changed a great deal since AI became an inseparable part of the process. The lines between areas of expertise have blurred, and different functions can now explore domains which only recently were out of their reach. While this has the potential to create some chaos, it's also a great opportunity for closer collaboration and barrier-crossing communication.",
-      "I created two AI skills that turn any idea into a realistic Snyk prototype and a matching Figma design.\nThe result: fast and accurate collaboration between design, product, and engineering."
+      "I created two AI skills that turn any idea into a realistic Snyk prototype and a matching Figma design.\n\nThe result: realistic, testable prototypes in minutes instead of days, as well as fast and accurate collaboration across functions."
     ],
     workSteps: [
       "Workflow definition",
@@ -47,8 +48,15 @@ const base = "/case-studies/ai-design-pipeline";
         </p>
         <p>
           The two skills are designed to support each other, as each skill's output can be the input for the other, but
-          they can also work independently. /prototype-builder can receive different types of input, whereas
-          /figma-builder works best when receiving a prototype created by /prototype-builder.
+          they can also work independently.
+        </p>
+        <p>
+          <span class="font-medium text-ink">/prototype-builder</span><br />
+          A fast path to building a realistic and testable experience using the organization's actual frontend components and code structure.
+        </p>
+         <p>
+          <span class="font-medium text-ink">/figma-builder</span><br />
+          Translates working prototypes into a visual canvas for spatial thinkers who prefer moving things around.
         </p>
       </div>
       <!-- pulled up by the Section h2 height (text-4xl = 40px) + its mt-8 (32px) so the image top lines up with the title -->
@@ -59,8 +67,13 @@ const base = "/case-studies/ai-design-pipeline";
   </Section>
 
   <Section id="prototype-builder" eyebrow="Skill #1: prototype-builder" title="From description, screenshot, or Figma to a working prototype ">
-    <div class="grid gap-10 md:grid-cols-2">
+    <div class="grid gap-10 md:grid-cols-2 md:gap-x-20">
       <div class="flex flex-col gap-10">
+        <IconItem title="Target audience" icon="/icons/audience.png" color="amber-soft">
+          <p>
+            Teammates across disciplines who want to turn an idea into a realistic, testable prototype fast.
+          </p>
+        </IconItem>
         <IconItem title="Input" icon="/icons/input.png" color="indigo-soft">
           <p>
             A description of the need (in natural language, a PRD file, client feedback and more), a screenshot of an
@@ -152,8 +165,13 @@ const base = "/case-studies/ai-design-pipeline";
   </Section>
 
   <Section id="figma-builder" eyebrow="Skill #2: figma-builder" title="Prototype in, Figma out - same components, same design system">
-    <div class="grid gap-10 md:grid-cols-2">
+    <div class="grid gap-10 md:grid-cols-2 md:gap-x-20">
       <div class="flex flex-col gap-10">
+        <IconItem title="Target audience" icon="/icons/audience.png" color="amber-soft">
+          <p>
+            Designers who prototype in code but still like to think visually - dragging elements, comparing layouts, and seeing full flows without spending tokens on agent code revisions.
+          </p>
+        </IconItem>
         <IconItem title="Input" icon="/icons/input.png" color="indigo-soft">
           <p>Preferably a prototype created by /prototype-builder, using the components and tokens from Snyk's component library.</p>
         </IconItem>
@@ -218,29 +236,49 @@ const base = "/case-studies/ai-design-pipeline";
 
     <div class="mt-16 grid gap-10 md:grid-cols-[3fr_2fr] md:items-center">
       <div class="flex max-w-3xl flex-col gap-4 text-base text-ink/80">
-        <h2 class="font-display text-4xl font-normal text-ink">A complete Figma file for non-designers, and a faster starting point for designers</h2>
+        <h2 class="font-display text-4xl font-normal text-ink">A visual playground for designers, and a complete Figma file for the whole team</h2>
         <p class="mt-4">
-          For people less acquainted with Figma, this skill is a great shortcut. After creating a prototype from their
-          ideas or PRD documents, /figma-builder creates an organized, complete design file using the correct layouts and
-          design system components. They can then edit, annotate, and co-work on the file with colleagues, without
-          needing to be a Figma power user.
+          For designers who like to think visually, the skill creates the bulk of the work instead of starting from scratch. It
+          serves as a much better starting point for exploring layouts and variations, leaving more time to tackle the
+          complex challenges.
         </p>
         <p>
-          Even for experienced designers, letting the skill create the bulk of the work instead of starting from scratch
-          is a great time saver. It's a much better starting point, and leaves time to tackle the more complex
-          challenges.
+          For people less acquainted with Figma, it's a great shortcut. After creating a prototype from their ideas or
+          PRD documents, /figma-builder creates an organized, complete design file using the correct layouts and design
+          system components. They can then edit, annotate, and co-work on the file with colleagues, without needing to
+          be a Figma power user.
         </p>
-        <p class="flex items-center gap-2 text-muted">
-          A focus state on one of the buttons, using exactly the variants created in the prototype
-          <span class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full" style="background: var(--color-sage-soft);">
+        <p class="text-muted">
+          A focus state on one of the buttons, using the same variants created in the <span class="whitespace-nowrap">prototype<span class="ml-2 inline-flex h-6 w-6 items-center justify-center rounded-full align-middle" style="background: var(--color-sage-soft);">
             <img src="/icons/arrow-right.png" alt="" class="h-[14px] w-[14px]" />
-          </span>
+          </span></span>
         </p>
       </div>
       <Figure
         src={`${base}/figma-button-props.png`}
         alt="A button selected in the generated Figma design, showing its design system component properties"
       />
+    </div>
+  </Section>
+
+  <Section id="outcome" eyebrow="Outcome" title="Better data to guide decisions before writing code">
+    <div class="grid gap-6 md:grid-cols-3">
+      <ColorCard title="Minutes, not days" color="indigo-soft">
+        <p>
+          What used to take days of tedious work in Figma turns into an accurate, testable prototype in a fraction of the time.
+        </p>
+      </ColorCard>
+      <ColorCard title="Closer to the real product" color="rose-soft">
+        <p>
+          Referencing the real frontend code and components, the prototypes look and work like the actual product. They go beyond static screens and can easily be connected to realistic data.
+        </p>
+      </ColorCard>
+      <ColorCard title="Better research and evaluation" color="sage-soft">
+        <p>
+          Realistic prototypes made better materials for user research and for internal design reviews, which brought
+          back better data for decision making before writing any code.
+        </p>
+      </ColorCard>
     </div>
   </Section>
 
