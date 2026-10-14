@@ -84,6 +84,14 @@ const findings = [
   },
 ];
 
+const recommendations = [
+  { title: "Import reliability at scale", text: "Resolve import time-outs and avoid hitting GitHub rate limits for large organizations." },
+  { title: "PR check error history", text: "A central place to view failed PR checks, so Snyk errors can be told apart from vulnerabilities." },
+  { title: "Granular status check rules", text: "More flexible and nuanced policies so developers are only blocked when it's necessary." },
+  { title: "Clearer settings", text: "Specify the exact setup details for Snyk per project." },
+  { title: "Improve the SCM experience", text: "Standardize the Snyk PR check across all SCMs to show test status, results, and failure reasons consistently." },
+];
+
 const quoteIcon =
   "M0 26V15.6C0 11.1 1.1 7.4 3.3 4.4 5.6 1.5 8.9 0 13.2 0v5.6c-2.2 0-3.9.8-5.1 2.4C6.9 9.4 6.3 11.4 6.3 13.8h6.9V26H0Zm18.5 0V15.6c0-4.5 1.1-8.2 3.3-11.2C24.1 1.5 27.3 0 31.5 0v5.6c-2.1 0-3.8.8-5.1 2.4-1.2 1.4-1.8 3.4-1.8 5.8h6.9V26H18.5Z";
 ---
@@ -110,7 +118,7 @@ const quoteIcon =
       "Analysis of request backlog",
       "Writing interview script",
       "User interviews",
-      "Analysis of results",
+      "Analysis & recommendations",
       "Findings synthesis & recommendations",
     ],
   }}
@@ -279,6 +287,21 @@ const quoteIcon =
         </div>
       ))
     }
+  </Section>
+
+  <Section id="recommendations" eyebrow="Recommendations" title="The top 5 areas to invest in">
+    <p class="-mt-4 max-w-3xl text-base text-ink/80">Based on the findings, the research team recommended these five areas as the top priorities for investment in Snyk's Git experience:</p>
+    <div class="grid gap-x-10 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
+      {
+        recommendations.map((item, i) => (
+          <div>
+            <p class="font-hand text-xl text-ink/60">{String(i + 1).padStart(2, "0")}</p>
+            <p class="mt-1 text-lg font-normal text-ink">{item.title}</p>
+            <p class="mt-1 text-base text-ink/80">{item.text}</p>
+          </div>
+        ))
+      }
+    </div>
   </Section>
 
   <Section id="next-steps" eyebrow="What next?" title="Recommendations for further exploration" background="amber-pale">
