@@ -6,9 +6,10 @@ interface Props {
   company: string;
   id: string;
   color?: "indigo-soft" | "rose-soft" | "sage-soft" | "amber-soft";
+  logo?: { file: string; h: string };
 }
 
-const { quote, name, title, company, id, color = "indigo-soft" } = Astro.props;
+const { quote, name, title, company, id, color = "indigo-soft", logo } = Astro.props;
 // only genuinely long quotes clamp — the real testimonials run 450-520 chars
 // and should sit fully in the card; only Karl's (2000+) needs the modal
 const isLong = quote.length > 700;
@@ -33,9 +34,12 @@ const isLong = quote.length > 700;
       </button>
     )
   }
-  <div class="mt-6">
-    <p class="text-sm font-medium text-ink">{name}</p>
-    <p class="text-xs text-muted">{title}, {company}</p>
+  <div class="mt-6 flex items-center gap-4">
+    {logo && <img src={`/logos/${logo.file}`} alt="" class={`${logo.h} w-auto opacity-60 grayscale mix-blend-multiply`} />}
+    <div class="text-left">
+      <p class="text-sm font-medium text-ink">{name}</p>
+      <p class="text-xs text-muted">{title}, {company}</p>
+    </div>
   </div>
 </div>
 
