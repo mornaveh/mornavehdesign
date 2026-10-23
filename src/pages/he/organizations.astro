@@ -1,0 +1,59 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { whatsappUrl } from "../../data/he";
+
+const services = [
+  { title: "אפיון מערכות ותהליכים.", text: "מיפוי תהליכים תוך כדי הבנת הצורך של המשתמש וגם של הארגון, עד עיצוב שמוכן לפיתוח." },
+  { title: "אפיון ועיצוב אתרים.", text: "אתר ארגוני, אתר שירות או פורטל, מעריכה ועדכון ועד עיצוב מלא." },
+  { title: "מחקר משתמשים.", text: "ראיונות ובדיקות שימושיות שבסופן דו״ח מלא עם המלצות לעתיד." },
+  { title: "סדנת מיקוד.", text: "כשיש הרבה נקודות מבט, יש גם הרבה ידע. אני מקשיבה לכל אחת מהן ומחברת אותן לחזון אחד שכולם מאמינים בו." },
+  { title: "ליווי שוטף.", text: "המוצר ממשיך להתפתח, וטוב שיש מישהי שמכירה אותו לעומק. ליווי קבוע כחלק מהצוות, בשעות או בריטיינר חודשי." },
+];
+const swatches = ["rose-soft", "sage-soft", "amber-soft", "indigo-soft"] as const;
+---
+
+<Layout
+  lang="he"
+  title="אפיון חוויית משתמש לחברות וארגונים - מור נוה"
+  description="אפיון מערכות, תהליכים ואתרים לצוותי מוצר וטכנולוגיה בסטארטאפים, בחברות פרטיות, בארגונים גדולים ובגופים ציבוריים."
+>
+  <section class="mx-auto max-w-[1400px] px-6 pt-20 pb-28">
+    <h1 class="font-display max-w-4xl text-5xl leading-tight font-normal text-ink md:text-6xl">
+      מרעיון ועד מוצר שמוכן לפיתוח.
+    </h1>
+    <p class="mt-6 max-w-3xl text-lg text-ink/80">
+      הרבה פעמים מה שמעכב מוצר הוא לא הטכנולוגיה, אלא פערים בין מה שהעסק צריך, מה שהמשתמשים מבינים ומה שהפיתוח יכול לבנות. כמעצבת מנוסה עם תואר בהנדסת מערכות מידע וניסיון בעבודה מול צוותים רבים, אני יודעת לסגור את הפערים האלה.
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-[1400px] px-6 pb-28">
+    <h2 class="font-display text-4xl font-normal text-ink">
+      מה אני עושה
+    </h2>
+    <ul class="mt-8 grid gap-6 md:grid-cols-3">
+      {
+        services.map((s, i) => (
+          <li class="rounded-3xl p-8" style={`border: 2px solid var(--color-${swatches[i % swatches.length]});`}>
+            <h3 class="font-display text-xl font-semibold text-ink">{s.title}</h3>
+            <p class="mt-2 text-lg text-ink/80">{s.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="mx-auto max-w-[1400px] px-6 pb-40">
+    <div class="flex flex-col gap-6 rounded-3xl bg-ink p-10 text-bg md:flex-row md:items-center md:justify-between md:p-12">
+      <div>
+        <h2 class="font-display text-3xl font-normal">
+          סטודיו או חברת אינטגרציה?
+        </h2>
+        <p class="mt-3 max-w-2xl text-lg text-bg/80">
+         זכיתם בפרויקט גדול או שיש עומס בצוות? אני מצטרפת כמעצבת מנוסה, נכנסת לעניינים מהר ועובדת לפי השיטות והכלים שלכם.
+        </p>
+      </div>
+      <a href={whatsappUrl} target="_blank" rel="noopener" class="w-fit shrink-0 rounded-full bg-bg px-6 py-3 text-sm font-medium whitespace-nowrap text-ink transition-colors hover:bg-bg/85">בואו נדבר</a>
+    </div>
+  </section>
+
+</Layout>

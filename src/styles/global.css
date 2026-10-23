@@ -64,3 +64,15 @@ h5,
 h6 {
   letter-spacing: normal;
 }
+
+/* Hebrew section (/he): Assistant for everything, Amatic SC as the handwritten accent (Bad Script has no Hebrew glyphs).
+   Wider tracking hurts Hebrew legibility, so it's reset. */
+html[lang="he"] {
+  --font-display: "Assistant", system-ui, sans-serif;
+  --font-body: "Assistant", system-ui, sans-serif;
+  --font-accent: "Assistant", system-ui, sans-serif;
+  --font-hand: "Amatic SC", cursive;
+}
+html[lang="he"] body {
+  letter-spacing: normal;
+}

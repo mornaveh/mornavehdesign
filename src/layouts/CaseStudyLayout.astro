@@ -3,6 +3,7 @@ import Layout from "./Layout.astro";
 import ContactCTA from "../components/ContactCTA.astro";
 import Section from "../components/casestudy/Section.astro";
 import { projects } from "../data/projects";
+import { whatsappUrl } from "../data/he";
 
 interface Props {
   title: string;
@@ -39,6 +40,34 @@ const more = [1, 2].map((n) => published[(current + n) % published.length]).filt
 ---
 
 <Layout title={`${title} - Mor Naveh`} description={tagline}>
+  <!-- only shown when opened from the Hebrew site (?from=he); hidden otherwise so the page is unchanged -->
+  <div id="from-he" hidden lang="he" dir="rtl" class="border-b border-border bg-surface">
+    <div class="mx-auto flex max-w-[1400px] flex-wrap items-center gap-x-6 gap-y-1 px-6 py-2 text-sm text-muted">
+      <a id="from-he-back" href="/he#work" class="transition-colors hover:text-ink">
+        → חזרה לאתר בעברית
+      </a>
+      <a href={whatsappUrl} target="_blank" rel="noopener" class="transition-colors hover:text-ink">
+        יש שאלות? וואטסאפ
+      </a>
+    </div>
+  </div>
+  <script>
+    if (new URLSearchParams(location.search).get("from") === "he") {
+      const strip = document.getElementById("from-he")!;
+      // English pages don't load Assistant; fetch it only for this strip, and only the glyphs it uses
+      const font = document.createElement("link");
+      font.rel = "stylesheet";
+      font.href = `https://fonts.googleapis.com/css2?family=Assistant:wght@400&display=swap&text=${encodeURIComponent(strip.textContent!.replace(/\s+/g, ""))}`;
+      document.head.append(font);
+      strip.style.fontFamily = '"Assistant", system-ui, sans-serif';
+      strip.hidden = false;
+      // back to the exact Hebrew page they came from, if we know it
+      const ref = document.referrer && new URL(document.referrer);
+      if (ref && ref.origin === location.origin && ref.pathname.startsWith("/he")) {
+        (document.getElementById("from-he-back") as HTMLAnchorElement).href = ref.pathname + (ref.pathname === "/he" || ref.pathname === "/he/" ? "#work" : ref.hash);
+      }
+    }
+  </script>
   {
     heroImage && (
       <section class="mx-auto max-w-[1400px] px-6 pt-16">

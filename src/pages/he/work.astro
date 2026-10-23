@@ -1,0 +1,53 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { heWork } from "../../data/he-work";
+
+const parts = [
+  { key: "problem", label: "האתגר" },
+  { key: "did", label: "התהליך" },
+  { key: "changed", label: "הערך למשתמשים" },
+] as const;
+---
+
+<Layout
+  lang="he"
+  title="עבודות - מור נוה"
+  description="פרויקטים נבחרים: האתגר, התהליך, והערך למשתמשים."
+>
+  <section class="mx-auto max-w-[1400px] px-6 pt-20 pb-20">
+    <h1 class="font-display text-5xl font-normal text-ink md:text-6xl">
+      עבודות
+    </h1>
+  </section>
+
+  <div class="mx-auto flex max-w-[1400px] flex-col gap-28 px-6 pb-40">
+    {
+      heWork.filter((w) => w.problem).map((w) => (
+        <article id={w.id} class="scroll-mt-28">
+          <div class="mx-[calc(50%-50vw)] px-6 py-12 text-center" style={`background: var(--color-${w.color});`}>
+            <span class="inline-block rounded-full bg-bg/60 px-3 py-1 text-xs font-medium text-ink">
+              {w.tag}
+            </span>
+            <p class="mt-4 text-sm text-ink/60">{w.company}</p>
+            <h2 class="font-display mt-1 text-4xl font-normal text-ink">{w.title}</h2>
+            <p class="mx-auto mt-3 max-w-3xl text-xl text-ink/80">{w.short}</p>
+          </div>
+          <img src={w.image} alt="" class="mx-auto mt-10 w-full max-w-2xl object-contain" />
+          <div class="mt-12 grid gap-8 md:grid-cols-3">
+            {parts.map((p) => (
+              <div>
+                <h3 class="font-display text-lg font-semibold text-ink">{p.label}</h3>
+                <p class="mt-2 text-lg text-ink/80">{w[p.key]}</p>
+              </div>
+            ))}
+          </div>
+          <div class="mt-10 text-center">
+            <a href={`${w.enHref}?from=he`} class="inline-block text-sm font-medium text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
+              לגרסה המלאה באנגלית ←
+            </a>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</Layout>

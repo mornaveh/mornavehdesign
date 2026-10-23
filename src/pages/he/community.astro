@@ -1,0 +1,68 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const familiar = [
+  '"היה נחמד אם כל המידע להורים היה במקום אחד"',
+  '"הגיע הזמן לאתר חדש, רק לא ברור מאיפה מתחילים"',
+  '"רוצים שההרשמה לחוגים תהיה פשוטה יותר"',
+  '"יש לנו מערכת חדשה, ואנחנו רוצים שכולם ירגישו איתה בנוח"',
+];
+
+const services = [
+  { title: "שיפור חווית משתמש.", text: "אני עוברת על האתר, הטופס או התהליך, ויוצרת רשימה ברורה ומתועדפת של שיפורים." },
+  { title: "סדנה לקבלת החלטות.", text: "אני מנחה את הצוות סביב נושא אחד, עוזרת לחדד מה באמת צריך ומובילה לפתרון שאפשר להתחיל ליישם." },
+  { title: "עיצוב אתר שקל להתמצא בו.", text: "אני מלווה אתכם מהמבנה ועד העיצוב הסופי, כך שהאתר משקף את מה שאתם עושים, ופשוט להשתמש בו." },
+  { title: "אפיון ועיצוב מערכת.", text: "מהבנת הצורך ועד עיצוב שמוכן לפיתוח, אני מתכננת את התהליכים ומעצבת את המערכת כך שתהיה נוחה ויעילה לשימוש." },
+];
+const swatches = ["sage-soft", "amber-soft", "rose-soft", "indigo-soft"] as const;
+---
+
+<Layout
+  lang="he"
+  title="קהילה, חינוך ועמותות - מור נוה"
+  description="אתרים, טפסים ותהליכי הרשמה פשוטים יותר לבתי ספר, מתנ״סים, עמותות ורשויות."
+>
+  <section class="mx-auto max-w-[1400px] px-6 pt-20 pb-28">
+    <h1 class="font-display max-w-4xl text-5xl leading-tight font-normal text-ink md:text-6xl">
+      כשההרשמה לחוג הופכת למשימה
+    </h1>
+    <p class="mt-6 max-w-3xl text-lg text-ink/80">
+     בתי ספר, מתנ"סים, עמותות ורשויות עושים עבודה חשובה. בעזרת תכנון חוויית משתמש נכון, אפשר ליצור שירותים ותהליכים שמגיעים ליותר אנשים ונותנים מענה טוב יותר לצרכים בשטח.
+    </p>
+  </section>
+
+  <section class="pb-28">
+    <div class="py-16" style="background: var(--color-sage-pale);">
+      <div class="mx-auto max-w-[1400px] px-6">
+        <h2 class="font-display text-4xl font-normal text-ink">
+          נשמע מוכר?
+        </h2>
+        <ul class="mt-8 grid gap-4 md:grid-cols-2">
+          {
+            familiar.map((f) => (
+              <li class="rounded-2xl bg-bg p-6 text-lg text-ink">
+                {f}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1400px] px-6 pb-40">
+    <h2 class="font-display text-4xl font-normal text-ink">
+       אני יכולה לעזור
+    </h2>
+    <ul class="mt-8 grid gap-6 md:grid-cols-2">
+      {
+        services.map((s, i) => (
+          <li class="rounded-3xl p-8" style={`border: 2px solid var(--color-${swatches[i % swatches.length]});`}>
+            <h3 class="font-display text-xl font-semibold text-ink">{s.title}</h3>
+            <p class="mt-2 text-lg text-ink/80">{s.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>

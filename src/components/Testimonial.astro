@@ -15,7 +15,7 @@ const { quote, name, title, company, id, color = "indigo-soft", logo } = Astro.p
 const isLong = quote.length > 700;
 // **text** in a quote renders as emphasis; escape first so quotes can't inject HTML
 const quoteHtml = quote
-  .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+  .replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c] ?? c)
   .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-ink">$1</strong>');
 ---
 

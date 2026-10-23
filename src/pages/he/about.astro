@@ -1,0 +1,44 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  lang="he"
+  title="קצת עליי - מור נוה"
+  description="מהנדסת מערכות מידע מאז 2006, ומעצבת ה-UX היחידה באקסלרטור של סיטיבנק."
+>
+  <!-- title sits on its own row so the photos center on the text only -->
+  <section class="mx-auto grid max-w-[1100px] grid-cols-1 gap-8 px-6 pt-20 pb-40 md:grid-cols-[1fr_440px] md:items-center md:gap-x-16">
+    <h1 class="font-display text-5xl font-normal text-ink md:col-span-2 md:text-6xl">
+      קצת עליי
+    </h1>
+    <div>
+      <div class="space-y-5 text-lg text-ink/80">
+        <p>
+          אני מור, נעים מאוד!<br />
+          התחלתי כמהנדסת מערכות מידע ב-2006, ומשם הגעתי לעיצוב חוויית משתמש. עיצבתי אתרים עבור ארגונים שונים בישראל, המשכתי משם לסיטי בנק והייתי אחרית על חוויית המשתמש עבור האקסלרטור של החברה, ומשם עברתי לעיצוב מערכות מורכבות בעולם אבטחת המערכות.
+        </p>
+        <p>
+          אני עוזרת לחדד את הכיוון כשלא ברור מה הצעד הבא, לזהות פערים בהבנה בין אנשים ולחבר בין נקודות מבט שונות. כך נוצר פתרון שכולם יכולים להתחבר אליו שעובד גם בשטח.
+        </p>
+        <p>
+          האמפתיה הזו היא הבסיס לעבודה שלי: אני יודעת מה יבלבל אנשים ואיך הם כשהם משתמשים במערכת או אתר.
+        </p>
+        <!-- TODO(Mor): personal detail, drafted from the English About page -->
+        <p>
+        כשאני לא מעצבת, אני מטיילת עם הכלבה שלי, יוצאת לטבע ומגלה ערים חדשות דרך האנשים שחיים בהן. בבית אני אוהבת ליצור ולאייר. תמיד נמשכתי לאמנות וליצירה, ועיצוב מוצרים דיגיטליים הרגיש כמו הצעד הטבעי הבא. אשמח לשמוע על האתגרים שלכם ולחשוב עליהם ביחד. דברו איתי :)
+        </p>
+      </div>
+    </div>
+    <div class="relative order-first h-[420px] md:order-none">
+      <div class="absolute inset-0 grid grid-cols-3 gap-3">
+        <img src="/images/about-me1.jpg" alt="מור יורדת במדרגות אבן על גבעה ירוקה" class="h-full w-full rounded-2xl object-cover" />
+        <div class="flex min-h-0 flex-col gap-3">
+          <img src="/images/about-me4.jpg" alt="מור מצטלמת ליד אוטובוס לונדוני" class="min-h-0 w-full flex-1 rounded-2xl object-cover" />
+          <img src="/images/about-me3.jpg" alt="מור מלטפת חתול רחוב" class="min-h-0 w-full flex-1 rounded-2xl object-cover" />
+        </div>
+        <img src="/images/about-me2.jpg" alt="הכלב של מור בטיול" class="h-full w-full rounded-2xl object-cover" />
+      </div>
+    </div>
+  </section>
+</Layout>

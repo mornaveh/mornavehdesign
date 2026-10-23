@@ -1,18 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Testimonial from "../components/Testimonial.astro";
+import Testimonials from "../components/Testimonials.astro";
 import ContactCTA from "../components/ContactCTA.astro";
-import ContactForm from "../components/ContactForm.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import { projects } from "../data/projects";
+import { logos } from "../data/logos";
 
-const logos = [
-  { name: "Snyk", file: "snyk.webp", h: "h-5" },
-  { name: "Leo", file: "leo.webp", h: "h-6" },
-  { name: "Citi Innovation Lab", file: "citi.webp", h: "h-9" },
-  { name: "Proxymity", file: "proxymity.svg", h: "h-6" },
-  { name: "Yael Group", file: "yael.webp", h: "h-5" },
-];
 
 const swatches = ["indigo-soft", "rose-soft", "sage-soft", "amber-soft"] as const;
 
@@ -42,56 +35,6 @@ const process = [
       "I design with implementation in mind: clear, polished, and ready to build. Delivery isn't the end of the process, though. As real feedback and data come in, we keep iterating and refining, so the product keeps delivering on your business goals.",
   },
 ];
-
-const testimonials = [
-  {
-    quote:
-      "Mor is a fantastic collaborator and asset to any projects I've had the pleasure of working with her on.\n**She is able to get to the core of any problem areas or requirements**, and create design artefacts that both meet objectives as well as excelling in advising and offering her expertise on areas such as wording choices and iconography usage.\n**Mor is quick to respond to any changes in scope**, and always happy to work closely with both product and engineering to ensure that the final product is polished and professional.",
-    name: "Eleanor Demetriou",
-    title: "Senior Software Engineer",
-    company: "Snyk",
-  },
-  {
-    quote:
-      "Mor played a key role in the first iterations of Proxymity (then mysteriously called xVote). **Mor took a very thoughtful and structured approach to the UX designs**, taking time to understand the user personas and domain of shareholder voting and investor communications which unsurprisingly given such a niche area was completely new to her.\n**Mor took time to explain principles of modern UX architecture design ensuring buy-in from all key stakeholders** and generally raising the bar and level of awareness across the team of the power of good UX design and architecture. Mor's work still serves as the foundation of what we use today across some of our core internal and external platforms. Mor was a highlight speaker at our first client event in London educating an audience of governance and IR professionals on UX principles. Mor was focused, determined, unflappable when faced with pressing deadlines and a pleasure to work with.",
-    name: "Jonathan Smalley",
-    title: "Co-Founder",
-    company: "Proxymity",
-  },
-  {
-    quote: "**Mor has a rare ability to turn ambiguous ideas and raw user feedback into clear, intuitive products**, and she does it fast without ever compromising on quality. She's a true partner to product. A great example is Proxymity, a proxy-voting platform for institutional clients. Mor was its UX lead, and it grew from a sketch in one of our workshops into a platform that transformed the global proxy-voting industry.\nWorking with Mor made me a better PM.",
-    name: "Limor Peleg",
-    title: "Product Manager",
-    company: "formerly at Citi Innovation Lab",
-  },
-  {
-    quote:
-      "I have worked both directly and indirectly with Mor my entire time at Snyk.\n**She is an incredibly thoughtful and empathetic designer, always championing the user and always asking why** (at least five times 😊). She is extremely collaborative, both within her teams and with her peers and loves teaching and showing others what she has learned herself.\n**I can thoroughly recommend Mor to anyone who needs a brilliant product designer and a brilliant human!**",
-    name: "Jakob Buhl",
-    title: "Product Designer",
-    company: "Snyk",
-  },
-  {
-    quote: `**Mor is a highly adaptive, details-focused, and user-oriented product designer** who puts the work in to understand deeply technical domains, and who has helped make the design team at Snyk more effective by creating AI Skills for Claude that the whole team now uses.
-
-As one of our most capable designers Mor has worked across Snyk from our Growth to our Application Security teams. From helping clients sign up, helping engineers get started, to defining new cross-platform product capabilities and functionality.
-
-Most recently, Mor was responsible for the user experience around the Consistent Ignores project; the context for which included inconsistencies within product capabilities from one interface to the other, and between products. She worked tightly with the Product Manager and Engineers, collaborating to understand and align on the problem and possible solutions, and understanding the problem space through research, before designing the cross-platform approach and interfaces.  The impact of her work led directly to a reduction in the noise faced by developer and App-Sec teams, improving the relationship between those teams by reducing friction, and increasing confidence through a single source of truth.
-
-Mor also worked to help create and improve several Claude Skills for design. Taking an early Skill that attempted to create designs based on Snyk's design system, Mor identified that while the outputs looked right Claude was in fact producing hard-coded elements rather than using the actual components. As well as improving the output of the skill she worked on an eval which was used to improve the skill over time with each usage. All of this being properly versioned and distributed via git. The impact of this was that designers (and in fact anyone in the company) could produce prototypes for discussion within teams and for user feedback in a matter of minutes - not just reducing the time taken to produce and evaluate prototypes, but also increasing the functionality that could be prototyped, and making the prototypes appropriately believable for richer feedback.
-
-As well as being an excellent Product Designer (and producer of crochet patterns and sketch artist), Mor is a deeply caring colleague and friend, a supportive collaborator and team-player.`,
-    name: "Karl Sabino",
-    title: "Design Manager",
-    company: "Snyk",
-  },
-  {
-    quote:
-      "I've had the pleasure of working with Mor on a couple of projects during my time at Snyk, and it's always been an exceptional experience.\n**She is so dedicated to being embedded with the team so there's no misalignment, and her output is both high quality and rapidly delivered.**\nI think the best thing about working with Mor is that she is user hungry, and will be on every call possible to ensure the product and engineering team has absolute confidence in the experience she is delivering, as it's constantly validated.",
-    name: "Waleed Arshad",
-    title: "Staff Product Manager",
-    company: "Snyk",
-  },];
 ---
 
 <Layout title="Mor Naveh Product Designer">
@@ -156,41 +99,7 @@ As well as being an excellent Product Designer (and producer of crochet patterns
     </div>
   </section>
 
-  <section class="mx-auto max-w-[1400px] px-6 pb-40">
-    <div class="flex items-baseline justify-between">
-      <h2 class="font-display text-4xl font-normal text-ink">Testimonials</h2>
-      <div class="flex gap-2">
-        <button
-          type="button"
-          data-testimonial-scroll="prev"
-          aria-label="Previous testimonial"
-          class="flex h-9 w-9 items-center justify-center rounded-full border border-border text-ink transition-colors hover:border-ink"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 6-6 6 6 6" /></svg>
-        </button>
-        <button
-          type="button"
-          data-testimonial-scroll="next"
-          aria-label="Next testimonial"
-          class="flex h-9 w-9 items-center justify-center rounded-full border border-border text-ink transition-colors hover:border-ink"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6" /></svg>
-        </button>
-      </div>
-    </div>
-    <div
-      id="testimonials-track"
-      class="-ml-6 mt-8 flex snap-x snap-mandatory items-start gap-6 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-    >
-      {
-        testimonials.map((t, i) => (
-          <div class="w-fit max-w-[480px] shrink-0 snap-start sm:max-w-[560px]">
-            <Testimonial quote={t.quote} name={t.name} title={t.title} company={t.company} logo={logos.find((l) => t.company.endsWith(l.name))} id={`testimonial-${i}`} />
-          </div>
-        ))
-      }
-    </div>
-  </section>
+  <Testimonials />
 
   <section class="pb-40">
     <div class="relative left-1/2 w-screen -translate-x-1/2 py-16" style="background: var(--color-sage-soft);">
@@ -258,19 +167,8 @@ As well as being an excellent Product Designer (and producer of crochet patterns
     </div>
   </section>
 
-  <script>
-    const track = document.getElementById("testimonials-track");
-    document.querySelectorAll("[data-testimonial-scroll]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const direction = btn.getAttribute("data-testimonial-scroll") === "next" ? 1 : -1;
-        track?.scrollBy({ left: direction * 356, behavior: "smooth" });
-      });
-    });
-  </script>
 
-  <section class="pb-48">
+  <section>
     <ContactCTA />
   </section>
-
-  <ContactForm />
 </Layout>

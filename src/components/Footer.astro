@@ -1,10 +1,15 @@
+---
+const { lang = "en" } = Astro.props;
+const he = lang === "he";
+---
+
 <footer class="border-t border-border">
   <div class="mx-auto max-w-[1400px] px-6 py-10 text-sm text-muted">
     <div class="flex flex-wrap items-center justify-between gap-4">
-      <span>© {new Date().getFullYear()} Mor Naveh</span>
+      <span>© {new Date().getFullYear()} {he ? "מור נוה" : "Mor Naveh"}</span>
       <div class="flex gap-6">
-        <a href="mailto:mornavehdesign@gmail.com" class="hover:text-ink transition-colors">Email</a>
-        <a href="https://il.linkedin.com/in/mor-naveh" class="hover:text-ink transition-colors">LinkedIn</a>
+        <a href="mailto:mornavehdesign@gmail.com" class="hover:text-ink transition-colors">{he ? "מייל" : "Email"}</a>
+        <a href="https://il.linkedin.com/in/mor-naveh" class="hover:text-ink transition-colors">{he ? "לינקדאין" : "LinkedIn"}</a>
       </div>
     </div>
   </div>
